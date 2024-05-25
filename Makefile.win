@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = main.o ui.o
-LINKOBJ  = main.o ui.o
+OBJ      = main.o ui.o body.o
+LINKOBJ  = main.o ui.o body.o
 LIBS     = -L"C:/Users/LENOVO/Dev-Cpp/MinGW64/lib" -L"C:/Users/LENOVO/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
 INCS     = -I"C:/Users/LENOVO/Dev-Cpp/MinGW64/include" -I"C:/Users/LENOVO/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Users/LENOVO/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"C:/Users/LENOVO/Dev-Cpp/MinGW64/include" -I"C:/Users/LENOVO/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Users/LENOVO/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Users/LENOVO/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
@@ -29,3 +29,6 @@ main.o: main.cpp
 
 ui.o: ui.cpp
 	$(CPP) -c ui.cpp -o ui.o $(CXXFLAGS)
+
+body.o: body.cpp
+	$(CPP) -c body.cpp -o body.o $(CXXFLAGS)

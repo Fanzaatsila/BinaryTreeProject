@@ -1,5 +1,7 @@
 #include "header.h"
-
+#include <stdlib.h>
+#include <stdio.h>
+#include <conio.h>
 void ListParent(nbtAddr nbtRoot)
 {
     if (nbtRoot != NULL)
@@ -46,6 +48,7 @@ nbtAddr CreateNbtNode(infoType info)
         newNode->fs = NULL;
         newNode->nb = NULL;
         newNode->pr = NULL;
+        newNode->level = NULL;
     }
     return newNode;
 }
@@ -56,14 +59,17 @@ void InsertNbtNode(nbtAddr *nbtRoot, nbtAddr parent, infoType info)
     newNode->pr = parent;
     if (parent == NULL)
     {
+    	newNode->level = 0;
         (*nbtRoot) = newNode;
     }
     else if (parent->fs == NULL)
     {
+    	newNode->level = parent->level + 1;
         parent->fs = newNode;
     }
     else
     {
+    	newNode->level = parent->level + 1;
         parent = parent->fs;
         while (parent->nb != NULL)
         {
@@ -185,7 +191,7 @@ void NbtTreeToFile(nbtAddr root, FILE *fp)
     }
 }
 
-void LoadTree(nbtAddr *nbtTree){
+void LoadTree(nbtAddr (*nbtTree)){
     char fileName[20];
 
     printf("\nSilahkan Masukkan Nama File (.txt): ");
@@ -213,3 +219,148 @@ void LoadNbtTreeFromFile(nbtAddr *nbtRoot, char *fileName)
     printf("Load Tree from file success!\n");
 }
 /* ======================= END SAVE LOAD TREE TO FILE ========================*/
+
+/*======================== detail information nbTree ============================*/
+int nbtGetDepth(nbtAddr rootHolder){
+	int count;
+	int total;
+	nbtAddr p;
+	bool resmi = true;
+	count = 0;
+	total = 0;
+	p = rootHolder;
+	while (p!=NULL){
+		if (p->fs!=NULL&&resmi){
+			p = p->fs;
+			count = count + 1;
+		}else if (p->nb!=NULL){
+			p = p->nb;
+			resmi = true;
+		}else{
+			p = p->pr;
+			resmi = false;
+			if (total<count){
+				total = count;
+			}
+			count = count - 1;
+		}
+	}
+	return total;
+}
+
+int nbtGetElements(nbtAddr rootHolder){
+	int count;
+	nbtAddr p;
+	bool resmi = true;
+	p = rootHolder;
+	count = 0;
+	while (p!=NULL){
+		if (resmi){
+			count = count+1;
+		}
+		if (p->fs!=NULL&&resmi){
+			p = p->fs;
+		}else if (p->nb!=NULL){
+			p = p->nb;
+			resmi = true;
+		}else{
+			p = p->pr;
+			resmi = false;
+		}
+	}
+	return count;
+}
+
+int nbtGetLeaves(nbtAddr rootHolder){
+	int count;
+	nbtAddr p;
+	bool resmi = true;
+	p = rootHolder;
+	count = 0;
+	while (p!=NULL){
+		if (p->fs!=NULL&&resmi){
+			p = p->fs;
+		}else if (p->nb!=NULL){
+			if (resmi){
+				count = count + 1;
+			}
+			p = p->nb;
+			resmi = true;
+		}else{
+			if (resmi){
+				count = count + 1;
+			}
+			p = p->pr;
+			resmi = false;
+		}
+	}
+	return count;
+}
+
+int nbtGetChilds(nbtAddr nodeHolder){
+	int count = 0;
+	bool resmi = true;
+	nbtAddr p;
+	p = nodeHolder;
+	if (p->fs!=NULL){
+		p = p->fs;
+		while (p!=NULL){
+			count = count + 1;
+			p = p->nb;
+		}
+		return count;			
+	}else {
+		return 0;
+	}
+}
+
+void nbtShowMetaData(nbtAddr rootHolder){
+	bool resmi = true;
+	nbtAddr p;
+	printf("TREE DETAIL INFORMATION\n\tTree Root : %c\n\tTree Depth : %i\n\tTree Elements : %i\n\tTree Leaves : %i\n\n",
+	rootHolder->info,nbtGetDepth(rootHolder),nbtGetElements(rootHolder),nbtGetLeaves(rootHolder));
+	
+	p = rootHolder;
+	while (p!=NULL){
+		if (resmi){
+			nbtShowElMetaData(p);
+		}
+		if (p->fs!=NULL&&resmi){
+			p = p->fs;
+		}else if (p->nb!=NULL){
+			p = p->nb;
+			resmi = true;
+		}else{
+			p = p->pr;
+			resmi = false;
+		}
+	}
+}
+
+void nbtShowElStatus(nbtAddr nodeHolder){
+	if(nodeHolder->pr==NULL){
+		printf("root");
+	}else{
+		printf("child of %c",nodeHolder->pr->info);
+	}
+}
+
+void nbtShowLeafStatus(nbtAddr nodeHolder){
+	if (nodeHolder->fs==NULL){
+		printf("true");
+	}else{
+		printf("false");
+	}
+}
+
+void nbtShowElMetaData(nbtAddr nodeHolder){
+	
+	printf("\t'%c' DETAIL INFORMATION\n\t\tElement Status : ",nodeHolder->info);
+	nbtShowElStatus(nodeHolder);
+	printf("\n\t\tElement Level : %i\n\t\tElement Childs : %i\n\t\tElement Leaf Status : ",
+	nodeHolder->level,nbtGetChilds(nodeHolder));
+	nbtShowLeafStatus(nodeHolder);printf("\n\n");
+	
+}
+
+/*======================== END detail information nbTree ============================*/

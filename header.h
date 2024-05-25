@@ -9,6 +9,7 @@ typedef char infoType;
 
 typedef struct nbTree
 {
+	int level;
     nbtAddr fs,nb,pr;
     infoType info;
 }nbtType;
@@ -67,7 +68,7 @@ void NbtTreeToFile(nbtAddr root, FILE *fp);
 */
 
 /* Modul untuk memanggil prosedur LoadNbtTreeFromFile dan menanyakan nama dari file yang akan dimuat */
-void LoadTree(nbtAddr nbtTree);
+void LoadTree(nbtAddr (*nbtTree));
 /*	I.S.: Pointer of node sembarang
 	F.S.: Menjalankan prosedur LoadNbtTreeFromFile
 */
@@ -78,5 +79,16 @@ void LoadNbtTreeFromFile(nbtAddr *nbtRoot, char *fileName);
 	F.S.: Pointer of node sudah menunjuk root dari non-binary-tree
 */
 /* ======================= END SAVE LOAD TREE TO FILE ========================*/
+
+/*======================== detail information nbTree ============================*/
+int nbtGetDepth(nbtAddr rootHolder);
+int nbtGetElements(nbtAddr rootHolder);
+int nbtGetLeaves(nbtAddr rootHolder);
+void nbtShowElStatus(nbtAddr nodeHolder);
+void nbtShowLeafStatus(nbtAddr nodeHolder);
+int nbtGetChilds(nbtAddr nodeHolder);
+void nbtShowElMetaData(nbtAddr nodeHolder);
+void nbtShowMetaData(nbtAddr rootHolder);
+/*======================== END detail information nbTree ============================*/
 
 #endif

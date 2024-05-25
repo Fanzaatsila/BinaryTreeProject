@@ -2,8 +2,7 @@
 #include <windows.h>
 #include "header.h"
 #include "ui.h"
-#include "ui.cpp"
-#include "body.cpp"
+
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
@@ -57,7 +56,7 @@ int main(int argc, char** argv) {
 					break;
 				}
 				case '2':{
-					if (treeHolder!=NULL){
+					if (nbtTree!=NULL){
 						editCon = true;
 						while (editCon){
 							printAppHeader();
@@ -68,7 +67,7 @@ int main(int argc, char** argv) {
 					break;
 				}
 				case '3':{
-					if (treeHolder!=NULL){
+					if (nbtTree!=NULL){
 						delCon = true;
 						while (delCon){
 							printAppHeader();
@@ -79,7 +78,7 @@ int main(int argc, char** argv) {
 					break;
 				}
 				case '4':{
-					if (treeHolder!=NULL){
+					if (nbtTree!=NULL){
 						convertCon = true;
 						while (convertCon){
 							printAppHeader();
@@ -92,7 +91,9 @@ int main(int argc, char** argv) {
 									break;
 								}
 								case '2':{
-									
+									printAppHeader();
+									nbtShowMetaData(nbtTree);
+									system("pause");
 									break;
 								}
 								case '0':{
@@ -124,7 +125,7 @@ int main(int argc, char** argv) {
 					break;
 				}
 				case '6':{
-					if (treeHolder!=NULL){
+					if (nbtTree!=NULL){
 						eduCon = true;
 						while (eduCon){
 							printAppHeader();
