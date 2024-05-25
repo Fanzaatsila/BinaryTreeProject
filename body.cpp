@@ -95,7 +95,7 @@ void NbtCreateTree(nbtAddr *nbtRoot)
         {
             check = true;
             printf("Lanjutkan?(y/n) : ");
-            scanf(" %c", &option);
+            option = getch();
             if (option == 'n')
             {
                 return;
@@ -104,10 +104,10 @@ void NbtCreateTree(nbtAddr *nbtRoot)
                 check = false;
             }else
             {
-                printf("Kamu memasukkan pilihan yang salah, pilihlah pilihan yang disediakan\n");
+                printf("\nKamu memasukkan pilihan yang salah, pilihlah pilihan yang disediakan\n");
             }
         } while (check);
-        printf("Masukkan Nama Node Yang Akan Dimasukkan: ");
+        printf("\nMasukkan Nama Node Yang Akan Dimasukkan: ");
         scanf(" %c", &nama);
         if (*nbtRoot == NULL)
         {
@@ -135,12 +135,12 @@ void NbtCreateTree(nbtAddr *nbtRoot)
 /* ======================= END KONSTRUKTOR NODE DAN TREE ========================*/
 
 /* ======================= SAVE LOAD TREE TO FILE ========================*/
-void SaveTree(nbtAddr nb){
+void SaveTree(nbtAddr nbtTree){
     char fileName[20];
 
     printf("Silahkan Masukkan Nama File (.txt): ");
     scanf(" %s", &fileName);
-    SaveNbtTreeToFile(nb, fileName);
+    SaveNbtTreeToFile(nbtTree, fileName);
 
 }
 
@@ -183,5 +183,33 @@ void NbtTreeToFile(nbtAddr root, FILE *fp)
         // menuju sibling berikutnya
         child = child->nb;
     }
+}
+
+void LoadTree(nbtAddr *nbtTree){
+    char fileName[20];
+
+    printf("\nSilahkan Masukkan Nama File (.txt): ");
+    scanf(" %s", &fileName);
+    LoadNbtTreeFromFile(&(*nbtTree), fileName);
+}
+
+void LoadNbtTreeFromFile(nbtAddr *nbtRoot, char *fileName)
+{
+    FILE *fp = fopen(fileName, "r");
+
+    if (fp == NULL)
+    {
+        printf("Gagal membuka file\n");
+        return;
+    }
+
+    char parent, node;
+    while (fscanf(fp, "(%c, %c) ", &parent, &node) != EOF)
+    {
+        InsertNbtNode(&(*nbtRoot), SearchNbtNode(*nbtRoot, parent), node);
+    }
+
+    fclose(fp);
+    printf("Load Tree from file success!\n");
 }
 /* ======================= END SAVE LOAD TREE TO FILE ========================*/

@@ -48,6 +48,12 @@ void NbtCreateTree(nbtAddr *nbtRoot);
 /* ======================= END KONSTRUKTOR NODE DAN TREE ========================*/
 
 /* ======================= SAVE LOAD TREE TO FILE ========================*/
+/* Modul untuk memanggil prosedur SaveNbtTreeToFile dan menyiapkan nama dari file yang akan disimpan */
+void SaveTree(nbtAddr nbtTree);
+/*	I.S.: Pointer of node yang menunjuk ke root suatu non-binary-tree
+	F.S.: Menjalankan prosedur SaveNbtTreeToFile
+*/
+
 /* Modul prosedur untuk melakukan save non-binary-tree ke dalam file*/
 void SaveNbtTreeToFile(nbtAddr root, char *fileName);
 /*	I.S.: Pointer of node yang mengarah ke root suatu non-binary-tree, juga nama file yang akan dibuat
@@ -60,6 +66,17 @@ void NbtTreeToFile(nbtAddr root, FILE *fp);
 	F.S.: Data tree sudah disimpan di dalam file
 */
 
+/* Modul untuk memanggil prosedur LoadNbtTreeFromFile dan menanyakan nama dari file yang akan dimuat */
+void LoadTree(nbtAddr nbtTree);
+/*	I.S.: Pointer of node sembarang
+	F.S.: Menjalankan prosedur LoadNbtTreeFromFile
+*/
+
+/* Modul prosedur untuk mengambil data dari file yang sebelumnya sudah disave, lalu menkonversinya menjadi non-binary-tree*/
+void LoadNbtTreeFromFile(nbtAddr *nbtRoot, char *fileName);
+/*	I.S.: Pointer of node sembarang, dan juga nama file yang sudah disiapkan sebelumnya dengan format yang sesuai
+	F.S.: Pointer of node sudah menunjuk root dari non-binary-tree
+*/
 /* ======================= END SAVE LOAD TREE TO FILE ========================*/
 
 #endif

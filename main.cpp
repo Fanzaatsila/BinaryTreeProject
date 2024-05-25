@@ -39,7 +39,8 @@ int main(int argc, char** argv) {
 								break;
 							}
 							case '2':{
-								
+								LoadTree(&nbtTree);
+								system("pause");
 								break;
 							}
 							case '0':{
