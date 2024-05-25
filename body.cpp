@@ -35,7 +35,7 @@ nbtAddr SearchNbtNode(nbtAddr nbtRoot, infoType info)
     }
 }
 
-/* ======================= KONSTRUKTOR NODE ========================*/
+/* ======================= KONSTRUKTOR NODE DAN TREE ========================*/
 nbtAddr CreateNbtNode(infoType info)
 {
     nbtAddr newNode;
@@ -104,7 +104,7 @@ void NbtCreateTree(nbtAddr *nbtRoot)
                 check = false;
             }else
             {
-                printf("\nKamu memasukkan pilihan yang salah, pilihlah pilihan yang disediakan");
+                printf("Kamu memasukkan pilihan yang salah, pilihlah pilihan yang disediakan\n");
             }
         } while (check);
         printf("Masukkan Nama Node Yang Akan Dimasukkan: ");
@@ -132,3 +132,56 @@ void NbtCreateTree(nbtAddr *nbtRoot)
         }
     }
 }
+/* ======================= END KONSTRUKTOR NODE DAN TREE ========================*/
+
+/* ======================= SAVE LOAD TREE TO FILE ========================*/
+void SaveTree(nbtAddr nb){
+    char fileName[20];
+
+    printf("Silahkan Masukkan Nama File (.txt): ");
+    scanf(" %s", &fileName);
+    SaveNbtTreeToFile(nb, fileName);
+
+}
+
+void SaveNbtTreeToFile(nbtAddr root, char *filename)
+{
+    FILE *fp = fopen(filename, "w");
+
+    if (fp == NULL)
+    {
+        printf("Gagal membuka file\n");
+        return;
+    }
+
+    NbtTreeToFile(root, fp); // menyimpan data ke file
+    fclose(fp);             // menutup file
+    printf("Save Berhasil!\n");
+}
+
+void NbtTreeToFile(nbtAddr root, FILE *fp)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+
+    nbtAddr child = root->fs; // pointer ke node anak pertama
+    if (root->pr == NULL)
+    {
+        // jika root, simpan dengan parent 0
+        fprintf(fp, "(%c, %c) ", '0', root->info);
+    }
+    while (child != NULL)
+    {
+        // menyimpan pasangan (parent, child) ke file
+        fprintf(fp, "(%c, %c) ", root->info, child->info);
+
+        // rekursif untuk setiap anak
+        NbtTreeToFile(child, fp);
+
+        // menuju sibling berikutnya
+        child = child->nb;
+    }
+}
+/* ======================= END SAVE LOAD TREE TO FILE ========================*/

@@ -25,7 +25,7 @@ nbtAddr SearchNbtNode (nbtAddr nbtRoot, infoType info);
     FS : Node yang memiliki info ditemukan dan direturn 
 */
 
-/* ======================= KONSTRUKTOR NODE ========================*/
+/* ======================= KONSTRUKTOR NODE DAN TREE ========================*/
 /* Function untuk mengalokasikan node non-binary tree dan mengembalikan alamat node baru */
 nbtAddr CreateNbtNode(infoType info);
 /*  IS : Pointer yang tidak mengarah kemanapun
@@ -45,5 +45,21 @@ void NbtCreateTree(nbtAddr *nbtRoot);
 	I.S.: Pointer of node sembarang
 	F.S.: Pointer of node mengarah ke root non-binary-tree
 */
+/* ======================= END KONSTRUKTOR NODE DAN TREE ========================*/
+
+/* ======================= SAVE LOAD TREE TO FILE ========================*/
+/* Modul prosedur untuk melakukan save non-binary-tree ke dalam file*/
+void SaveNbtTreeToFile(nbtAddr root, char *fileName);
+/*	I.S.: Pointer of node yang mengarah ke root suatu non-binary-tree, juga nama file yang akan dibuat
+	F.S.: File berisi data non-binary-tree yang kita punya sudah terbuat
+*/
+
+/* Modul prosedur untuk menyiapkan file dan mengatur penulisan di dalamnya*/
+void NbtTreeToFile(nbtAddr root, FILE *fp);
+/*	I.S.: Pointer of node yang mengarah ke root suatu non-binary-tree, juga file yang akan disimpan data di dalamnya
+	F.S.: Data tree sudah disimpan di dalam file
+*/
+
+/* ======================= END SAVE LOAD TREE TO FILE ========================*/
 
 #endif

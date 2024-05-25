@@ -110,13 +110,15 @@ int main(int argc, char** argv) {
 					break;
 				}
 				case '5':{
-					if (treeHolder!=NULL){
+					if (nbtTree!=NULL){
 						saveCon = true;
-						while (saveCon){
-							printAppHeader();
-						}
+						printAppHeader();
+						SaveTree(nbtTree);
+        				system("pause");
 					}else{
 						isAvailable = false;
+						printf("Tree Masih Kosong!\n");
+        				system("pause");
 					}
 					break;
 				}
