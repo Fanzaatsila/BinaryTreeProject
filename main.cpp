@@ -1,8 +1,9 @@
 #include <conio.h>
 #include <windows.h>
-#include <stdio.h>
+#include "header.h"
 #include "ui.h"
-
+#include "ui.cpp"
+#include "body.cpp"
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
@@ -14,6 +15,7 @@ int main(int argc, char** argv) {
 	bool isError;
 	bool isAvailable = true; //ini tipe datanya masih dummy, nantinya ini tipe datanya pointer of nbTree
 	bool treeHolder = NULL;
+	nbtAddr nbtTree = NULL;
 	while (appCon){
 		menuCon = true;
 		while (menuCon){
@@ -33,7 +35,7 @@ int main(int argc, char** argv) {
 						userInput(&inUser);
 						switch (inUser){
 							case '1':{
-								
+								NbtCreateTree(&(nbtTree));
 								break;
 							}
 							case '2':{
