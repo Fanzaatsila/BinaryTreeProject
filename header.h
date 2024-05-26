@@ -15,6 +15,13 @@ typedef struct nbTree
     infoType info;
 } nbtType;
 
+typedef struct bTree* (btAddr);
+typedef struct bTree{
+	char info;
+	int level;
+	btAddr ls,rs,pr;
+}btType;
+
 /* Membuat visualisasi sederhana non binary tree yang telah dibuat */
 void ListParent(nbtAddr nbtRoot);
 /*  IS : Pointer mengarah ke root non binary tree
@@ -131,5 +138,16 @@ int nbtGetChilds(nbtAddr nodeHolder);
 void nbtShowElMetaData(nbtAddr nodeHolder);
 void nbtShowMetaData(nbtAddr rootHolder);
 /*======================== END detail information nbTree ============================*/
+
+//==================== modul detail information bTree =========================
+int btGetDepth(btAddr rootHolder);
+int btGetElements(btAddr rootHolder);
+int btGetLeaves(btAddr rootHolder);
+int btGetChilds(btAddr nodeHolder);
+void btShowElStatus(btAddr nodeHolder);
+void btShowLeafStatus(btAddr nodeHolder);
+void btShowElMetaData(btAddr nodeHolder);
+void btShowMetaData(btAddr rootHolder);
+//==============================================================================
 
 #endif // HEADER_H

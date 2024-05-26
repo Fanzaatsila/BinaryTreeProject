@@ -564,3 +564,96 @@ void nbtShowElMetaData(nbtAddr nodeHolder)
 }
 
 /*======================== END detail information nbTree ============================*/
+
+//==================== modul detail information bTree =========================
+int btGetDepth(btAddr rootHolder){ //geeksforgeeks algorithm
+	int lDepth;
+	int rDepth;
+	if (rootHolder==NULL){
+		return 0;
+	}else{
+		lDepth = btGetDepth(rootHolder->ls);
+		rDepth = btGetDepth(rootHolder->rs);
+		
+		if (lDepth>rDepth){
+			return lDepth;
+		}else {
+			return rDepth;
+		}
+	}
+}
+
+int btGetElements(btAddr rootHolder){//geeksforgeeks algorithm
+	int lCount;
+	int rCount;
+	
+	if (rootHolder==NULL){
+		return 0;
+	}
+	
+	lCount = btGetElements(rootHolder->ls);
+	rCount = btGetElements(rootHolder->rs);
+	
+	return 1 + lCount + rCount;
+}
+
+int btGetLeaves(btAddr rootHolder){//geeksforgeeks algorithm
+	
+	if (rootHolder==NULL){
+		return 0;
+	}
+	if (rootHolder->ls&&rootHolder->rs){
+		return 1;
+	}else{
+		return btGetLeaves(rootHolder->ls) + btGetLeaves(rootHolder->rs);
+	}
+}
+
+int btGetChilds(btAddr nodeHolder){//geeksforgeeks algorithm
+	int lCount;
+	int rCount;
+	
+	if (nodeHolder==NULL){
+		return 0;
+	}
+	
+	lCount = btGetElements(nodeHolder->ls);
+	rCount = btGetElements(nodeHolder->rs);
+	
+	return lCount + rCount;
+}
+
+void btShowElStatus(btAddr nodeHolder){
+	if(nodeHolder->pr==NULL){
+		printf("root");
+	}else{
+		printf("child of %c",nodeHolder->pr->info);
+	}
+}
+
+void btShowLeafStatus(btAddr nodeHolder){
+	if (nodeHolder->ls!=NULL || nodeHolder->rs!=NULL){
+		printf("true");
+	}else printf("false");
+}
+
+void btShowElMetaData(btAddr nodeHolder){
+	printf("\t'%c' DETAIL INFORMATION\n\t\tElement Status : ",nodeHolder->info);
+	btShowElStatus(nodeHolder);
+	printf("\n\t\tElement Level : %i\n\t\tElement Childs : %i\n\t\tElement Leaf Status : ",
+	nodeHolder->level,btGetChilds(nodeHolder));
+	btShowLeafStatus(nodeHolder);printf("\n\n");
+}
+void btShowTreeMetaData(btAddr rootHolder){
+	printf("TREE DETAIL INFORMATION\n\tTree Root : %c\n\tTree Depth : %i\n\tTree Elements : %i\n\tTree Leaves : %i\n\n",
+	rootHolder->info,btGetDepth(rootHolder),btGetElements(rootHolder),btGetLeaves(rootHolder));
+}
+void btShowElsMetaData(btAddr nodeHolder){
+	if (nodeHolder == NULL){
+		return;
+	}
+	btShowElsMetaData(nodeHolder->ls);
+	btShowElMetaData(nodeHolder);
+	btShowElsMetaData(nodeHolder->rs);
+}
+//=============================================================================
