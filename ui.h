@@ -11,5 +11,7 @@ void userInput(char (*input));
 void errorMsg(bool error, bool available);
 void printAppConvertTree();
 void printAppEdu();
+void printAppEditTree(); 
+void printAppDeleteTree();
 
 #endif
