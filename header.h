@@ -18,7 +18,7 @@ typedef struct nbTree
 
 typedef struct bTree* (btAddr);
 typedef struct bTree{
-	char info;
+	infoType info;
 	int level;
 	btAddr ls,rs,pr;
 }btType;
@@ -157,5 +157,10 @@ void btShowLeafStatus(btAddr nodeHolder);
 void btShowElMetaData(btAddr nodeHolder);
 void btShowMetaData(btAddr rootHolder);
 //==============================================================================
+
+/*================== MODUL CONVERT NON-BINARY-TREE TO BINARY-TREE==========================*/
+btAddr NbtTreeConvertToBtTree(nbtAddr root);
+btAddr CreateBtNode(infoType info);
+/*================== END MODUL CONVERT NON-BINARY-TREE TO BINARY-TREE==========================*/
 
 #endif // HEADER_H

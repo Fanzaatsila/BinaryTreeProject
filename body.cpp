@@ -711,3 +711,31 @@ void btShowElsMetaData(btAddr nodeHolder){
 	btShowElsMetaData(nodeHolder->rs);
 }
 //=============================================================================
+
+/*================== MODUL CONVERT NON-BINARY-TREE TO BINARY-TREE==========================*/
+btAddr NbtTreeConvertToBtTree(nbtAddr root) {
+    if (!root) {
+        return NULL;
+    }
+
+    btAddr binaryRoot = CreateBtNode(root->info);
+    if (root->fs) {
+        binaryRoot->ls = NbtTreeConvertToBtTree(root->fs);
+        binaryRoot->ls->pr = binaryRoot;  // Set parent for the left subtree
+    }
+    if (root->nb) {
+        binaryRoot->rs = NbtTreeConvertToBtTree(root->nb);
+        binaryRoot->rs->pr = binaryRoot;  // Set parent for the right subtree
+    }
+    return binaryRoot;
+}
+
+// Fungsi untuk membuat node binary tree baru
+btAddr CreateBtNode(infoType info) {
+    btAddr newNode = (btAddr)malloc(sizeof(btType));
+    newNode->info = info;
+    newNode->ls = newNode->rs = newNode->pr = NULL;
+    newNode->level = 0;
+    return newNode;
+}
+/*================== END MODUL CONVERT NON-BINARY-TREE TO BINARY-TREE==========================*/
