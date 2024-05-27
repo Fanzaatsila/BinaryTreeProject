@@ -9,7 +9,8 @@ nbtAddr insertedNodes[MAX_NODES];
 int numInsertedNodes = 0;
 
 // Fungsi untuk menyimpan node yang dimasukkan
-void recordInsertedNode(nbtAddr node) {
+void recordInsertedNode(nbtAddr node)
+{
     insertedNodes[numInsertedNodes++] = node;
 }
 /* ======================= END VARIABLE GLOBAL PENAMPUNG NODE ========================*/
@@ -59,7 +60,7 @@ nbtAddr CreateNbtNode(infoType info)
         newNode->fs = NULL;
         newNode->nb = NULL;
         newNode->pr = NULL;
-        newNode->level = NULL;
+        newNode->level = 0;
     }
     return newNode;
 }
@@ -159,24 +160,29 @@ void NbtCreateTree(nbtAddr *nbtRoot)
 /* ======================= SAVE LOAD TREE TO FILE ========================*/
 
 /* ======================= SAVE CACHE TREE TO FILE ========================*/
-void WriteCache(nbtAddr root, const char* filename) {
+void WriteCache(nbtAddr root, const char *filename)
+{
     FILE *fp = fopen(filename, "w");
-    if (fp == NULL) {
+    if (fp == NULL)
+    {
         printf("Gagal membuka file\n");
         return;
     }
-    
+
     // Menulis setiap node yang dimasukkan ke file
-    for (int i = 0; i < numInsertedNodes; ++i) {
+    for (int i = 0; i < numInsertedNodes; ++i)
+    {
         fprintf(fp, "(%c, %c) ", insertedNodes[i]->pr != NULL ? insertedNodes[i]->pr->info : '0', insertedNodes[i]->info);
     }
-    
+
     fclose(fp); // menutup file
 }
 
-void ClearCache(const char* filename) {
+void ClearCache(const char *filename)
+{
     FILE *fp = fopen(filename, "w");
-    if (fp == NULL) {
+    if (fp == NULL)
+    {
         printf("Gagal membuka file\n");
         return;
     }
@@ -184,14 +190,17 @@ void ClearCache(const char* filename) {
     printf("Cache berhasil dihapus!\n");
 }
 
-void LoadCache(nbtAddr* nbtTree) {
+void LoadCache(nbtAddr *nbtTree)
+{
     FILE *fp = fopen("cache.txt", "r");
-    if (fp == NULL) {
+    if (fp == NULL)
+    {
         printf("Tidak ada cache yang ditemukan, buat pohon baru\n");
         return;
     }
     char parent, node;
-    while (fscanf(fp, "(%c, %c) ", &parent, &node) != EOF) {
+    while (fscanf(fp, "(%c, %c) ", &parent, &node) != EOF)
+    {
         InsertNbtNode(nbtTree, SearchNbtNode(*nbtTree, parent), node);
     }
     fclose(fp);
@@ -249,7 +258,7 @@ void NbtTreeToFile(nbtAddr root, FILE *fp)
     }
 }
 
-void LoadTree(nbtAddr (*nbtTree))
+void LoadTree(nbtAddr(*nbtTree))
 {
     char fileName[20];
 
@@ -281,19 +290,22 @@ void LoadNbtTreeFromFile(nbtAddr *nbtRoot, char *fileName)
 
 /* ======================= EDIT NODE TREE ========================*/
 
-void editNode(nbtAddr root, infoType oldInfo, infoType newInfo) {
+void editNode(nbtAddr root, infoType oldInfo, infoType newInfo)
+{
     nbtAddr node = SearchNbtNode(root, oldInfo);
-    if (node != NULL) {
+    if (node != NULL)
+    {
         node->info = newInfo;
         WriteCache(root, "cache.txt");
         printf("Node %c successfully updated to %c\n", oldInfo, newInfo);
-    } else {
+    }
+    else
+    {
         printf("Node with info %c not found!\n", oldInfo);
     }
 }
 
-
-void getEditInfo(nbtAddr root, infoType* oldInfo, infoType* newInfo)
+void getEditInfo(nbtAddr root, infoType *oldInfo, infoType *newInfo)
 {
     printf("\nDaftar Parent:\n");
     ListParent(root);
@@ -303,7 +315,8 @@ void getEditInfo(nbtAddr root, infoType* oldInfo, infoType* newInfo)
     scanf(" %c", newInfo);
 }
 
-void getAddInfo(nbtAddr root, nbtAddr nbtTree) {
+void getAddInfo(nbtAddr root, nbtAddr nbtTree)
+{
     infoType parent, newData;
 
     printf("\nDaftar Parent:\n");
@@ -313,109 +326,148 @@ void getAddInfo(nbtAddr root, nbtAddr nbtTree) {
     printf("\nEnter the new data to add: ");
     scanf(" %c", &newData);
     nbtAddr parentNode = SearchNbtNode(nbtTree, parent);
-    if (parentNode != NULL) {
+    if (parentNode != NULL)
+    {
         InsertNbtNode(&nbtTree, parentNode, newData);
         printf("Data %c added successfully!\n", newData);
-    } else {
+    }
+    else
+    {
         printf("Parent node with info %c not found!\n", parent);
     }
 }
-
 
 /* ======================= END EDIT NODE TREE ========================*/
 
 /* ======================= DELETE NODE TREE ========================*/
 
 /* Prosedur untuk menghapus node dari sebuah tree */
-void nbDelete(nbtAddr *rootHolder, nbtAddr pDel) {
-    if (*rootHolder == pDel) {
+void nbDelete(nbtAddr *rootHolder, nbtAddr pDel)
+{
+    if (*rootHolder == pDel)
+    {
         *rootHolder = NULL; // Menghapus root
     }
     free(pDel); // Membebaskan memori yang ditempati oleh node
 }
 
 /* Prosedur untuk menghapus node beserta bawahannya dari sebuah tree */
-void nbDeleteSub(nbtAddr *rootHolder, nbtAddr pDel) {
-    if (pDel != NULL) {
+void nbDeleteSub(nbtAddr *rootHolder, nbtAddr pDel)
+{
+    if (pDel != NULL)
+    {
         nbDeleteSub(rootHolder, pDel->fs); // Menghapus sub-tree sebelah kiri
         nbDeleteSub(rootHolder, pDel->nb); // Menghapus sub-tree sebelah kanan
-        nbDelete(rootHolder, pDel); // Menghapus node
+        nbDelete(rootHolder, pDel);        // Menghapus node
     }
 }
 
 /* Prosedur untuk melakukan delete untuk suatu node */
-void bDNode(nbtType **Node) {
+void bDNode(nbtType **Node)
+{
     free(*Node); // Menghapus node
     *Node = NULL;
 }
 
 /* Prosedur untuk mencari node yang akan dilakukan delete dan menyesuaikan node-node pada struktur data tree sehingga tidak rusak */
 /* Prosedur untuk melakukan delete untuk suatu node */
-nbtAddr deleteNode(nbtAddr *root, infoType X) {
+nbtAddr deleteNode(nbtAddr *root, infoType X)
+{
     nbtAddr temp, parent;
 
-    if (*root == NULL) {
+    if (*root == NULL)
+    {
         return NULL;
     }
 
-    if ((*root)->info == X) {
-        if ((*root)->fs == NULL && (*root)->nb == NULL) {
+    if ((*root)->info == X)
+    {
+        if ((*root)->fs == NULL && (*root)->nb == NULL)
+        {
             bDNode(root); // Hapus node jika tidak memiliki anak
-        } else if ((*root)->fs != NULL && (*root)->nb == NULL) {
+        }
+        else if ((*root)->fs != NULL && (*root)->nb == NULL)
+        {
             temp = (*root)->fs;
             bDNode(root);
             *root = temp; // Ganti root dengan anak sebelah kiri
-        } else if ((*root)->fs == NULL && (*root)->nb != NULL) {
+        }
+        else if ((*root)->fs == NULL && (*root)->nb != NULL)
+        {
             temp = (*root)->nb;
             bDNode(root);
             *root = temp; // Ganti root dengan anak sebelah kanan
-        } else {
+        }
+        else
+        {
             temp = (*root)->nb;
             parent = *root;
-            while (temp->fs != NULL) {
+            while (temp->fs != NULL)
+            {
                 parent = temp;
                 temp = temp->fs;
             }
-            (*root)->info = temp->info; // Ganti info root dengan info terbesar dari anak sebelah kanan
+            (*root)->info = temp->info;      // Ganti info root dengan info terbesar dari anak sebelah kanan
             deleteNode(&parent, temp->info); // Hapus node yang menyimpan info terbesar
         }
-    } else {
-        if ((*root)->fs != NULL && (*root)->nb != NULL) {
-            if ((*root)->fs->info == X || (*root)->nb->info == X) {
-                if ((*root)->fs->info == X) {
+    }
+    else
+    {
+        if ((*root)->fs != NULL && (*root)->nb != NULL)
+        {
+            if ((*root)->fs->info == X || (*root)->nb->info == X)
+            {
+                if ((*root)->fs->info == X)
+                {
                     temp = (*root)->fs;
-                } else {
+                }
+                else
+                {
                     temp = (*root)->nb;
                 }
-                if (temp->fs == NULL && temp->nb == NULL) {
+                if (temp->fs == NULL && temp->nb == NULL)
+                {
                     bDNode(&temp); // Hapus node jika tidak memiliki anak
-                } else if (temp->fs != NULL && temp->nb == NULL) {
+                }
+                else if (temp->fs != NULL && temp->nb == NULL)
+                {
                     nbtAddr node = temp->fs;
                     temp->info = temp->fs->info;
                     temp->fs = temp->fs->fs;
                     free(node); // Hapus anak sebelah kiri dari node yang dihapus
-                } else if (temp->fs == NULL && temp->nb != NULL) {
+                }
+                else if (temp->fs == NULL && temp->nb != NULL)
+                {
                     nbtAddr node = temp->nb;
                     temp->info = temp->nb->info;
                     temp->nb = temp->nb->nb;
                     free(node); // Hapus anak sebelah kanan dari node yang dihapus
-                } else {
+                }
+                else
+                {
                     nbtAddr node = temp->nb;
                     parent = temp;
-                    while (node->fs != NULL) {
+                    while (node->fs != NULL)
+                    {
                         parent = node;
                         node = node->fs;
                     }
-                    temp->info = node->info; // Ganti info temp dengan info terbesar dari anak sebelah kanan
+                    temp->info = node->info;         // Ganti info temp dengan info terbesar dari anak sebelah kanan
                     deleteNode(&parent, node->info); // Hapus node yang menyimpan info terbesar
                 }
-            } else {
+            }
+            else
+            {
                 deleteNode(&((*root)->fs), X);
                 deleteNode(&((*root)->nb), X);
             }
-        } else if ((*root)->fs != NULL) {
+        }
+        else if ((*root)->fs != NULL)
+        {
             deleteNode(&((*root)->fs), X);
-        } else if ((*root)->nb != NULL) {
+        }
+        else if ((*root)->nb != NULL)
+        {
             deleteNode(&((*root)->nb), X);
         }
     }
@@ -423,9 +475,7 @@ nbtAddr deleteNode(nbtAddr *root, infoType X) {
     return *root;
 }
 
-
 /* ======================= END DELETE NODE TREE ========================*/
-
 
 /*======================== detail information nbTree ============================*/
 int nbtGetDepth(nbtAddr rootHolder)
@@ -620,118 +670,152 @@ void nbtShowElMetaData(nbtAddr nodeHolder)
 /*======================== END detail information nbTree ============================*/
 
 //==================== modul detail information bTree =========================
-int btGetDepth(btAddr rootHolder){ //geeksforgeeks algorithm
-	int lDepth;
-	int rDepth;
-	if (rootHolder==NULL){
-		return 0;
-	}else{
-		lDepth = btGetDepth(rootHolder->ls);
-		rDepth = btGetDepth(rootHolder->rs);
-		
-		if (lDepth>rDepth){
-			return lDepth;
-		}else {
-			return rDepth;
-		}
-	}
+int btGetDepth(btAddr rootHolder)
+{ // geeksforgeeks algorithm
+    int lDepth;
+    int rDepth;
+    if (rootHolder == NULL)
+    {
+        return 0;
+    }
+    else
+    {
+        lDepth = btGetDepth(rootHolder->ls);
+        rDepth = btGetDepth(rootHolder->rs);
+
+        if (lDepth > rDepth)
+        {
+            return lDepth;
+        }
+        else
+        {
+            return rDepth;
+        }
+    }
 }
 
-int btGetElements(btAddr rootHolder){//geeksforgeeks algorithm
-	int lCount;
-	int rCount;
-	
-	if (rootHolder==NULL){
-		return 0;
-	}
-	
-	lCount = btGetElements(rootHolder->ls);
-	rCount = btGetElements(rootHolder->rs);
-	
-	return 1 + lCount + rCount;
+int btGetElements(btAddr rootHolder)
+{ // geeksforgeeks algorithm
+    int lCount;
+    int rCount;
+
+    if (rootHolder == NULL)
+    {
+        return 0;
+    }
+
+    lCount = btGetElements(rootHolder->ls);
+    rCount = btGetElements(rootHolder->rs);
+
+    return 1 + lCount + rCount;
 }
 
-int btGetLeaves(btAddr rootHolder){//geeksforgeeks algorithm
-	
-	if (rootHolder==NULL){
-		return 0;
-	}
-	if (rootHolder->ls&&rootHolder->rs){
-		return 1;
-	}else{
-		return btGetLeaves(rootHolder->ls) + btGetLeaves(rootHolder->rs);
-	}
+int btGetLeaves(btAddr rootHolder)
+{ // geeksforgeeks algorithm
+
+    if (rootHolder == NULL)
+    {
+        return 0;
+    }
+    if (rootHolder->ls && rootHolder->rs)
+    {
+        return 1;
+    }
+    else
+    {
+        return btGetLeaves(rootHolder->ls) + btGetLeaves(rootHolder->rs);
+    }
 }
 
-int btGetChilds(btAddr nodeHolder){//geeksforgeeks algorithm
-	int lCount;
-	int rCount;
-	
-	if (nodeHolder==NULL){
-		return 0;
-	}
-	
-	lCount = btGetElements(nodeHolder->ls);
-	rCount = btGetElements(nodeHolder->rs);
-	
-	return lCount + rCount;
+int btGetChilds(btAddr nodeHolder)
+{ // geeksforgeeks algorithm
+    int lCount;
+    int rCount;
+
+    if (nodeHolder == NULL)
+    {
+        return 0;
+    }
+
+    lCount = btGetElements(nodeHolder->ls);
+    rCount = btGetElements(nodeHolder->rs);
+
+    return lCount + rCount;
 }
 
-void btShowElStatus(btAddr nodeHolder){
-	if(nodeHolder->pr==NULL){
-		printf("root");
-	}else{
-		printf("child of %c",nodeHolder->pr->info);
-	}
+void btShowElStatus(btAddr nodeHolder)
+{
+    if (nodeHolder->pr == NULL)
+    {
+        printf("root");
+    }
+    else
+    {
+        printf("child of %c", nodeHolder->pr->info);
+    }
 }
 
-void btShowLeafStatus(btAddr nodeHolder){
-	if (nodeHolder->ls!=NULL || nodeHolder->rs!=NULL){
-		printf("true");
-	}else printf("false");
+void btShowLeafStatus(btAddr nodeHolder)
+{
+    if (nodeHolder->ls != NULL || nodeHolder->rs != NULL)
+    {
+        printf("true");
+    }
+    else
+        printf("false");
 }
 
-void btShowElMetaData(btAddr nodeHolder){
-	printf("\t'%c' DETAIL INFORMATION\n\t\tElement Status : ",nodeHolder->info);
-	btShowElStatus(nodeHolder);
-	printf("\n\t\tElement Level : %i\n\t\tElement Childs : %i\n\t\tElement Leaf Status : ",
-	nodeHolder->level,btGetChilds(nodeHolder));
-	btShowLeafStatus(nodeHolder);printf("\n\n");
+void btShowElMetaData(btAddr nodeHolder)
+{
+    printf("\t'%c' DETAIL INFORMATION\n\t\tElement Status : ", nodeHolder->info);
+    btShowElStatus(nodeHolder);
+    printf("\n\t\tElement Level : %i\n\t\tElement Childs : %i\n\t\tElement Leaf Status : ",
+           nodeHolder->level, btGetChilds(nodeHolder));
+    btShowLeafStatus(nodeHolder);
+    printf("\n\n");
 }
-void btShowTreeMetaData(btAddr rootHolder){
-	printf("TREE DETAIL INFORMATION\n\tTree Root : %c\n\tTree Depth : %i\n\tTree Elements : %i\n\tTree Leaves : %i\n\n",
-	rootHolder->info,btGetDepth(rootHolder),btGetElements(rootHolder),btGetLeaves(rootHolder));
+void btShowTreeMetaData(btAddr rootHolder)
+{
+    printf("TREE DETAIL INFORMATION\n\tTree Root : %c\n\tTree Depth : %i\n\tTree Elements : %i\n\tTree Leaves : %i\n\n",
+           rootHolder->info, btGetDepth(rootHolder), btGetElements(rootHolder), btGetLeaves(rootHolder));
 }
-void btShowElsMetaData(btAddr nodeHolder){
-	if (nodeHolder == NULL){
-		return;
-	}
-	btShowElsMetaData(nodeHolder->ls);
-	btShowElMetaData(nodeHolder);
-	btShowElsMetaData(nodeHolder->rs);
+void btShowElsMetaData(btAddr nodeHolder)
+{
+    if (nodeHolder == NULL)
+    {
+        return;
+    }
+    btShowElsMetaData(nodeHolder->ls);
+    btShowElMetaData(nodeHolder);
+    btShowElsMetaData(nodeHolder->rs);
 }
 //=============================================================================
 
 /*================== MODUL CONVERT NON-BINARY-TREE TO BINARY-TREE==========================*/
-btAddr NbtTreeConvertToBtTree(nbtAddr root) {
-    if (!root) {
+btAddr NbtTreeConvertToBtTree(nbtAddr root)
+{
+    if (!root)
+    {
         return NULL;
     }
 
     btAddr binaryRoot = CreateBtNode(root->info);
-    if (root->fs) {
+    if (root->fs)
+    {
         binaryRoot->ls = NbtTreeConvertToBtTree(root->fs);
-        binaryRoot->ls->pr = binaryRoot;  // Set parent for the left subtree
+        binaryRoot->ls->pr = binaryRoot; // Set parent for the left subtree
     }
-    if (root->nb) {
+    if (root->nb)
+    {
         binaryRoot->rs = NbtTreeConvertToBtTree(root->nb);
-        binaryRoot->rs->pr = binaryRoot;  // Set parent for the right subtree
+        binaryRoot->rs->pr = binaryRoot; // Set parent for the right subtree
     }
     return binaryRoot;
 }
 
 // Fungsi untuk membuat node binary tree baru
-btAddr CreateBtNode(infoType info) {
+btAddr CreateBtNode(infoType info)
+{
     btAddr newNode = (btAddr)malloc(sizeof(btType));
     newNode->info = info;
     newNode->ls = newNode->rs = newNode->pr = NULL;
@@ -739,3 +823,102 @@ btAddr CreateBtNode(infoType info) {
     return newNode;
 }
 /*================== END MODUL CONVERT NON-BINARY-TREE TO BINARY-TREE==========================*/
+
+/*================== MODUL CONVERSION BINARY-TREE TO BINARY-SEARCH-TREE===========================*/
+void BtTreeConvertToBstTree(btAddr root)
+{
+    if (root == NULL)
+        return;
+
+    int n = CountNodes(root);
+
+    char *arr = (char *)malloc(n * sizeof(char));
+    int i = 0;
+    StoreInorder(root, arr, &i);
+
+    qsort(arr, n, sizeof(arr[0]), Compare);
+
+    i = 0;
+    ArrayToBST(arr, root, &i);
+
+    free(arr);
+}
+
+int CountNodes(btAddr root)
+{
+    if (root == NULL)
+        return 0;
+    return CountNodes(root->ls) + CountNodes(root->rs) + 1;
+}
+
+void StoreInorder(btAddr node, char inorder[], int *index_ptr)
+{
+    if (node == NULL)
+        return;
+
+    StoreInorder(node->ls, inorder, index_ptr);
+
+    inorder[*index_ptr] = node->info;
+    (*index_ptr)++;
+
+    StoreInorder(node->rs, inorder, index_ptr);
+}
+
+int Compare(const void *a, const void *b)
+{
+    return (*(char *)a - *(char *)b);
+}
+
+void ArrayToBST(char *arr, btAddr root, int *index_ptr)
+{
+    if (root == NULL)
+        return;
+
+    ArrayToBST(arr, root->ls, index_ptr);
+
+    root->info = arr[*index_ptr];
+    (*index_ptr)++;
+
+    ArrayToBST(arr, root->rs, index_ptr);
+}
+
+// void PrintInorder(btAddr node) {
+//     if (node == NULL)
+//         return;
+
+//     /* first recur on ls child */
+//     PrintInorder(node->ls);
+
+//     /* then print the info of node */
+//     printf("%c ", node->info);
+
+//     /* now recur on rs child */
+//     PrintInorder(node->rs);
+// }
+
+// Fungsi untuk menduplikasi binary tree
+btAddr DuplicateBtTree(btAddr root) {
+    if (root == NULL) {
+        return NULL;
+    }
+    
+    btAddr newRoot = CreateBtNode(root->info);
+    if (newRoot == NULL) {
+        fprintf(stderr, "Memory allocation failed\n");
+        return NULL;
+    }
+    
+    newRoot->ls = DuplicateBtTree(root->ls);
+    newRoot->rs = DuplicateBtTree(root->rs);
+    
+    // Atur pointer parent (pr) untuk node anak
+    if (newRoot->ls != NULL) {
+        newRoot->ls->pr = newRoot;
+    }
+    if (newRoot->rs != NULL) {
+        newRoot->rs->pr = newRoot;
+    }
+    
+    return newRoot;
+}
+/*================== END MODUL CONVERSION BINARY-TREE TO BINARY-SEARCH-TREE===========================*/

@@ -18,6 +18,7 @@ int main(int argc, char **argv)
 	bool treeHolder = NULL;
 	nbtAddr nbtTree = NULL;
 	btAddr btTree = NULL;
+	btAddr bstTree = NULL;
 
 	LoadCache(&nbtTree);
 	if (nbtTree != NULL)
@@ -204,6 +205,8 @@ int main(int argc, char **argv)
 					while (convertCon)
 					{
 						btTree = NbtTreeConvertToBtTree(nbtTree);
+						bstTree = DuplicateBtTree(btTree);
+						BtTreeConvertToBstTree(bstTree);
 						printAppHeader();
 						printAppConvertTree();
 						errorMsg(isError, isAvailable);

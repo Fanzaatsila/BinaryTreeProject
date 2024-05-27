@@ -158,9 +158,18 @@ void btShowElMetaData(btAddr nodeHolder);
 void btShowMetaData(btAddr rootHolder);
 //==============================================================================
 
-/*================== MODUL CONVERT NON-BINARY-TREE TO BINARY-TREE==========================*/
+/*================== MODUL CONVERSION NON-BINARY-TREE TO BINARY-TREE==========================*/
 btAddr NbtTreeConvertToBtTree(nbtAddr root);
 btAddr CreateBtNode(infoType info);
 /*================== END MODUL CONVERT NON-BINARY-TREE TO BINARY-TREE==========================*/
 
+/*================== MODUL CONVERSION BINARY-TREE TO BINARY-SEARCH-TREE===========================*/
+void BtTreeConvertToBstTree(btAddr root);
+int CountNodes(btAddr root);
+void StoreInorder(btAddr node, char inorder[], int* index_ptr);
+int Compare(const void* a, const void* b);
+void ArrayToBST(char* arr, btAddr root, int* index_ptr);
+// void PrintInorder(btAddr node);
+btAddr DuplicateBtTree(btAddr root);
+/*================== END MODUL CONVERSION BINARY-TREE TO BINARY-SEARCH-TREE===========================*/
 #endif // HEADER_H
