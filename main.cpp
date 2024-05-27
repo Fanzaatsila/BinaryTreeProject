@@ -4,7 +4,6 @@
 #include "ui.h"
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
-
 int main(int argc, char** argv) {
     //============================================ KAMUS DATA GLOBAL ============================================
     bool appCon = true;
@@ -12,9 +11,14 @@ int main(int argc, char** argv) {
     char inUser = ' ';
     bool isError;
     bool isAvailable = true; //ini tipe datanya masih dummy, nantinya ini tipe datanya pointer of nbTree
+    bool cacheFilled = false; 
     bool treeHolder = NULL;
     nbtAddr nbtTree = NULL;
-
+    
+    LoadCache(&nbtTree);
+    if (nbtTree != NULL) {
+        cacheFilled = true; // Setel ke true jika cache telah terisi
+    }
     while (appCon) {
         menuCon = true;
         while (menuCon) {
@@ -34,6 +38,10 @@ int main(int argc, char** argv) {
                         userInput(&inUser);
                         switch (inUser) {
                             case '1': {
+                                if (cacheFilled) { // Periksa apakah cache telah terisi
+                                    ClearCache("cache.txt"); // Kosongkan cache jika telah terisi
+                                    cacheFilled = false; // Setel ke false setelah mengosongkan cache
+                                }
                                 NbtCreateTree(&(nbtTree));
                                 break;
                             }

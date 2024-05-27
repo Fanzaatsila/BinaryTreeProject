@@ -3,6 +3,16 @@
 #include <stdio.h>
 #include <conio.h>
 
+/* ======================= VARIABLE GLOBAL PENAMPUNG NODE ========================*/
+#define MAX_NODES 100
+nbtAddr insertedNodes[MAX_NODES];
+int numInsertedNodes = 0;
+
+// Fungsi untuk menyimpan node yang dimasukkan
+void recordInsertedNode(nbtAddr node) {
+    insertedNodes[numInsertedNodes++] = node;
+}
+/* ======================= END VARIABLE GLOBAL PENAMPUNG NODE ========================*/
 void ListParent(nbtAddr nbtRoot)
 {
     if (nbtRoot != NULL)
@@ -78,12 +88,16 @@ void InsertNbtNode(nbtAddr *nbtRoot, nbtAddr parent, infoType info)
         }
         parent->nb = newNode;
     }
+    recordInsertedNode(newNode);
+    WriteCache(*nbtRoot, "cache.txt");
 }
 
 void NbtCreateTree(nbtAddr *nbtRoot)
 {
     infoType option, parent, nama;
     boolean check;
+
+    nbDeleteSub(nbtRoot, *nbtRoot);
     while (true)
     {
         if (*nbtRoot == NULL)
@@ -142,8 +156,49 @@ void NbtCreateTree(nbtAddr *nbtRoot)
     }
 }
 /* ======================= END KONSTRUKTOR NODE DAN TREE ========================*/
-
 /* ======================= SAVE LOAD TREE TO FILE ========================*/
+
+/* ======================= SAVE CACHE TREE TO FILE ========================*/
+void WriteCache(nbtAddr root, const char* filename) {
+    FILE *fp = fopen(filename, "w");
+    if (fp == NULL) {
+        printf("Gagal membuka file\n");
+        return;
+    }
+    
+    // Menulis setiap node yang dimasukkan ke file
+    for (int i = 0; i < numInsertedNodes; ++i) {
+        fprintf(fp, "(%c, %c) ", insertedNodes[i]->pr != NULL ? insertedNodes[i]->pr->info : '0', insertedNodes[i]->info);
+    }
+    
+    fclose(fp); // menutup file
+}
+
+void ClearCache(const char* filename) {
+    FILE *fp = fopen(filename, "w");
+    if (fp == NULL) {
+        printf("Gagal membuka file\n");
+        return;
+    }
+    fclose(fp); // Mengosongkan isi file dengan membuka file dengan mode write (w), lalu langsung menutupnya
+    printf("Cache berhasil dihapus!\n");
+}
+
+void LoadCache(nbtAddr* nbtTree) {
+    FILE *fp = fopen("cache.txt", "r");
+    if (fp == NULL) {
+        printf("Tidak ada cache yang ditemukan, buat pohon baru\n");
+        return;
+    }
+    char parent, node;
+    while (fscanf(fp, "(%c, %c) ", &parent, &node) != EOF) {
+        InsertNbtNode(nbtTree, SearchNbtNode(*nbtTree, parent), node);
+    }
+    fclose(fp);
+    printf("Cache berhasil dimuat!\n");
+}
+
+/* ======================= END SAVE CACHE TREE TO FILE ========================*/
 void SaveTree(nbtAddr nbtTree)
 {
     char fileName[20];
@@ -226,19 +281,17 @@ void LoadNbtTreeFromFile(nbtAddr *nbtRoot, char *fileName)
 
 /* ======================= EDIT NODE TREE ========================*/
 
-void editNode(nbtAddr root, infoType oldInfo, infoType newInfo)
-{
+void editNode(nbtAddr root, infoType oldInfo, infoType newInfo) {
     nbtAddr node = SearchNbtNode(root, oldInfo);
-    if (node != NULL)
-    {
+    if (node != NULL) {
         node->info = newInfo;
+        WriteCache(root, "cache.txt");
         printf("Node %c successfully updated to %c\n", oldInfo, newInfo);
-    }
-    else
-    {
+    } else {
         printf("Node with info %c not found!\n", oldInfo);
     }
 }
+
 
 void getEditInfo(nbtAddr root, infoType* oldInfo, infoType* newInfo)
 {
@@ -366,6 +419,7 @@ nbtAddr deleteNode(nbtAddr *root, infoType X) {
             deleteNode(&((*root)->nb), X);
         }
     }
+    WriteCache(*root, "cache.txt");
     return *root;
 }
 

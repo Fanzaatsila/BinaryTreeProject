@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <fstream>
 #include "BOOLEAN.H"
 
 typedef struct nbTree *nbtAddr;
@@ -127,6 +128,13 @@ nbtAddr deleteNode(nbtAddr *root, infoType X);
 */
 
 /* ======================= END DELETE NODE TREE ========================*/
+
+/* ======================= LOAD CACHE TREE ========================*/
+void WriteCache(nbtAddr root, const char* filename);
+void traverseAndSave(nbtAddr node, nbtAddr parent, FILE *fp);
+void LoadCache(nbtAddr* nbtTree);
+void ClearCache(const char* filename);
+/* ======================= END LOAD CACHE TREE ========================*/
 
 /*======================== detail information nbTree ============================*/
 int nbtGetDepth(nbtAddr rootHolder);
