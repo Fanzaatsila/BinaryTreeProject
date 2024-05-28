@@ -1,9 +1,9 @@
 #include <conio.h>
 #include <windows.h>
-#include "header.h"
+#include <stdio.h>
 #include "ui.h"
-#include "ui.cpp"
-#include "body.cpp"
+#include "header.h"
+
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 int main(int argc, char **argv)
@@ -19,6 +19,10 @@ int main(int argc, char **argv)
 	nbtAddr nbtTree = NULL;
 	btAddr btTree = NULL;
 	btAddr bstTree = NULL;
+	printTAddr printNBT = NULL;
+	printTAddr printBT = NULL;
+	printTAddr printBST = NULL;
+	printTAddr printAVLT = NULL;
 	btAddr avlTree = NULL;
 
 	LoadCache(&nbtTree);
@@ -203,11 +207,17 @@ int main(int argc, char **argv)
 				if (nbtTree != NULL)
 				{
 					convertCon = true;
+					btTree = NbtTreeConvertToBtTree(nbtTree);
+					bstTree = DuplicateBtTree(btTree);
+					BtTreeConvertToBstTree(bstTree);
+					
+
+					createNBPrintT(&printNBT,nbtTree);
+					createBPrintT(&printBT,btTree);
+					createBPrintT(&printBST,bstTree);
 					while (convertCon)
 					{
-						btTree = NbtTreeConvertToBtTree(nbtTree);
-						bstTree = DuplicateBtTree(btTree);
-						BtTreeConvertToBstTree(bstTree);
+						
 						CreateAvlTree(bstTree,&avlTree);
 						printAppHeader();
 						printAppConvertTree();
@@ -217,13 +227,36 @@ int main(int argc, char **argv)
 						{
 						case '1':
 						{
+							printAppHeader();
+							printf("\n~~~~~~~~~~~~~~~~~~ NB-TREE VISUALIZATION ~~~~~~~~~~~~~~~~~~\n");
+							printTToString(printNBT);
+							system("pause");
+							printAppHeader();
+							printf("\n~~~~~~~~~~~~~~~~~~ B-TREE VISUALIZATION ~~~~~~~~~~~~~~~~~~\n");
+							printTToString(printBT);
+							system("pause");
+							printAppHeader();
+							printf("\n~~~~~~~~~~~~~~~~~~ BST-TREE VISUALIZATION ~~~~~~~~~~~~~~~~~~\n");
+							printTToString(printBST);
+							system("pause");
 							// conversion logic here
 							break;
 						}
 						case '2':
 						{
 							printAppHeader();
+							printf("\n~~~~~~~~~~~~~~~~~~ NB-TREE DETAIL INFORMATION ~~~~~~~~~~~~~~~~~~\n");
 							nbtShowMetaData(nbtTree);
+							system("pause");
+							printAppHeader();
+							printf("\n~~~~~~~~~~~~~~~~~~ B-TREE DETAIL INFORMATION ~~~~~~~~~~~~~~~~~~\n");
+							btShowTreeMetaData(btTree);
+							btShowElsMetaData(btTree);
+							system("pause");
+							printAppHeader();
+							printf("\n~~~~~~~~~~~~~~~~~~ BS-TREE DETAIL INFORMATION ~~~~~~~~~~~~~~~~~~\n");
+							btShowTreeMetaData(bstTree);
+							btShowElsMetaData(bstTree);
 							system("pause");
 							break;
 						}
