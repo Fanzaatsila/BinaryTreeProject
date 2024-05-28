@@ -24,6 +24,13 @@ typedef struct bTree
     btAddr ls, rs, pr;
 } btType;
 
+typedef struct printT* (printTAddr);
+typedef struct printT{
+	printTAddr next;
+	int row,column;
+	char info,pr;
+}printTType;
+
 /* Membuat visualisasi sederhana non binary tree yang telah dibuat */
 void ListParent(nbtAddr nbtRoot);
 /*  IS : Pointer mengarah ke root non binary tree
@@ -157,6 +164,8 @@ void btShowElStatus(btAddr nodeHolder);
 void btShowLeafStatus(btAddr nodeHolder);
 void btShowElMetaData(btAddr nodeHolder);
 void btShowMetaData(btAddr rootHolder);
+void btShowTreeMetaData(btAddr rootHolder);
+void btShowElsMetaData(btAddr nodeHolder);
 //==============================================================================
 
 /*================== MODUL CONVERSION NON-BINARY-TREE TO BINARY-TREE==========================*/
@@ -214,4 +223,28 @@ btAddr DuplicateBtTree(btAddr root);
 */
 
 /*================== END MODUL CONVERSION BINARY-TREE TO BINARY-SEARCH-TREE===========================*/
+
+//========================================= printTree preOrderly =============================================
+void printTAllocBlank(printTAddr (*nodeMaker));
+void printTAllocVert(printTAddr (*nodeMaker));
+void printTAllocHoriz(printTAddr (*nodeMaker));
+void printTAllocNL(printTAddr (*nodeMaker));
+void printTCreate(printTAddr (*rootHolder));
+printTAddr printTSrchByInfo(printTAddr rootHolder, char info);
+printTAddr printTSrchByPr(printTAddr rootHolder, char pr);
+printTAddr printTSrchByRow(printTAddr rootHolder, int row);
+printTAddr printTSrchByColumn(printTAddr rootHolder, int column);
+printTAddr printTSrchByLoc(printTAddr rootHolder, int row, int column);
+void printTInsert(printTAddr (*rootHolder), char info, char pr);
+void printTTravNull(printTAddr (*holder), printTAddr start);
+void printTTravSpecif(printTAddr (*holder), printTAddr start);
+void printTToString(printTAddr rootHolder);
+void printTCn(printTAddr trNode, printTAddr (*firstNode), printTAddr (*secNode));
+int printTCountCh(printTAddr root, char pr);
+
+void createNBPrintT(printTAddr (*printHolder), nbtAddr rootHolder);
+void createBPrintT(printTAddr (*printHolder), btAddr rootHolder);
+//====================================== printTree preOrderly end =============================================
+
+
 #endif // HEADER_H
