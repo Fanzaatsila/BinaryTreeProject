@@ -16,12 +16,13 @@ typedef struct nbTree
     infoType info;
 } nbtType;
 
-typedef struct bTree* (btAddr);
-typedef struct bTree{
-	infoType info;
-	int level;
-	btAddr ls,rs,pr;
-}btType;
+typedef struct bTree *(btAddr);
+typedef struct bTree
+{
+    infoType info;
+    int level;
+    btAddr ls, rs, pr;
+} btType;
 
 /* Membuat visualisasi sederhana non binary tree yang telah dibuat */
 void ListParent(nbtAddr nbtRoot);
@@ -32,7 +33,7 @@ void ListParent(nbtAddr nbtRoot);
 /* Function untuk mencari node dalam non-binary tree berdasarkan nilai info dan mengembalikan alamat node tersebut */
 nbtAddr SearchNbtNode(nbtAddr nbtRoot, infoType info);
 /*  IS : Pointer mengarah ke root non binary tree
-    FS : Node yang memiliki info ditemukan dan direturn 
+    FS : Node yang memiliki info ditemukan dan direturn
 */
 
 /* ======================= KONSTRUKTOR NODE DAN TREE ========================*/
@@ -77,7 +78,7 @@ void NbtTreeToFile(nbtAddr root, FILE *fp);
 */
 
 /* Modul untuk memanggil prosedur LoadNbtTreeFromFile dan menanyakan nama dari file yang akan dimuat */
-void LoadTree(nbtAddr (*nbtTree));
+void LoadTree(nbtAddr(*nbtTree));
 /* I.S.: Pointer of node sembarang
    F.S.: Menjalankan prosedur LoadNbtTreeFromFile
 */
@@ -96,7 +97,7 @@ void editNode(nbtAddr root, infoType oldInfo, infoType newInfo);
 /* I.S.: Pointer mengarah ke root non-binary tree, oldInfo dan newInfo terdefinisi
    F.S.: Node dengan info oldInfo diubah menjadi newInfo
 */
-void getEditInfo(nbtAddr root, infoType* oldInfo, infoType* newInfo);
+void getEditInfo(nbtAddr root, infoType *oldInfo, infoType *newInfo);
 void getAddInfo(nbtAddr root, nbtAddr nbtTree);
 
 /* ======================= END EDIT NODE TREE ========================*/
@@ -130,10 +131,10 @@ nbtAddr deleteNode(nbtAddr *root, infoType X);
 /* ======================= END DELETE NODE TREE ========================*/
 
 /* ======================= LOAD CACHE TREE ========================*/
-void WriteCache(nbtAddr root, const char* filename);
+void WriteCache(nbtAddr root, const char *filename);
 void traverseAndSave(nbtAddr node, nbtAddr parent, FILE *fp);
-void LoadCache(nbtAddr* nbtTree);
-void ClearCache(const char* filename);
+void LoadCache(nbtAddr *nbtTree);
+void ClearCache(const char *filename);
 /* ======================= END LOAD CACHE TREE ========================*/
 
 /*======================== detail information nbTree ============================*/
@@ -159,17 +160,58 @@ void btShowMetaData(btAddr rootHolder);
 //==============================================================================
 
 /*================== MODUL CONVERSION NON-BINARY-TREE TO BINARY-TREE==========================*/
+/* Mengkonversi non-binary-tree menjadi binary tree dengan mengambil info dari non-binary-tree*/
 btAddr NbtTreeConvertToBtTree(nbtAddr root);
+/*  IS:Pointer menunjuk ke root non-binary-tree
+    FS:Binary-tree yang sudah dibuat direturn
+*/
+
+/* Mengalokasikan suatu node dengan struktur data binary-tree*/
 btAddr CreateBtNode(infoType info);
+/*  IS:info yang akan dimasukkan untuk menjadi data untuk node binary-tree
+    FS:Node direturn
+*/
 /*================== END MODUL CONVERT NON-BINARY-TREE TO BINARY-TREE==========================*/
 
 /*================== MODUL CONVERSION BINARY-TREE TO BINARY-SEARCH-TREE===========================*/
+/* Prosedur yang berfungsi untuk mengubah binary-tree yang masuk menjadi binary-search-tree*/
 void BtTreeConvertToBstTree(btAddr root);
+/* Sudah memanggil semua modul lain yang dibutuhkan (CountNodes, StoreInorder, Compare, ArrayToBST)*/
+/*  IS:Pointer menunjuk ke root binary-tree
+    FS:Urutan info yang ada di dalam binary tree sudah berubah menjadi binary-search-tree
+*/
+
+/* Function yang berfungsi untuk menghitung jumlah node yang ada*/
 int CountNodes(btAddr root);
-void StoreInorder(btAddr node, char inorder[], int* index_ptr);
-int Compare(const void* a, const void* b);
-void ArrayToBST(char* arr, btAddr root, int* index_ptr);
+/*  IS:Pointer menunjuk ke root binary-tree
+    FS:Nilai untuk jumlah node yang ada direturn
+*/
+
+/* Prosedur untuk menyimpan info yang ada di dalam binary-tree menjadi array, info diambil dengan cara inorder */
+void StoreInorder(btAddr node, char inorder[], int *index_ptr);
+/*  IS:Pointer menunjuk ke root binary-tree
+    FS:Terbentuk sebuah array dari kumpulan info binary-tree
+*/
+
+/* Mendapatkan nilai dari perbandingan dua nilai yang dimasukkan */
+int Compare(const void *a, const void *b);
+/*  IS:2 nilai dimasukkan
+    FS:Hasil perbandingan kedua nilai direturn
+*/
+
+/* Memasukkan info array yang dilakukan sort dan memasukkannya kembali ke dalam binary-tree dengan cara inorder */
+void ArrayToBST(char *arr, btAddr root, int *index_ptr);
+/*  IS:Kumpulan info di dalam array yang sudah terurut ascenden
+    FS:Binary-search-tree terbentuk
+*/
+
 // void PrintInorder(btAddr node);
+
+/* Menduplikat suatu binary-tree */
 btAddr DuplicateBtTree(btAddr root);
+/*  IS:Pointer of node yang menunjuk root dari sebuah binary-tree
+    FS:Duplikasi untuk binary-tree yang dimasukkan direturn
+*/
+
 /*================== END MODUL CONVERSION BINARY-TREE TO BINARY-SEARCH-TREE===========================*/
 #endif // HEADER_H
