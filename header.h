@@ -24,6 +24,17 @@ typedef struct bTree
     btAddr ls, rs, pr;
 } btType;
 
+typedef struct QueueNode {
+    btAddr btTree;
+    nbtAddr nbtTree;
+    struct QueueNode* next;
+} QueueNode;
+
+typedef struct Queue {
+    QueueNode* front;
+    QueueNode* rear;
+} Queue;
+
 /* Membuat visualisasi sederhana non binary tree yang telah dibuat */
 void ListParent(nbtAddr nbtRoot);
 /*  IS : Pointer mengarah ke root non binary tree
@@ -91,7 +102,6 @@ void LoadNbtTreeFromFile(nbtAddr *nbtRoot, char *fileName);
 /* ======================= END SAVE LOAD TREE TO FILE ========================*/
 
 /* ======================= EDIT NODE TREE ========================*/
-
 /* Prosedur untuk mengedit informasi dari suatu node */
 void editNode(nbtAddr root, infoType oldInfo, infoType newInfo);
 /* I.S.: Pointer mengarah ke root non-binary tree, oldInfo dan newInfo terdefinisi
@@ -99,11 +109,9 @@ void editNode(nbtAddr root, infoType oldInfo, infoType newInfo);
 */
 void getEditInfo(nbtAddr root, infoType *oldInfo, infoType *newInfo);
 void getAddInfo(nbtAddr root, nbtAddr nbtTree);
-
 /* ======================= END EDIT NODE TREE ========================*/
 
 /* ======================= DELETE NODE TREE ========================*/
-
 /* Prosedur untuk menghapus node dari sebuah tree */
 void nbDelete(nbtAddr *rootHolder, nbtAddr pDel);
 /*  IS : Node yang ditunjuk masih terhubung dengan tree dan masih berada di memori
@@ -127,7 +135,6 @@ nbtAddr deleteNode(nbtAddr *root, infoType X);
 /*  IS:Pointer menunjuk ke root
     FS:Pointer menunjuk ke node yang akan dihapus dan mereturn node teresbut
 */
-
 /* ======================= END DELETE NODE TREE ========================*/
 
 /* ======================= LOAD CACHE TREE ========================*/
@@ -148,7 +155,7 @@ void nbtShowElMetaData(nbtAddr nodeHolder);
 void nbtShowMetaData(nbtAddr rootHolder);
 /*======================== END detail information nbTree ============================*/
 
-//==================== modul detail information bTree =========================
+//==================== MODUL DETAIL INFORMATION TREE =========================
 int btGetDepth(btAddr rootHolder);
 int btGetElements(btAddr rootHolder);
 int btGetLeaves(btAddr rootHolder);
@@ -157,7 +164,7 @@ void btShowElStatus(btAddr nodeHolder);
 void btShowLeafStatus(btAddr nodeHolder);
 void btShowElMetaData(btAddr nodeHolder);
 void btShowMetaData(btAddr rootHolder);
-//==============================================================================
+//===================== END  DETAIL INFORMATION TREE ==========================
 
 /*================== MODUL CONVERSION NON-BINARY-TREE TO BINARY-TREE==========================*/
 /* Mengkonversi non-binary-tree menjadi binary tree dengan mengambil info dari non-binary-tree*/
@@ -205,13 +212,34 @@ void ArrayToBST(char *arr, btAddr root, int *index_ptr);
     FS:Binary-search-tree terbentuk
 */
 
-// void PrintInorder(btAddr node);
-
 /* Menduplikat suatu binary-tree */
 btAddr DuplicateBtTree(btAddr root);
 /*  IS:Pointer of node yang menunjuk root dari sebuah binary-tree
     FS:Duplikasi untuk binary-tree yang dimasukkan direturn
 */
-
 /*================== END MODUL CONVERSION BINARY-TREE TO BINARY-SEARCH-TREE===========================*/
+
+/*==================== MODUL CONVERSION BINARY-SEARCH-TREE TO AVL-TREE ===========================*/
+void CreateAvlTree(btAddr bstTree, btAddr *avlTree);
+btAddr InsertAvlTree(btAddr root, infoType info);
+int GetLevel(btAddr node);
+int Max(int a, int b);
+btAddr RightRotate(btAddr root);
+btAddr LeftRotate(btAddr root);
+int GetBalance(btAddr root);
+/*================== END MODUL CONVERSION BINARY-SEARCH-TREE TO AVL-TREE ===========================*/
+
+/*==================== TRAVERSAL NBT & BT ===========================*/
+void PrintBtPreorder(btAddr node);
+void PrintBtInorder(btAddr node);
+void PrintBtPostorder(btAddr node);
+void PrintBtLevelorder(btAddr node);
+/*================== END TRAVERSAL NBT & BT ===========================*/
+
+/*==================== Queue ===========================*/
+Queue* CreateQueue();
+int IsQueueEmpty(Queue* queue);
+void Enqueue(Queue *queue, nbtAddr nbtTree, btAddr btTree);
+btAddr Dequeue(Queue* queue);
+/*================== END Queue ===========================*/
 #endif // HEADER_H
