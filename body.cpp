@@ -1359,23 +1359,23 @@ void PrintBtPreorder(btAddr node)
     if (node == NULL)
         return;
     printf("%c ", node->info);
-    PrintInorder(node->ls);
-    PrintInorder(node->rs);
+    PrintBtPreorder(node->ls);
+    PrintBtPreorder(node->rs);
 }
 void PrintBtInorder(btAddr node)
 {
     if (node == NULL)
         return;
-    PrintInorder(node->ls);
+    PrintBtInorder(node->ls);
     printf("%c ", node->info);
-    PrintInorder(node->rs);
+    PrintBtInorder(node->rs);
 }
 void PrintBtPostorder(btAddr node)
 {
     if (node == NULL)
         return;
-    PrintInorder(node->ls);
-    PrintInorder(node->rs);
+    PrintBtPostorder(node->ls);
+    PrintBtPostorder(node->rs);
     printf("%c ", node->info);
 }
 
