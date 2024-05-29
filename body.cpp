@@ -855,6 +855,7 @@ char nbtCreateEdu(const char *filename) {
         system("pause");
     }
     fclose(fp);
+    return '0';
 }
 /* ======================= END EDUCATION CREATE TREE ========================*/
 
@@ -945,7 +946,7 @@ void InsertNbtNode(nbtAddr *nbtRoot, nbtAddr parent, infoType info)
         parent->nb = newNode;
     }
     recordInsertedNode(newNode);
-    WriteCache(*nbtRoot, "cache.txt");
+//    WriteCache(*nbtRoot, "cache.txt");
 }
 
 void NbtCreateTree(nbtAddr *nbtRoot)
@@ -954,7 +955,7 @@ void NbtCreateTree(nbtAddr *nbtRoot)
     boolean check;
 
     nbDeleteSub(nbtRoot, *nbtRoot);
-    char root = nbtCreateEdu("cache.txt");
+//    char root = nbtCreateEdu("cache.txt");
     while (true)
     {
         if (*nbtRoot == NULL)
@@ -1041,6 +1042,7 @@ void ClearCache(const char *filename)
         printf("Gagal membuka file\n");
         return;
     }
+    fprintf(fp," ");
     fclose(fp); // Mengosongkan isi file dengan membuka file dengan mode write (w), lalu langsung menutupnya
     printf("Cache berhasil dihapus!\n");
 }
@@ -1545,11 +1547,11 @@ int btGetDepth(btAddr rootHolder)
 
         if (lDepth > rDepth)
         {
-            return lDepth;
+            return lDepth + 1;
         }
         else
         {
-            return rDepth;
+            return rDepth + 1;
         }
     }
 }
@@ -1570,37 +1572,25 @@ int btGetElements(btAddr rootHolder)
     return 1 + lCount + rCount;
 }
 
-int btGetLeaves(btAddr rootHolder)
-{ // geeksforgeeks algorithm
-
-    if (rootHolder == NULL)
-    {
-        return 0;
-    }
-    if (rootHolder->ls && rootHolder->rs)
-    {
-        return 1;
-    }
-    else
-    {
-        return btGetLeaves(rootHolder->ls) + btGetLeaves(rootHolder->rs);
-    }
+int btGetLeaves(btAddr rootHolder){//geeksforgeeks algorithm
+	
+	if (rootHolder==NULL){
+		return 0;
+	}
+	if (!rootHolder->ls&&!rootHolder->rs){
+		return 1;
+	}else{
+		return btGetLeaves(rootHolder->ls) + btGetLeaves(rootHolder->rs);
+	}
 }
 
-int btGetChilds(btAddr nodeHolder)
-{ // geeksforgeeks algorithm
-    int lCount;
-    int rCount;
-
-    if (nodeHolder == NULL)
-    {
-        return 0;
-    }
-
-    lCount = btGetElements(nodeHolder->ls);
-    rCount = btGetElements(nodeHolder->rs);
-
-    return lCount + rCount;
+int btGetChilds(btAddr nodeHolder){//geeksforgeeks algorithm
+	int count = 0;
+	
+	if (nodeHolder==NULL) return 0;
+	if (nodeHolder->ls) count = count + 1;
+	if (nodeHolder->rs) count = count + 1;
+	return count;
 }
 
 void btShowElStatus(btAddr nodeHolder)
@@ -1615,14 +1605,10 @@ void btShowElStatus(btAddr nodeHolder)
     }
 }
 
-void btShowLeafStatus(btAddr nodeHolder)
-{
-    if (nodeHolder->ls != NULL || nodeHolder->rs != NULL)
-    {
-        printf("true");
-    }
-    else
-        printf("false");
+void btShowLeafStatus(btAddr nodeHolder){
+	if (nodeHolder->ls!=NULL || nodeHolder->rs!=NULL){
+		printf("false");
+	}else printf("true");
 }
 
 void btShowElMetaData(btAddr nodeHolder)
@@ -2363,43 +2349,77 @@ void PrintBtPostorder(btAddr node)
     printf("%c ", node->info);
 }
 
-void PrintBtNbtLevelorder(nbtAddr nbtRoot, btAddr btRoot)
-{
-    if (btRoot == NULL || nbtRoot == NULL)
-        return;
+// void PrintBtNbtLevelorder(nbtAddr nbtRoot, btAddr btRoot)
+// {
+//     if (btRoot == NULL || nbtRoot == NULL)
+//         return;
 
-    Queue *queue = CreateQueue();
-    Enqueue(queue, nbtRoot, btRoot);
+//     Queue *queue = CreateQueue();
+//     Enqueue(queue, nbtRoot, btRoot);
 
-    while (!IsQueueEmpty(queue))
-    {
-        QueueNode *current = Dequeue(queue);
-        btAddr btNode = current->btTree;
-        nbtAddr nbtNode = current->nbtTree;
+//     while (!IsQueueEmpty(queue))
+//     {
+//         QueueNode *current = Dequeue(queue);
+//         btAddr btNode = current->btTree;
+//         nbtAddr nbtNode = current->nbtTree;
 
-        printf("Binary Tree Node: %c, Non-Binary Tree Node: %c\n", btNode->info, nbtNode->info);
+//         printf("Binary Tree Node: %c, Non-Binary Tree Node: %c\n", btNode->info, nbtNode->info);
 
-        // Enqueue children of binary tree node
-        if (btNode->ls != NULL)
-            Enqueue(queue, nbtNode, btNode->ls);
-        if (btNode->rs != NULL)
-            Enqueue(queue, nbtNode, btNode->rs);
+//         // Enqueue children of binary tree node
+//         if (btNode->ls != NULL)
+//             Enqueue(queue, nbtNode, btNode->ls);
+//         if (btNode->rs != NULL)
+//             Enqueue(queue, nbtNode, btNode->rs);
 
-        // Enqueue children of non-binary tree node
-        if (nbtNode->fs != NULL)
-        {
-            Enqueue(queue, nbtNode->fs, btNode);
-            nbtAddr sibling = nbtNode->fs->nb;
-            while (sibling != NULL)
-            {
-                Enqueue(queue, sibling, btNode);
-                sibling = sibling->nb;
-            }
-        }
+//         // Enqueue children of non-binary tree node
+//         if (nbtNode->fs != NULL)
+//         {
+//             Enqueue(queue, nbtNode->fs, btNode);
+//             nbtAddr sibling = nbtNode->fs->nb;
+//             while (sibling != NULL)
+//             {
+//                 Enqueue(queue, sibling, btNode);
+//                 sibling = sibling->nb;
+//             }
+//         }
 
-        free(current);
+//         free(current);
+//     }
+//     free(queue);
+// }
+
+void PrintBtLevelorder(btAddr root) {
+    // Menentukan level maksimum dari tree
+    int maxLevel = 0;
+    CalculateBtMaxLevel(root, &maxLevel);
+
+    // Melakukan traversal level order
+    for (int level = 0; level <= maxLevel; level++) {
+        PrintBtNodesAtLevel(root, level);
     }
-    free(queue);
+}
+
+void CalculateBtMaxLevel(btAddr root, int* maxLevel) {
+    if (root == NULL) return;
+    
+    if (root->level > *maxLevel) {
+        *maxLevel = root->level;
+    }
+
+    CalculateBtMaxLevel(root->ls, maxLevel);
+    CalculateBtMaxLevel(root->rs, maxLevel);
+}
+
+// Fungsi rekursif untuk mencetak node pada suatu level
+void PrintBtNodesAtLevel(btAddr root, int level) {
+    if (root == NULL) return;
+
+    if (root->level == level) {
+        printf("%c ", root->info); // Misalnya, mencetak nilai info
+    }
+
+    PrintBtNodesAtLevel(root->ls, level);
+    PrintBtNodesAtLevel(root->rs, level);
 }
 
 void PrintNbtPreorder(nbtAddr root)
@@ -2436,47 +2456,81 @@ void PrintNbtInorder(nbtAddr root)
         }
     }
 }
+
+void PrintNbtLevelorder(nbtAddr root) {
+    // Menentukan level maksimum dari tree
+    int maxLevel = 0;
+    CalculateNbtMaxLevel(root, &maxLevel);
+
+    // Melakukan traversal level order
+    for (int level = 0; level <= maxLevel; level++) {
+        PrintNbtNodesAtLevel(root, level);
+    }
+}
+
+void CalculateNbtMaxLevel(nbtAddr root, int* maxLevel) {
+    if (root == NULL) return;
+    
+    if (root->level > *maxLevel) {
+        *maxLevel = root->level;
+    }
+
+    CalculateNbtMaxLevel(root->fs, maxLevel);
+    CalculateNbtMaxLevel(root->nb, maxLevel);
+}
+
+// Fungsi rekursif untuk mencetak node pada suatu level
+void PrintNbtNodesAtLevel(nbtAddr root, int level) {
+    if (root == NULL) return;
+
+    if (root->level == level) {
+        printf("%c ", root->info); // Misalnya, mencetak nilai info
+    }
+
+    PrintNbtNodesAtLevel(root->fs, level);
+    PrintNbtNodesAtLevel(root->nb, level);
+}
 /*================== END TRAVERSAL NBT & BT ===========================*/
 
 /*====================== QUEUE ===========================*/
-Queue *CreateQueue()
-{
-    Queue *queue = (Queue *)malloc(sizeof(Queue));
-    queue->front = NULL;
-    queue->rear = NULL;
-    return queue;
-}
-int IsQueueEmpty(Queue *queue)
-{
-    return queue->front == NULL;
-}
-void Enqueue(Queue *queue, nbtAddr nbtTree, btAddr btTree)
-{
-    QueueNode *newNode = (QueueNode *)malloc(sizeof(QueueNode));
-    newNode->nbtTree = nbtTree;
-    newNode->btTree = btTree;
-    newNode->next = NULL;
-    if (IsQueueEmpty(queue))
-    {
-        queue->front = newNode;
-        queue->rear = newNode;
-    }
-    else
-    {
-        queue->rear->next = newNode;
-        queue->rear = newNode;
-    }
-}
-QueueNode *Dequeue(Queue *queue)
-{
-    if (IsQueueEmpty(queue))
-        return NULL;
-    QueueNode *temp = queue->front;
-    queue->front = queue->front->next;
-    if (queue->front == NULL)
-    {
-        queue->rear = NULL;
-    }
-    return temp;
-}
+// Queue *CreateQueue()
+// {
+//     Queue *queue = (Queue *)malloc(sizeof(Queue));
+//     queue->front = NULL;
+//     queue->rear = NULL;
+//     return queue;
+// }
+// int IsQueueEmpty(Queue *queue)
+// {
+//     return queue->front == NULL;
+// }
+// void Enqueue(Queue *queue, nbtAddr nbtTree, btAddr btTree)
+// {
+//     QueueNode *newNode = (QueueNode *)malloc(sizeof(QueueNode));
+//     newNode->nbtTree = nbtTree;
+//     newNode->btTree = btTree;
+//     newNode->next = NULL;
+//     if (IsQueueEmpty(queue))
+//     {
+//         queue->front = newNode;
+//         queue->rear = newNode;
+//     }
+//     else
+//     {
+//         queue->rear->next = newNode;
+//         queue->rear = newNode;
+//     }
+// }
+// QueueNode *Dequeue(Queue *queue)
+// {
+//     if (IsQueueEmpty(queue))
+//         return NULL;
+//     QueueNode *temp = queue->front;
+//     queue->front = queue->front->next;
+//     if (queue->front == NULL)
+//     {
+//         queue->rear = NULL;
+//     }
+//     return temp;
+// }
 /*==================== END QUEUE ===========================*/
