@@ -4,8 +4,6 @@
 #include "ui.h"
 #include "header.h"
 
-
-
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 int main(int argc, char **argv)
 {
@@ -209,7 +207,7 @@ int main(int argc, char **argv)
 				if (nbtTree != NULL)
 				{
 					convertCon = true;
-					btTree = NbtTreeConvertToBtTree(nbtTree);
+					btTree = NbtTreeConvertToBtTree(nbtTree, 0);
 					bstTree = DuplicateBtTree(btTree);
 					BtTreeConvertToBstTree(bstTree);
 					CreateAvlTree(bstTree,&avlTree);

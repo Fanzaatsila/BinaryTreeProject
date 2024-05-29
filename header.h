@@ -180,13 +180,13 @@ void btShowElsMetaData(btAddr nodeHolder);
 
 /*================== MODUL CONVERSION NON-BINARY-TREE TO BINARY-TREE==========================*/
 /* Mengkonversi non-binary-tree menjadi binary tree dengan mengambil info dari non-binary-tree*/
-btAddr NbtTreeConvertToBtTree(nbtAddr root);
+btAddr NbtTreeConvertToBtTree(nbtAddr root, int level);
 /*  IS:Pointer menunjuk ke root non-binary-tree
     FS:Binary-tree yang sudah dibuat direturn
 */
 
 /* Mengalokasikan suatu node dengan struktur data binary-tree*/
-btAddr CreateBtNode(infoType info);
+btAddr CreateBtNode(infoType info, int level);
 /*  IS:info yang akan dimasukkan untuk menjadi data untuk node binary-tree
     FS:Node direturn
 */
