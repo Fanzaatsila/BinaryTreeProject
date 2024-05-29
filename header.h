@@ -263,6 +263,16 @@ btAddr LeftRotate(btAddr root);
 int GetBalance(btAddr root);
 /*================== END MODUL CONVERSION BINARY-SEARCH-TREE TO AVL-TREE ===========================*/
 
+/*==================== EDUCATION CREATE TREE ===========================*/
+int nbtEduCreateTHeader();
+int nbtEduCreateT(int time, char root);
+int nbtEduInsFsHeader();
+int nbtEduInsFs(int time, char fs, char pr);
+int nbtEduInsNbHeader();
+int nbtEduInsNb(int time,  char nb, char pr);
+char nbtCreateEdu(const char* filename);
+/*================== END EDUCATION CREATE TREE ===========================*/
+
 /*==================== TRAVERSAL NBT & BT ===========================*/
 void PrintBtPreorder(btAddr node);
 void PrintBtInorder(btAddr node);
