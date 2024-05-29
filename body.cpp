@@ -2,6 +2,861 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <conio.h>
+#include <windows.h>
+
+/* ======================= EDUCATION CREATE TREE ========================*/
+int nbtEduCreateTHeader() {
+    system("cls");
+    printf("<<<<<<<<<<<<<<<<<< CREATING A TREE >>>>>>>>>>>>>>>>>>\n");
+    printf("\n");
+}
+
+int nbtEduCreateT(int time, char root) {
+	nbtEduCreateTHeader();
+	printf("\t[root]                   \n");
+	printf("\n");
+	Sleep(time*2);
+	nbtEduCreateTHeader();
+	printf("\t[root] -                 \n");
+	Sleep(time);
+	nbtEduCreateTHeader();
+	printf("\t[root] --                \n");
+	Sleep(time);
+	nbtEduCreateTHeader();
+	printf("\t[root] -->               \n");
+	Sleep(time);
+	nbtEduCreateTHeader();
+	printf("\t[root] --> NULL          \n");
+	printf("\n");
+	Sleep(time*2);
+	//alokasi node
+	nbtEduCreateTHeader();
+	printf("\t[root] --> NULL          \n");
+	printf("\t                         \n");
+	printf("\t[nodeMaker]              \n");
+	printf("\n");
+	Sleep(time*2);
+	nbtEduCreateTHeader();
+	printf("\t[root] --> NULL          \n");
+	printf("\t                         \n");
+	printf("\t[nodeMaker] -            \n");
+	Sleep(time);
+	nbtEduCreateTHeader();
+	printf("\t[root] --> NULL          \n");
+	printf("\t                         \n");
+	printf("\t[nodeMaker] --           \n");
+	Sleep(time);
+	nbtEduCreateTHeader();
+	printf("\t[root] --> NULL          \n");
+	printf("\t                         \n");
+	printf("\t[nodeMaker] -->          \n");
+	Sleep(time);
+	nbtEduCreateTHeader();
+	printf("\t[root] --> NULL          \n");
+	printf("\t                         \n");
+	printf("\t[nodeMaker] --> ('%c')   \n",root);
+	printf("\n");
+	Sleep(time*2);
+	//penyambungan node
+	nbtEduCreateTHeader();
+	printf("\t[root]                   \n");
+	printf("\t                         \n");
+	printf("\t[nodeMaker] --> ('%c')   \n",root);
+	Sleep(time);
+	nbtEduCreateTHeader();
+	printf("\t[root]                   \n");
+	printf("\t                         \n");
+	printf("\t                         \n");
+	printf("\t[nodeMaker] --> ('%c')   \n",root);
+	Sleep(time);
+	nbtEduCreateTHeader();
+	printf("\t[root]                   \n");
+	printf("\t                         \n");
+	printf("\t                         \n");
+	printf("\t                         \n");
+	printf("\t[nodeMaker] --> ('%c')   \n",root);
+	Sleep(time);
+	nbtEduCreateTHeader();
+	printf("\t   [root]                \n");
+	printf("\t                         \n");
+	printf("\t                         \n");
+	printf("\t                         \n");
+	printf("\t[nodeMaker] --> ('%c')   \n",root);
+	Sleep(time);
+	nbtEduCreateTHeader();
+	printf("\t      [root]             \n");
+	printf("\t                         \n");
+	printf("\t                         \n");
+	printf("\t                         \n");
+	printf("\t[nodeMaker] --> ('%c')   \n",root);
+	Sleep(time);
+	nbtEduCreateTHeader();
+	printf("\t         [root]          \n");
+	printf("\t                         \n");
+	printf("\t                         \n");
+	printf("\t                         \n");
+	printf("\t[nodeMaker] --> ('%c')   \n",root);
+	Sleep(time);
+	nbtEduCreateTHeader();
+	printf("\t             [root]      \n");
+	printf("\t                         \n");
+	printf("\t                         \n");
+	printf("\t                         \n");
+	printf("\t[nodeMaker] --> ('%c')   \n",root);
+	Sleep(time);
+	nbtEduCreateTHeader();
+	printf("\t                [root]   \n");
+	printf("\t                         \n");
+	printf("\t                         \n");
+	printf("\t                         \n");
+	printf("\t[nodeMaker] --> ('%c')   \n",root);
+	Sleep(time);
+	nbtEduCreateTHeader();
+	printf("\t                [root]   \n");
+	printf("\t                  |      \n");
+	printf("\t                         \n");
+	printf("\t                         \n");
+	printf("\t[nodeMaker] --> ('%c')   \n",root);
+	Sleep(time);
+	nbtEduCreateTHeader();
+	printf("\t                [root]   \n");
+	printf("\t                  |      \n");
+	printf("\t                  |      \n");
+	printf("\t                         \n");
+	printf("\t[nodeMaker] --> ('%c')   \n",root);
+	Sleep(time);
+	nbtEduCreateTHeader();
+	printf("\t                [root]   \n");
+	printf("\t                  |      \n");
+	printf("\t                  |      \n");
+	printf("\t                  V      \n");
+	printf("\t[nodeMaker] --> ('%c')   \n",root);
+	printf("\n");
+	Sleep(time*2);
+	//result
+	nbtEduCreateTHeader();
+	printf("\t         [root]          \n");
+	printf("\t           |             \n");
+	printf("\t           |             \n");
+	printf("\t           V             \n");
+	printf("\t         ('%c')          \n",root);
+	printf("\n");
+	Sleep(time*2);
+}
+
+int nbtEduInsFsHeader() {
+	system("cls");
+	printf("<<<<<<<<<<<<<<<<<< FIRST SON INSERTION >>>>>>>>>>>>>>>>>>\n");
+	printf("\n");
+}
+
+int nbtEduInsFs(int time, char fs, char pr) {
+	nbtEduInsFsHeader();
+	printf("\t ...                      \n");
+	printf("\t  |                       \n");
+	printf("\t  V                       \n");
+	printf("\t('%c') --> ...              \n",pr);
+	printf("\t  |                       \n");
+	printf("\t  V                       \n");
+	printf("\t NULL                     \n");
+	Sleep(time);
+	Sleep(time);
+
+	nbtEduInsFsHeader();
+	printf("\t[nodeMaker]              \n");
+	printf("\t                         \n");
+	printf("\t ...                      \n");
+	printf("\t  |                       \n");
+	printf("\t  V                       \n");
+	printf("\t('%c') --> ...              \n",pr);
+	printf("\t  |                       \n");
+	printf("\t  V                       \n");
+	printf("\t NULL                     \n");
+	Sleep(time);
+	Sleep(time);
+
+	nbtEduInsFsHeader();
+	printf("\t[nodeMaker] -            \n");
+	printf("\t                         \n");
+	printf("\t ...                      \n");
+	printf("\t  |                       \n");
+	printf("\t  V                       \n");
+	printf("\t('%c') --> ...              \n",pr);
+	printf("\t  |                       \n");
+	printf("\t  V                       \n");
+	printf("\t NULL                     \n");
+	Sleep(time);
+	nbtEduInsFsHeader();
+	printf("\t[nodeMaker] --           \n");
+	printf("\t                         \n");
+	printf("\t ...                      \n");
+	printf("\t  |                       \n");
+	printf("\t  V                       \n");
+	printf("\t('%c') --> ...              \n",pr);
+	printf("\t  |                       \n");
+	printf("\t  V                       \n");
+	printf("\t NULL                     \n");
+	Sleep(time);
+	nbtEduInsFsHeader();
+	printf("\t[nodeMaker] -->          \n");
+	printf("\t                         \n");
+	printf("\t ...                      \n");
+	printf("\t  |                       \n");
+	printf("\t  V                       \n");
+	printf("\t('%c') --> ...              \n",pr);
+	printf("\t  |                       \n");
+	printf("\t  V                       \n");
+	printf("\t NULL                     \n");
+	Sleep(time);
+	nbtEduInsFsHeader();
+	printf("\t[nodeMaker] --> ('%c')      \n",fs);
+	printf("\t                         \n");
+	printf("\t ...                      \n");
+	printf("\t  |                       \n");
+	printf("\t  V                       \n");
+	printf("\t('%c') --> ...              \n",pr);
+	printf("\t  |                       \n");
+	printf("\t  V                       \n");
+	printf("\t NULL                     \n");
+	Sleep(time);
+	Sleep(time);
+
+	nbtEduInsFsHeader();
+	printf("\t[searcher]               \n");
+	printf("\t                         \n");
+	printf("\t[nodeMaker] --> ('%c')      \n",fs);
+	printf("\t                         \n");
+	printf("\t ...                      \n");
+	printf("\t  |                       \n");
+	printf("\t  V                       \n");
+	printf("\t('%c') --> ...              \n",pr);
+	printf("\t  |                       \n");
+	printf("\t  V                       \n");
+	printf("\t NULL                     \n");
+	Sleep(time);
+	nbtEduInsFsHeader();
+	printf("\t[searcher]               \n");
+	printf("\t                         \n");
+	printf("\t[nodeMaker] --> ('%c')      \n",fs);
+	printf("\t                         \n");
+	printf("\t      ...                      \n");
+	printf("\t       |                       \n");
+	printf("\t       V                       \n");
+	printf("\t     ('%c') --> ...              \n",pr);
+	printf("\t       |                       \n");
+	printf("\t       V                       \n");
+	printf("\t      NULL                     \n");
+	Sleep(time);
+	nbtEduInsFsHeader();
+	printf("\t[searcher]               \n");
+	printf("\t                         \n");
+	printf("\t[nodeMaker] --> ('%c')      \n",fs);
+	printf("\t                         \n");
+	printf("\t           ...                      \n");
+	printf("\t            |                       \n");
+	printf("\t            V                       \n");
+	printf("\t          ('%c') --> ...              \n",pr);
+	printf("\t            |                       \n");
+	printf("\t            V                       \n");
+	printf("\t           NULL                     \n");
+	Sleep(time);
+	nbtEduInsFsHeader();
+	printf("\t[searcher]               \n");
+	printf("\t                         \n");
+	printf("\t[nodeMaker] --> ('%c')      \n",fs);
+	printf("\t                         \n");
+	printf("\t                ...                      \n");
+	printf("\t                 |                       \n");
+	printf("\t                 V                       \n");
+	printf("\t               ('%c') --> ...              \n",pr);
+	printf("\t                 |                       \n");
+	printf("\t                 V                       \n");
+	printf("\t                NULL                     \n");
+	Sleep(time);
+	Sleep(time);
+
+	nbtEduInsFsHeader();
+	printf("\t[nodeMaker] --> ('%c')           \n",fs);
+	printf("\t                              \n");
+	printf("\t [searcher]     ...            \n");
+	printf("\t                 |             \n");
+	printf("\t                 V             \n");
+	printf("\t               ('%c') --> ...   \n",pr);
+	printf("\t                 |             \n");
+	printf("\t                 V             \n");
+	printf("\t                NULL           \n");
+	Sleep(time);
+	nbtEduInsFsHeader();
+	printf("\t[nodeMaker] --> ('%c')           \n",fs);
+	printf("\t                              \n");
+	printf("\t [searcher] -   ...            \n");
+	printf("\t                 |             \n");
+	printf("\t                 V             \n");
+	printf("\t               ('%c') --> ...   \n",pr);
+	printf("\t                 |             \n");
+	printf("\t                 V             \n");
+	printf("\t                NULL           \n");
+	Sleep(time);
+	nbtEduInsFsHeader();
+	printf("\t[nodeMaker] --> ('%c')           \n",fs);
+	printf("\t                              \n");
+	printf("\t [searcher] --  ...            \n");
+	printf("\t                 |             \n");
+	printf("\t                 V             \n");
+	printf("\t               ('%c') --> ...   \n",pr);
+	printf("\t                 |             \n");
+	printf("\t                 V             \n");
+	printf("\t                NULL           \n");
+	Sleep(time);
+	nbtEduInsFsHeader();
+	printf("\t[nodeMaker] --> ('%c')           \n",fs);
+	printf("\t                              \n");
+	printf("\t [searcher] --> ...            \n");
+	printf("\t                 |             \n");
+	printf("\t                 V             \n");
+	printf("\t               ('%c') --> ...   \n",pr);
+	printf("\t                 |             \n");
+	printf("\t                 V             \n");
+	printf("\t                NULL           \n");
+	Sleep(time);
+	nbtEduInsFsHeader();
+	printf("\t[nodeMaker] --> ('%c')           \n",fs);
+	printf("\t                              \n");
+	printf("\t                ...            \n");
+	printf("\t                 |             \n");
+	printf("\t                 V             \n");
+	printf("\t[searcher] --> ('%c') --> ...   \n",pr);
+	printf("\t                 |             \n");
+	printf("\t                 V             \n");
+	printf("\t                NULL           \n");
+	Sleep(time);
+	Sleep(time);
+
+	nbtEduInsFsHeader();
+	printf("\t                 ...           \n");
+	printf("\t                  |            \n");
+	printf("\t                  V            \n");
+	printf("\t [searcher] --> ('%c') --> ...  \n",pr);
+	printf("\t                  |            \n");
+	printf("\t                  V            \n");
+	printf("\t   [checker] --> NULL          \n");
+	printf("\t                              \n");
+	printf("\t                              \n");
+	printf("\t[nodeMaker] --> ('%c')           \n",fs);
+	Sleep(time);
+	Sleep(time);
+	Sleep(time);
+	nbtEduInsFsHeader();
+	printf("\t                 ...           \n");
+	printf("\t                  |            \n");
+	printf("\t                  V            \n");
+	printf("\t [searcher] --> ('%c') --> ...  \n",pr);
+	printf("\t                  |            \n");
+	printf("\t                  |            \n");
+	printf("\t                              \n");
+	printf("\t                              \n");
+	printf("\t                              \n");
+	printf("\t[nodeMaker] --> ('%c')           \n",fs);
+	Sleep(time);
+	nbtEduInsFsHeader();
+	printf("\t                 ...           \n");
+	printf("\t                  |            \n");
+	printf("\t                  V            \n");
+	printf("\t [searcher] --> ('%c') --> ...  \n",pr);
+	printf("\t                  |            \n");
+	printf("\t                  |            \n");
+	printf("\t                  |            \n");
+	printf("\t                              \n");
+	printf("\t                              \n");
+	printf("\t[nodeMaker] --> ('%c')           \n",fs);
+	Sleep(time);
+	nbtEduInsFsHeader();
+	printf("\t                 ...           \n");
+	printf("\t                  |            \n");
+	printf("\t                  V            \n");
+	printf("\t [searcher] --> ('%c') --> ...  \n",pr);
+	printf("\t                  |            \n");
+	printf("\t                  |            \n");
+	printf("\t                  |            \n");
+	printf("\t                  |            \n");
+	printf("\t                              \n");
+	printf("\t[nodeMaker] --> ('%c')           \n",fs);
+	Sleep(time);
+	nbtEduInsFsHeader();
+	printf("\t                 ...           \n");
+	printf("\t                  |            \n");
+	printf("\t                  V            \n");
+	printf("\t [searcher] --> ('%c') --> ...  \n",pr);
+	printf("\t                  |            \n");
+	printf("\t                  |            \n");
+	printf("\t                  |            \n");
+	printf("\t                  |            \n");
+	printf("\t                  V            \n");
+	printf("\t[nodeMaker] --> ('%c')           \n",fs);
+	Sleep(time);
+	Sleep(time);
+
+	nbtEduInsFsHeader();
+	printf("\t ...                           \n");
+	printf("\t  |                            \n");
+	printf("\t  V                            \n");
+	printf("\t('%c') --> ...                  \n",pr);
+	printf("\t  |                            \n");
+	printf("\t  V                            \n");
+	printf("\t('%c')                           \n",fs);
+	Sleep(time);
+	Sleep(time);
+}
+
+int nbtEduInsNbHeader() {
+	system("cls");
+	printf("<<<<<<<<<<<<<<<<<< NEXT BROTHER INSERTION >>>>>>>>>>>>>>>>>>\n");
+	printf("\n");
+}
+int nbtEduInsNb(int time, char nb, char pr) {
+
+	nbtEduInsNbHeader();
+	printf("\t ...\n");
+	printf("\t  |\n");
+	printf("\t  V\n");
+	printf("\t('%c') --> ...\n",pr);
+	printf("\t  |\n");
+	printf("\t  V\n");
+	printf("\t(...) --> NULL\n");
+	printf("\t  |\n");
+	printf("\t  V\n");
+	printf("\t ...\n");
+	Sleep(time);
+	Sleep(time);
+
+	nbtEduInsNbHeader();
+	printf("\t ...\n");
+	printf("\t  |\n");
+	printf("\t  V\n");
+	printf("\t('%c') --> ...\n",pr);
+	printf("\t  |\n");
+	printf("\t  V\n");
+	printf("\t(...) --> NULL\n");
+	printf("\t  |\n");
+	printf("\t  V\n");
+	printf("\t ...\n");
+	printf("\t\n");
+	printf("\t[nodeMaker]\n");
+	Sleep(time);
+	nbtEduInsNbHeader();
+	printf("\t ...\n");
+	printf("\t  |\n");
+	printf("\t  V\n");
+	printf("\t('%c') --> ...\n",pr);
+	printf("\t  |\n");
+	printf("\t  V\n");
+	printf("\t(...) --> NULL\n");
+	printf("\t  |\n");
+	printf("\t  V\n");
+	printf("\t ...\n");
+	printf("\t\n");
+	printf("\t[nodeMaker] -\n");
+	Sleep(time);
+	nbtEduInsNbHeader();
+	printf("\t ...\n");
+	printf("\t  |\n");
+	printf("\t  V\n");
+	printf("\t('%c') --> ...\n",pr);
+	printf("\t  |\n");
+	printf("\t  V\n");
+	printf("\t(...) --> NULL\n");
+	printf("\t  |\n");
+	printf("\t  V\n");
+	printf("\t ...\n");
+	printf("\t\n");
+	printf("\t[nodeMaker] --\n");
+	Sleep(time);
+	nbtEduInsNbHeader();
+	printf("\t ...\n");
+	printf("\t  |\n");
+	printf("\t  V\n");
+	printf("\t('%c') --> ...\n",pr);
+	printf("\t  |\n");
+	printf("\t  V\n");
+	printf("\t(...) --> NULL\n");
+	printf("\t  |\n");
+	printf("\t  V\n");
+	printf("\t ...\n");
+	printf("\t\n");
+	printf("\t[nodeMaker] --> \n");
+	Sleep(time);
+	nbtEduInsNbHeader();
+	printf("\t ...\n");
+	printf("\t  |\n");
+	printf("\t  V\n");
+	printf("\t('%c') --> ...\n",pr);
+	printf("\t  |\n");
+	printf("\t  V\n");
+	printf("\t(...) --> NULL\n");
+	printf("\t  |\n");
+	printf("\t  V\n");
+	printf("\t ...\n");
+	printf("\t\n");
+	printf("\t[nodeMaker] --> ('%c')\n",nb);
+	Sleep(time);
+	Sleep(time);
+
+	nbtEduInsNbHeader();
+	printf("\t[searcher]\n");
+	printf("\t\n");
+	printf("\t ...\n");
+	printf("\t  |\n");
+	printf("\t  V\n");
+	printf("\t('%c') --> ...\n",pr);
+	printf("\t  |\n");
+	printf("\t  V\n");
+	printf("\t(...) --> NULL\n");
+	printf("\t  |\n");
+	printf("\t  V\n");
+	printf("\t ...\n");
+	printf("\t\n");
+	printf("\t[nodeMaker] --> ('%c')\n",nb);
+	Sleep(time);
+	nbtEduInsNbHeader();
+	printf("\t[searcher]\n");
+	printf("\t\n");
+	printf("\t      ...\n");
+	printf("\t       |\n");
+	printf("\t       V\n");
+	printf("\t     ('%c') --> ...\n",pr);
+	printf("\t       |\n");
+	printf("\t       V\n");
+	printf("\t     (...) --> NULL\n");
+	printf("\t       |\n");
+	printf("\t       V\n");
+	printf("\t      ...\n");
+	printf("\t\n");
+	printf("\t[nodeMaker] --> ('%c')\n",nb);
+	Sleep(time);
+	nbtEduInsNbHeader();
+	printf("\t[searcher]\n");
+	printf("\t\n");
+	printf("\t           ...\n");
+	printf("\t            |\n");
+	printf("\t            V\n");
+	printf("\t          ('%c') --> ...\n",pr);
+	printf("\t            |\n");
+	printf("\t            V\n");
+	printf("\t          (...) --> NULL\n");
+	printf("\t            |\n");
+	printf("\t            V\n");
+	printf("\t           ...\n");
+	printf("\t\n");
+	printf("\t[nodeMaker] --> ('%c')\n",nb);
+	Sleep(time);
+	nbtEduInsNbHeader();
+	printf("\t[searcher]\n");
+	printf("\t\n");
+	printf("\t                ...\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t               ('%c') --> ...\n",pr);
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t               (...) --> NULL\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t                ...\n");
+	printf("\t\n");
+	printf("\t[nodeMaker] --> ('%c')\n",nb);
+	Sleep(time);
+	Sleep(time);
+
+	nbtEduInsNbHeader();
+	printf("\t[searcher]      ...\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t               ('%c') --> ...\n",pr);
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t               (...) --> NULL\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t                ...\n");
+	printf("\t\n");
+	printf("\t[nodeMaker] --> ('%c')\n",nb);
+	Sleep(time);
+	nbtEduInsNbHeader();
+	printf("\t[searcher] -    ...\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t               ('%c') --> ...\n",pr);
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t               (...) --> NULL\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t                ...\n");
+	printf("\t\n");
+	printf("\t[nodeMaker] --> ('%c')\n",nb);
+	Sleep(time);
+	nbtEduInsNbHeader();
+	printf("\t[searcher] --   ...\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t               ('%c') --> ...\n",pr);
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t               (...) --> NULL\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t                ...\n");
+	printf("\t\n");
+	printf("\t[nodeMaker] --> ('%c')\n",nb);
+	Sleep(time);
+	nbtEduInsNbHeader();
+	printf("\t[searcher] -->  ...\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t               ('%c') --> ...\n",pr);
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t               (...) --> NULL\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t                ...\n");
+	printf("\t\n");
+	printf("\t[nodeMaker] --> ('%c')\n",nb);
+	Sleep(time);
+	nbtEduInsNbHeader();
+	printf("\t                ...\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t[searcher] --> ('%c') --> ...\n",pr);
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t               (...) --> NULL\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t                ...\n");
+	printf("\t\n");
+	printf("\t[nodeMaker] --> ('%c')\n",nb);
+	Sleep(time);
+	nbtEduInsNbHeader();
+	printf("\t                ...\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t[searcher] --> ('%c') --> ...\n",pr);
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t [checker] --> (...) --> NULL\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t                ...\n");
+	printf("\t\n");
+	printf("\t[nodeMaker] --> ('%c')\n",nb);
+	Sleep(time);
+	Sleep(time);
+	Sleep(time);
+
+	nbtEduInsNbHeader();
+	printf("\t                ...\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t[searcher] --> ('%c') --> ...\n",pr);
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t   [pTrav]     (...) --> NULL\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t                ...\n");
+	printf("\t\n");
+	printf("\t[nodeMaker] --> ('%c')\n",nb);
+	Sleep(time);
+	nbtEduInsNbHeader();
+	printf("\t                ...\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t[searcher] --> ('%c') --> ...\n",pr);
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t   [pTrav] -   (...) --> NULL\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t                ...\n");
+	printf("\t\n");
+	printf("\t[nodeMaker] --> ('%c')\n",nb);
+	Sleep(time);
+	nbtEduInsNbHeader();
+	printf("\t                ...\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t[searcher] --> ('%c') --> ...\n",pr);
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t   [pTrav] --  (...) --> NULL\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t                ...\n");
+	printf("\t\n");
+	printf("\t[nodeMaker] --> ('%c')\n",nb);
+	Sleep(time);
+	nbtEduInsNbHeader();
+	printf("\t                ...\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t[searcher] --> ('%c') --> ...\n",pr);
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t   [pTrav] --> (...) --> NULL\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t                ...\n");
+	printf("\t\n");
+	printf("\t[nodeMaker] --> ('%c')\n",nb);
+	Sleep(time);
+	nbtEduInsNbHeader();
+	printf("\t                ...\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t[searcher] --> ('%c') --> ...\n",pr);
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t   [pTrav] --> (...) --> NULL\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t                ...\n");
+	printf("\t\n");
+	printf("\t     [nodeMaker] --> ('%c')\n",nb);
+	Sleep(time);
+	nbtEduInsNbHeader();
+	printf("\t                ...\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t[searcher] --> ('%c') --> ...\n",pr);
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t   [pTrav] --> (...) --> NULL\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t                ...\n");
+	printf("\t\n");
+	printf("\t         [nodeMaker] --> ('%c')\n",nb);
+	Sleep(time);
+	nbtEduInsNbHeader();
+	printf("\t                ...\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t[searcher] --> ('%c') --> ...\n",pr);
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t   [pTrav] --> (...) --> NULL\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t                ...\n");
+	printf("\t\n");
+	printf("\t                         ('%c') <-- [nodeMaker]\n",nb);
+	Sleep(time);
+	nbtEduInsNbHeader();
+	printf("\t                ...\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t[searcher] --> ('%c') --> ...\n",pr);
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t   [pTrav] --> (...) --> NULL\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t                ...\n");
+	printf("\t                         ('%c') <-- [nodeMaker]\n",nb);
+	Sleep(time);
+	nbtEduInsNbHeader();
+	printf("\t                ...\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t[searcher] --> ('%c') --> ...\n",pr);
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t   [pTrav] --> (...) --> NULL\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t                ...      ('%c') <-- [nodeMaker]\n",nb);
+	Sleep(time);
+	nbtEduInsNbHeader();
+	printf("\t                ...\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t[searcher] --> ('%c') --> ...\n",pr);
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t   [pTrav] --> (...) --> NULL\n");
+	printf("\t                 |\n");
+	printf("\t                 V       ('%c') <-- [nodeMaker]\n",nb);
+	printf("\t                ...  \n");
+	Sleep(time);
+	nbtEduInsNbHeader();
+	printf("\t                ...\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t[searcher] --> ('%c') --> ...\n",pr);
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t   [pTrav] --> (...) --> NULL\n");
+	printf("\t                 |       ('%c') <-- [nodeMaker]\n",nb);
+	printf("\t                 V \n");
+	printf("\t                ...\n");
+	Sleep(time);
+	nbtEduInsNbHeader();
+	printf("\t                ...\n");
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t[searcher] --> ('%c') --> ...\n",pr);
+	printf("\t                 |\n");
+	printf("\t                 V\n");
+	printf("\t   [pTrav] --> (...) --> ('%c') <-- [nodeMaker]\n",nb);
+	printf("\t                 |   \n");
+	printf("\t                 V \n");
+	printf("\t                ...\n");
+	Sleep(time);
+	Sleep(time);
+
+	nbtEduInsNbHeader();
+	printf("\t  ...\n");
+	printf("\t   |\n");
+	printf("\t   V\n");
+	printf("\t ('%c') --> ...\n",pr);
+	printf("\t   |\n");
+	printf("\t   V\n");
+	printf("\t (...) --> ('%c') \n",nb);
+	printf("\t   |   \n");
+	printf("\t   V \n");
+	printf("\t  ...\n");
+	Sleep(time);
+	Sleep(time);
+}
+
+char nbtCreateEdu(const char *filename) {
+    nbtAddr nbtEdu = NULL;
+    printTAddr printEdu;
+    FILE *fp = fopen(filename, "r");
+    if (fp == NULL) {
+        printf("Tidak ada cache yang ditemukan\n");
+        return '0';
+    }
+    char parent, node;
+    while (fscanf(fp, "(%c, %c) ", &parent, &node) != EOF) {
+        printEdu = NULL;
+        if (parent == '0') {
+            nbtEduCreateT(0, node);
+        } else if (SearchNbtNode(nbtEdu, parent)->fs == NULL){
+            nbtEduInsFs(0, node, parent);
+        } else {
+            nbtEduInsNb(0, node, parent);
+        }
+        InsertNbtNode(&nbtEdu, SearchNbtNode(nbtEdu, parent), node);
+        createNBPrintT(&printEdu, nbtEdu);
+        printf("\n\tRESULT :\n\n");
+        printTToString(printEdu);
+        system("pause");
+    }
+    fclose(fp);
+}
+/* ======================= END EDUCATION CREATE TREE ========================*/
 
 /* ======================= VARIABLE GLOBAL PENAMPUNG NODE ========================*/
 #define MAX_NODES 100
@@ -99,6 +954,7 @@ void NbtCreateTree(nbtAddr *nbtRoot)
     boolean check;
 
     nbDeleteSub(nbtRoot, *nbtRoot);
+    char root = nbtCreateEdu("cache.txt");
     while (true)
     {
         if (*nbtRoot == NULL)
@@ -157,7 +1013,6 @@ void NbtCreateTree(nbtAddr *nbtRoot)
     }
 }
 /* ======================= END KONSTRUKTOR NODE DAN TREE ========================*/
-/* ======================= SAVE LOAD TREE TO FILE ========================*/
 
 /* ======================= SAVE CACHE TREE TO FILE ========================*/
 void WriteCache(nbtAddr root, const char *filename)
@@ -207,7 +1062,12 @@ void LoadCache(nbtAddr *nbtTree)
     printf("Cache berhasil dimuat!\n");
 }
 
+
+
 /* ======================= END SAVE CACHE TREE TO FILE ========================*/
+
+/* ======================= SAVE LOAD TREE TO FILE ========================*/
+
 void SaveTree(nbtAddr nbtTree)
 {
     char fileName[20];
@@ -670,35 +1530,44 @@ void nbtShowElMetaData(nbtAddr nodeHolder)
 /*======================== END detail information nbTree ============================*/
 
 //===================================== modul detail information bTree ========================================
-int btGetDepth(btAddr rootHolder){ //geeksforgeeks algorithm
-	int lDepth;
-	int rDepth;
-	if (rootHolder==NULL){
-		return 0;
-	}else{
-		lDepth = btGetDepth(rootHolder->ls);
-		rDepth = btGetDepth(rootHolder->rs);
-		
-		if (lDepth>rDepth){
-			return lDepth + 1;
-		}else {
-			return rDepth + 1;
-		}
-	}
+int btGetDepth(btAddr rootHolder)
+{ // geeksforgeeks algorithm
+    int lDepth;
+    int rDepth;
+    if (rootHolder == NULL)
+    {
+        return 0;
+    }
+    else
+    {
+        lDepth = btGetDepth(rootHolder->ls);
+        rDepth = btGetDepth(rootHolder->rs);
+
+        if (lDepth > rDepth)
+        {
+            return lDepth + 1;
+        }
+        else
+        {
+            return rDepth + 1;
+        }
+    }
 }
 
-int btGetElements(btAddr rootHolder){//geeksforgeeks algorithm
-	int lCount;
-	int rCount;
-	
-	if (rootHolder==NULL){
-		return 0;
-	}
-	
-	lCount = btGetElements(rootHolder->ls);
-	rCount = btGetElements(rootHolder->rs);
-	
-	return 1 + lCount + rCount;
+int btGetElements(btAddr rootHolder)
+{ // geeksforgeeks algorithm
+    int lCount;
+    int rCount;
+
+    if (rootHolder == NULL)
+    {
+        return 0;
+    }
+
+    lCount = btGetElements(rootHolder->ls);
+    rCount = btGetElements(rootHolder->rs);
+
+    return 1 + lCount + rCount;
 }
 
 int btGetLeaves(btAddr rootHolder){//geeksforgeeks algorithm
@@ -722,12 +1591,16 @@ int btGetChilds(btAddr nodeHolder){//geeksforgeeks algorithm
 	return count;
 }
 
-void btShowElStatus(btAddr nodeHolder){
-	if(nodeHolder->pr==NULL){
-		printf("root");
-	}else{
-		printf("child of %c",nodeHolder->pr->info);
-	}
+void btShowElStatus(btAddr nodeHolder)
+{
+    if (nodeHolder->pr == NULL)
+    {
+        printf("root");
+    }
+    else
+    {
+        printf("child of %c", nodeHolder->pr->info);
+    }
 }
 
 void btShowLeafStatus(btAddr nodeHolder){
@@ -736,58 +1609,56 @@ void btShowLeafStatus(btAddr nodeHolder){
 	}else printf("true");
 }
 
-void btShowElMetaData(btAddr nodeHolder){
-	printf("\t'%c' DETAIL INFORMATION\n\t\tElement Status : ",nodeHolder->info);
-	btShowElStatus(nodeHolder);
-	printf("\n\t\tElement Level : %i\n\t\tElement Childs : %i\n\t\tElement Leaf Status : ",
-	nodeHolder->level,btGetChilds(nodeHolder));
-	btShowLeafStatus(nodeHolder);printf("\n\n");
+void btShowElMetaData(btAddr nodeHolder)
+{
+    printf("\t'%c' DETAIL INFORMATION\n\t\tElement Status : ", nodeHolder->info);
+    btShowElStatus(nodeHolder);
+    printf("\n\t\tElement Level : %i\n\t\tElement Childs : %i\n\t\tElement Leaf Status : ",
+           nodeHolder->level, btGetChilds(nodeHolder));
+    btShowLeafStatus(nodeHolder);
+    printf("\n\n");
 }
-void btShowTreeMetaData(btAddr rootHolder){
-	printf("TREE DETAIL INFORMATION\n\tTree Root : %c\n\tTree Depth : %i\n\tTree Elements : %i\n\tTree Leaves : %i\n\n",
-	rootHolder->info,btGetDepth(rootHolder),btGetElements(rootHolder),btGetLeaves(rootHolder));
+void btShowTreeMetaData(btAddr rootHolder)
+{
+    printf("TREE DETAIL INFORMATION\n\tTree Root : %c\n\tTree Depth : %i\n\tTree Elements : %i\n\tTree Leaves : %i\n\n",
+           rootHolder->info, btGetDepth(rootHolder), btGetElements(rootHolder), btGetLeaves(rootHolder));
 }
-void btShowElsMetaData(btAddr nodeHolder){
-	if (nodeHolder == NULL){
-		return;
-	}
-	btShowElMetaData(nodeHolder);
-	btShowElsMetaData(nodeHolder->ls);
-	btShowElsMetaData(nodeHolder->rs);
+void btShowElsMetaData(btAddr nodeHolder)
+{
+    if (nodeHolder == NULL)
+    {
+        return;
+    }
+    btShowElMetaData(nodeHolder);
+    btShowElsMetaData(nodeHolder->ls);
+    btShowElsMetaData(nodeHolder->rs);
 }
 //===========================================================================================================
 
 /*================== MODUL CONVERT NON-BINARY-TREE TO BINARY-TREE==========================*/
-btAddr NbtTreeConvertToBtTree(nbtAddr root)
-{
-    if (!root)
-    {
+btAddr NbtTreeConvertToBtTree(nbtAddr root, int currentLevel) {
+    if (!root) {
         return NULL;
     }
 
-    btAddr binaryRoot = CreateBtNode(root->info);
-    if (root->fs)
-    {
-        binaryRoot->ls = NbtTreeConvertToBtTree(root->fs);
-        binaryRoot->ls->level = binaryRoot->level + 1;
-        binaryRoot->ls->pr = binaryRoot; // Set parent for the left subtree
+    btAddr binaryRoot = CreateBtNode(root->info, currentLevel);
+    if (root->fs) {
+        binaryRoot->ls = NbtTreeConvertToBtTree(root->fs, currentLevel + 1);
+        binaryRoot->ls->pr = binaryRoot;  // Set parent for the left subtree
     }
-    if (root->nb)
-    {
-        binaryRoot->rs = NbtTreeConvertToBtTree(root->nb);
-        binaryRoot->rs->level = binaryRoot->level + 1;
-        binaryRoot->rs->pr = binaryRoot; // Set parent for the right subtree
+    if (root->nb) {
+        binaryRoot->rs = NbtTreeConvertToBtTree(root->nb, currentLevel + 1);
+        binaryRoot->rs->pr = binaryRoot;  // Set parent for the right subtree
     }
     return binaryRoot;
 }
 
 // Fungsi untuk membuat node binary tree baru
-btAddr CreateBtNode(infoType info)
-{
+btAddr CreateBtNode(infoType info, int level) {
     btAddr newNode = (btAddr)malloc(sizeof(btType));
     newNode->info = info;
     newNode->ls = newNode->rs = newNode->pr = NULL;
-    newNode->level = 0;
+    newNode->level = level;
     return newNode;
 }
 /*================== END MODUL CONVERT NON-BINARY-TREE TO BINARY-TREE==========================*/
@@ -858,7 +1729,7 @@ btAddr DuplicateBtTree(btAddr root)
         return NULL;
     }
 
-    btAddr newRoot = CreateBtNode(root->info);
+    btAddr newRoot = CreateBtNode(root->info, root->level);
     if (newRoot == NULL)
     {
         fprintf(stderr, "Memory allocation failed\n");
@@ -883,338 +1754,435 @@ btAddr DuplicateBtTree(btAddr root)
 /*================== END MODUL CONVERSION BINARY-TREE TO BINARY-SEARCH-TREE===========================*/
 
 //========================================= printTree preOrderly =============================================
-void printTAllocBlank(printTAddr (*nodeMaker)){
-	(*nodeMaker) = NULL;
-	(*nodeMaker) = (printTAddr) malloc(sizeof(printTType));
-	if ((*nodeMaker)!=NULL){
-		(*nodeMaker)->info = ' ';
-		(*nodeMaker)->row = 0;
-		(*nodeMaker)->column = 0;
-		(*nodeMaker)->next = NULL;
-	}
+void printTAllocBlank(printTAddr(*nodeMaker))
+{
+    (*nodeMaker) = NULL;
+    (*nodeMaker) = (printTAddr)malloc(sizeof(printTType));
+    if ((*nodeMaker) != NULL)
+    {
+        (*nodeMaker)->info = ' ';
+        (*nodeMaker)->row = 0;
+        (*nodeMaker)->column = 0;
+        (*nodeMaker)->next = NULL;
+    }
 }
-void printTAllocVert(printTAddr (*nodeMaker)){
-	(*nodeMaker) = NULL;
-	(*nodeMaker) = (printTAddr) malloc(sizeof(printTType));
-	if ((*nodeMaker)!=NULL){
-		(*nodeMaker)->info = '|';
-		(*nodeMaker)->row = 0;
-		(*nodeMaker)->column = 0;
-		(*nodeMaker)->next = NULL;
-	}
+void printTAllocVert(printTAddr(*nodeMaker))
+{
+    (*nodeMaker) = NULL;
+    (*nodeMaker) = (printTAddr)malloc(sizeof(printTType));
+    if ((*nodeMaker) != NULL)
+    {
+        (*nodeMaker)->info = '|';
+        (*nodeMaker)->row = 0;
+        (*nodeMaker)->column = 0;
+        (*nodeMaker)->next = NULL;
+    }
 }
-void printTAllocHoriz(printTAddr (*nodeMaker)){
-	(*nodeMaker) = NULL;
-	(*nodeMaker) = (printTAddr) malloc(sizeof(printTType));
-	if ((*nodeMaker)!=NULL){
-		(*nodeMaker)->info = '_';
-		(*nodeMaker)->row = 0;
-		(*nodeMaker)->column = 0;
-		(*nodeMaker)->next = NULL;
-	}
+void printTAllocHoriz(printTAddr(*nodeMaker))
+{
+    (*nodeMaker) = NULL;
+    (*nodeMaker) = (printTAddr)malloc(sizeof(printTType));
+    if ((*nodeMaker) != NULL)
+    {
+        (*nodeMaker)->info = '_';
+        (*nodeMaker)->row = 0;
+        (*nodeMaker)->column = 0;
+        (*nodeMaker)->next = NULL;
+    }
 }
-void printTAllocNL(printTAddr (*nodeMaker)){
-	(*nodeMaker) = NULL;
-	(*nodeMaker) = (printTAddr) malloc(sizeof(printTType));
-	if ((*nodeMaker)!=NULL){
-		(*nodeMaker)->info = '\n';
-		(*nodeMaker)->row = 0;
-		(*nodeMaker)->column = 0;
-		(*nodeMaker)->next = NULL;
-	}
+void printTAllocNL(printTAddr(*nodeMaker))
+{
+    (*nodeMaker) = NULL;
+    (*nodeMaker) = (printTAddr)malloc(sizeof(printTType));
+    if ((*nodeMaker) != NULL)
+    {
+        (*nodeMaker)->info = '\n';
+        (*nodeMaker)->row = 0;
+        (*nodeMaker)->column = 0;
+        (*nodeMaker)->next = NULL;
+    }
 }
-void printTAllocInfo(printTAddr (*nodeMaker), char info, char pr){
-	(*nodeMaker) = NULL;
-	(*nodeMaker) = (printTAddr) malloc(sizeof(printTType));
-	if ((*nodeMaker)!=NULL){
-		(*nodeMaker)->info = info;
-		(*nodeMaker)->row = 0;
-		(*nodeMaker)->column = 0;
-		(*nodeMaker)->next = NULL;
-		(*nodeMaker)->pr = pr;
-	}
+void printTAllocInfo(printTAddr(*nodeMaker), char info, char pr)
+{
+    (*nodeMaker) = NULL;
+    (*nodeMaker) = (printTAddr)malloc(sizeof(printTType));
+    if ((*nodeMaker) != NULL)
+    {
+        (*nodeMaker)->info = info;
+        (*nodeMaker)->row = 0;
+        (*nodeMaker)->column = 0;
+        (*nodeMaker)->next = NULL;
+        (*nodeMaker)->pr = pr;
+    }
 }
-printTAddr printTSrchByInfo(printTAddr rootHolder, char info){
-	printTAddr pSrchr;
-	pSrchr = rootHolder;
-	while (pSrchr!=NULL){
-		if (pSrchr->info==info){
-			return pSrchr;
-		}
-		pSrchr = pSrchr->next;
-	}
-	return NULL;
+printTAddr printTSrchByInfo(printTAddr rootHolder, char info)
+{
+    printTAddr pSrchr;
+    pSrchr = rootHolder;
+    while (pSrchr != NULL)
+    {
+        if (pSrchr->info == info)
+        {
+            return pSrchr;
+        }
+        pSrchr = pSrchr->next;
+    }
+    return NULL;
 }
-printTAddr printTSrchByPr(printTAddr rootHolder, char pr){
-	printTAddr pSrchr;
-	pSrchr = rootHolder;
-	while (pSrchr!=NULL){
-		if (pSrchr->pr==pr&&pSrchr->info!='|'&&pSrchr->info!=' '&&pSrchr->info!='_'&&pSrchr->info!='\n'){
-			return pSrchr;
-		}
-		pSrchr = pSrchr->next;
-	}
-	return NULL;
+printTAddr printTSrchByPr(printTAddr rootHolder, char pr)
+{
+    printTAddr pSrchr;
+    pSrchr = rootHolder;
+    while (pSrchr != NULL)
+    {
+        if (pSrchr->pr == pr && pSrchr->info != '|' && pSrchr->info != ' ' && pSrchr->info != '_' && pSrchr->info != '\n')
+        {
+            return pSrchr;
+        }
+        pSrchr = pSrchr->next;
+    }
+    return NULL;
 }
-printTAddr printTSrchByRow(printTAddr rootHolder, int row){
-	printTAddr pSrchr;
-	pSrchr = rootHolder;
-	while (pSrchr!=NULL){
-		if (pSrchr->row==row){
-			return pSrchr;
-		}
-		pSrchr = pSrchr->next;
-	}
-	return NULL;
+printTAddr printTSrchByRow(printTAddr rootHolder, int row)
+{
+    printTAddr pSrchr;
+    pSrchr = rootHolder;
+    while (pSrchr != NULL)
+    {
+        if (pSrchr->row == row)
+        {
+            return pSrchr;
+        }
+        pSrchr = pSrchr->next;
+    }
+    return NULL;
 }
-printTAddr printTSrchByColumn(printTAddr rootHolder, int column){
-	printTAddr pSrchr;
-	pSrchr = rootHolder;
-	while (pSrchr!=NULL){
-		if (pSrchr->column==column){
-			return pSrchr;
-		}
-		pSrchr = pSrchr->next;
-	}
-	return NULL;
+printTAddr printTSrchByColumn(printTAddr rootHolder, int column)
+{
+    printTAddr pSrchr;
+    pSrchr = rootHolder;
+    while (pSrchr != NULL)
+    {
+        if (pSrchr->column == column)
+        {
+            return pSrchr;
+        }
+        pSrchr = pSrchr->next;
+    }
+    return NULL;
 }
-printTAddr printTSrchByLoc(printTAddr rootHolder, int row, int column){
-	printTAddr pSrchr;
-	pSrchr = rootHolder;
-	while (pSrchr!=NULL){
-		if (pSrchr->column==column&&pSrchr->row==row){
-			return pSrchr;
-		}
-		pSrchr = pSrchr->next;
-	}
-	return NULL;
+printTAddr printTSrchByLoc(printTAddr rootHolder, int row, int column)
+{
+    printTAddr pSrchr;
+    pSrchr = rootHolder;
+    while (pSrchr != NULL)
+    {
+        if (pSrchr->column == column && pSrchr->row == row)
+        {
+            return pSrchr;
+        }
+        pSrchr = pSrchr->next;
+    }
+    return NULL;
 }
-void printTTravNull(printTAddr (*holder), printTAddr start){
-	(*holder) = start;
-	while ((*holder)->next!=NULL){
-		(*holder) = (*holder)->next;
-	}
+void printTTravNull(printTAddr(*holder), printTAddr start)
+{
+    (*holder) = start;
+    while ((*holder)->next != NULL)
+    {
+        (*holder) = (*holder)->next;
+    }
 }
-void printTToString(printTAddr rootHolder){
-	printTAddr p;
-	
-	p = rootHolder;
-	while (p!=NULL){
-		if (p->column==1){
-			printf("\t");
-		}
-		printf("%c",p->info);
-		p = p->next;
-	}
+void printTToString(printTAddr rootHolder)
+{
+    printTAddr p;
+
+    p = rootHolder;
+    while (p != NULL)
+    {
+        if (p->column == 1)
+        {
+            printf("\t");
+        }
+        printf("%c", p->info);
+        p = p->next;
+    }
 }
-void printTTravSpecif(printTAddr (*holder), printTAddr start, char info){
-	(*holder) = start;
-	while ((*holder)->next->info!=info){
-		(*holder) = (*holder)->next;
-	}
+void printTTravSpecif(printTAddr(*holder), printTAddr start, char info)
+{
+    (*holder) = start;
+    while ((*holder)->next->info != info)
+    {
+        (*holder) = (*holder)->next;
+    }
 }
-void printTCn(printTAddr (*trNode), printTAddr (*firstNode), printTAddr (*secNode)){
-	if((*firstNode)->info=='\n'){
-		(*trNode)->row = (*firstNode)->row + 1;
-		(*trNode)->column = 1;
-	}else{
-		(*trNode)->row = (*firstNode)->row;
-		(*trNode)->column = (*firstNode)->column + 1;
-	}
-	if((*secNode)!=NULL){
-		if((*trNode)->info=='\n'){
-			(*secNode)->row = (*trNode)->row + 1;
-			(*secNode)->column = 1;
-		}else{
-			(*secNode)->row = (*trNode)->row;
-			(*secNode)->column = (*trNode)->column + 1;
-		}
-	}
-	(*firstNode)->next = (*trNode);
-	(*trNode)->next = (*secNode);
-	(*firstNode) = (*trNode);
+void printTCn(printTAddr(*trNode), printTAddr(*firstNode), printTAddr(*secNode))
+{
+    if ((*firstNode)->info == '\n')
+    {
+        (*trNode)->row = (*firstNode)->row + 1;
+        (*trNode)->column = 1;
+    }
+    else
+    {
+        (*trNode)->row = (*firstNode)->row;
+        (*trNode)->column = (*firstNode)->column + 1;
+    }
+    if ((*secNode) != NULL)
+    {
+        if ((*trNode)->info == '\n')
+        {
+            (*secNode)->row = (*trNode)->row + 1;
+            (*secNode)->column = 1;
+        }
+        else
+        {
+            (*secNode)->row = (*trNode)->row;
+            (*secNode)->column = (*trNode)->column + 1;
+        }
+    }
+    (*firstNode)->next = (*trNode);
+    (*trNode)->next = (*secNode);
+    (*firstNode) = (*trNode);
 }
-int printTCountCh(printTAddr root, char pr){
-	if(pr=='A'){
-		printf("checked");
-	}
-	int count = 0;
-	while(root!=NULL){
-		if (root->pr==pr){
-			count++;
-		}
-		root = root->next;
-	}
-	return count;
+int printTCountCh(printTAddr root, char pr)
+{
+    if (pr == 'A')
+    {
+        printf("checked");
+    }
+    int count = 0;
+    while (root != NULL)
+    {
+        if (root->pr == pr)
+        {
+            count++;
+        }
+        root = root->next;
+    }
+    return count;
 }
 
+void printTInsert(printTAddr(*rootHolder), char info, char pr)
+{
+    printTAddr nodeMaker, root, prHolder, p1, p2;
 
-void printTInsert(printTAddr (*rootHolder), char info, char pr){
-	printTAddr nodeMaker,root,prHolder,p1,p2;
-	
-	int i,j,k,l,m,colTr,rowTr,chCount;
-	if((*rootHolder)==NULL){
-		printTAllocInfo(&nodeMaker,info,pr);
-		nodeMaker->row = 1;
-		nodeMaker->column = 1;
-		(*rootHolder) = nodeMaker;
-		
-		printTAllocNL(&nodeMaker);
-		nodeMaker->row = 1;
-		nodeMaker->column = 2;
-		(*rootHolder)->next = nodeMaker;
-	}else{
-		root = (*rootHolder);
-		prHolder = printTSrchByInfo(root,pr);
-		if (printTSrchByRow(root,prHolder->row+1)==NULL){
-			for (i=1;i<=3;i++){
-				printTTravNull(&p1, prHolder);
-				rowTr = p1->row+1;
-				colTr = 1;
-				while (colTr!=prHolder->column){
-					printTAllocBlank(&nodeMaker);
-					nodeMaker->row = rowTr;
-					nodeMaker->column = colTr;
-					colTr = colTr+1;
-					p1->next = nodeMaker;
-					printTTravNull(&p1, prHolder);
-				}
-				if (i==3){
-					printTAllocInfo(&nodeMaker,info,pr);
-					nodeMaker->row = rowTr;
-					nodeMaker->column = colTr;
-				}else{
-					printTAllocVert(&nodeMaker);
-					nodeMaker->row = rowTr;
-					nodeMaker->column = colTr;
-				}
-				colTr = colTr+1;
-				
-				p1->next = nodeMaker;
-				printTTravNull(&p1, prHolder);
-				
-				printTAllocNL(&nodeMaker);
-				nodeMaker->row = rowTr;
-				nodeMaker->column = colTr;
-				p1->next = nodeMaker;
-			}
-		}else{
-				
-			if(printTSrchByLoc(root,prHolder->row+1,prHolder->column)==NULL){
-				for (i=1;i<=3;i++){
-					p1 = printTSrchByRow((*rootHolder),prHolder->row+i);
-					printTTravSpecif(&p1,p1,'\n');
-					p2 = p1->next;
-					while (p2->column!=prHolder->column){
-						printTAllocBlank(&nodeMaker);
-						printTCn(&nodeMaker,&p1,&p2);
-					}
-					if (i==3){
-						printTAllocInfo(&nodeMaker,info,pr);
-						printTCn(&nodeMaker,&p1,&p2);
-					}else{
-						printTAllocVert(&nodeMaker);
-						printTCn(&nodeMaker,&p1,&p2);
-					}
-				}	
-				
-			}else{
-				
-				chCount = 0;
-				p1 = printTSrchByPr(root,pr);
-				p2 = printTSrchByPr(p1->next,pr);
-				
-				if(p2!=NULL){
-					while (p2!=NULL){
-						p1 = printTSrchByPr(p1->next,pr);
-						p2 = printTSrchByPr(p2->next,pr);
-					}
-				}
-				chCount = chCount + printTCountCh(root, p1->info);
-				for(i=1;i<=3;i++){
-					p1 = printTSrchByLoc(root,prHolder->row+i,prHolder->column);
-					printTTravSpecif(&p1,p1,'\n');
-					p2 = p1->next;
-					if(i==1){
-						if (chCount==0||chCount==1){
-							for(j=0;j!=2;j++){
-								printTAllocHoriz(&nodeMaker);
-								printTCn(&nodeMaker,&p1,&p2);
-							}
-						}else{
-							for(j=0;j!=(2*chCount)+1;j++){
-								printTAllocHoriz(&nodeMaker);
-								printTCn(&nodeMaker,&p1,&p2);
-							}
-						}
-						
-					}else{
-						if (chCount==0||chCount==1){
-							for(j=0;j!=1;j++){
-								printTAllocBlank(&nodeMaker);
-								printTCn(&nodeMaker,&p1,&p2);
-								printTTravSpecif(&p1,p1,p2->info);
-							}
-						}else{
-							for(j=0;j!=2*chCount;j++){
-								printTAllocBlank(&nodeMaker);
-								printTCn(&nodeMaker,&p1,&p2);
-								printTTravSpecif(&p1,p1,p2->info);
-							}
-						}
-						if(i==2){
-							printTAllocVert(&nodeMaker);
-						}else printTAllocInfo(&nodeMaker,info,pr);
-						printTCn(&nodeMaker,&p1,&p2);
-						printTTravSpecif(&p1,p1,p2->info);
-					}
-				}
-			}
-		}	
-	}
+    int i, j, k, l, m, colTr, rowTr, chCount;
+    if ((*rootHolder) == NULL)
+    {
+        printTAllocInfo(&nodeMaker, info, pr);
+        nodeMaker->row = 1;
+        nodeMaker->column = 1;
+        (*rootHolder) = nodeMaker;
+
+        printTAllocNL(&nodeMaker);
+        nodeMaker->row = 1;
+        nodeMaker->column = 2;
+        (*rootHolder)->next = nodeMaker;
+    }
+    else
+    {
+        root = (*rootHolder);
+        prHolder = printTSrchByInfo(root, pr);
+        if (printTSrchByRow(root, prHolder->row + 1) == NULL)
+        {
+            for (i = 1; i <= 3; i++)
+            {
+                printTTravNull(&p1, prHolder);
+                rowTr = p1->row + 1;
+                colTr = 1;
+                while (colTr != prHolder->column)
+                {
+                    printTAllocBlank(&nodeMaker);
+                    nodeMaker->row = rowTr;
+                    nodeMaker->column = colTr;
+                    colTr = colTr + 1;
+                    p1->next = nodeMaker;
+                    printTTravNull(&p1, prHolder);
+                }
+                if (i == 3)
+                {
+                    printTAllocInfo(&nodeMaker, info, pr);
+                    nodeMaker->row = rowTr;
+                    nodeMaker->column = colTr;
+                }
+                else
+                {
+                    printTAllocVert(&nodeMaker);
+                    nodeMaker->row = rowTr;
+                    nodeMaker->column = colTr;
+                }
+                colTr = colTr + 1;
+
+                p1->next = nodeMaker;
+                printTTravNull(&p1, prHolder);
+
+                printTAllocNL(&nodeMaker);
+                nodeMaker->row = rowTr;
+                nodeMaker->column = colTr;
+                p1->next = nodeMaker;
+            }
+        }
+        else
+        {
+
+            if (printTSrchByLoc(root, prHolder->row + 1, prHolder->column) == NULL)
+            {
+                for (i = 1; i <= 3; i++)
+                {
+                    p1 = printTSrchByRow((*rootHolder), prHolder->row + i);
+                    printTTravSpecif(&p1, p1, '\n');
+                    p2 = p1->next;
+                    while (p2->column != prHolder->column)
+                    {
+                        printTAllocBlank(&nodeMaker);
+                        printTCn(&nodeMaker, &p1, &p2);
+                    }
+                    if (i == 3)
+                    {
+                        printTAllocInfo(&nodeMaker, info, pr);
+                        printTCn(&nodeMaker, &p1, &p2);
+                    }
+                    else
+                    {
+                        printTAllocVert(&nodeMaker);
+                        printTCn(&nodeMaker, &p1, &p2);
+                    }
+                }
+            }
+            else
+            {
+
+                chCount = 0;
+                p1 = printTSrchByPr(root, pr);
+                p2 = printTSrchByPr(p1->next, pr);
+
+                if (p2 != NULL)
+                {
+                    while (p2 != NULL)
+                    {
+                        p1 = printTSrchByPr(p1->next, pr);
+                        p2 = printTSrchByPr(p2->next, pr);
+                    }
+                }
+                chCount = chCount + printTCountCh(root, p1->info);
+                for (i = 1; i <= 3; i++)
+                {
+                    p1 = printTSrchByLoc(root, prHolder->row + i, prHolder->column);
+                    printTTravSpecif(&p1, p1, '\n');
+                    p2 = p1->next;
+                    if (i == 1)
+                    {
+                        if (chCount == 0 || chCount == 1)
+                        {
+                            for (j = 0; j != 2; j++)
+                            {
+                                printTAllocHoriz(&nodeMaker);
+                                printTCn(&nodeMaker, &p1, &p2);
+                            }
+                        }
+                        else
+                        {
+                            for (j = 0; j != (2 * chCount) + 1; j++)
+                            {
+                                printTAllocHoriz(&nodeMaker);
+                                printTCn(&nodeMaker, &p1, &p2);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (chCount == 0 || chCount == 1)
+                        {
+                            for (j = 0; j != 1; j++)
+                            {
+                                printTAllocBlank(&nodeMaker);
+                                printTCn(&nodeMaker, &p1, &p2);
+                                printTTravSpecif(&p1, p1, p2->info);
+                            }
+                        }
+                        else
+                        {
+                            for (j = 0; j != 2 * chCount; j++)
+                            {
+                                printTAllocBlank(&nodeMaker);
+                                printTCn(&nodeMaker, &p1, &p2);
+                                printTTravSpecif(&p1, p1, p2->info);
+                            }
+                        }
+                        if (i == 2)
+                        {
+                            printTAllocVert(&nodeMaker);
+                        }
+                        else
+                            printTAllocInfo(&nodeMaker, info, pr);
+                        printTCn(&nodeMaker, &p1, &p2);
+                        printTTravSpecif(&p1, p1, p2->info);
+                    }
+                }
+            }
+        }
+    }
 }
 
-void createNBPrintT(printTAddr (*printHolder), nbtAddr rootHolder){
-	
-	nbtAddr p;
-	bool resmi=true;
-	p = rootHolder;
-	while (p!=NULL){
-		if(resmi){
-			
-			if (p->pr!=NULL){
-				printTInsert(&(*printHolder),p->info,p->pr->info);
-			}else{
-				printTInsert(&(*printHolder),p->info,NULL);
-			}
-		}
-		if(p->fs!=NULL && resmi){
-			p = p->fs;
-			resmi = true;
-		}else if (p->nb!=NULL){
-			p = p->nb;
-			resmi = true;
-		}else{
-			p = p->pr;
-			resmi = false;
-		}
-	}
+void createNBPrintT(printTAddr(*printHolder), nbtAddr rootHolder)
+{
+
+    nbtAddr p;
+    bool resmi = true;
+    p = rootHolder;
+    while (p != NULL)
+    {
+        if (resmi)
+        {
+
+            if (p->pr != NULL)
+            {
+
+                printTInsert(&(*printHolder), p->info, p->pr->info);
+            }
+            else
+            {
+                printTInsert(&(*printHolder), p->info, NULL);
+            }
+        }
+        if (p->fs != NULL && resmi)
+        {
+            p = p->fs;
+            resmi = true;
+        }
+        else if (p->nb != NULL)
+        {
+            p = p->nb;
+            resmi = true;
+        }
+        else
+        {
+            p = p->pr;
+            resmi = false;
+        }
+    }
 }
 
-void createBPrintT(printTAddr (*printHolder), btAddr rootHolder){
-	
-	if(rootHolder==NULL){
-		return;
-	}
-	if(rootHolder->pr!=NULL){
-		printTInsert(&(*printHolder),rootHolder->info,rootHolder->pr->info);
-	}else{
-		printTInsert(&(*printHolder),rootHolder->info,NULL);
-	}
-	
-	createBPrintT(&(*printHolder),rootHolder->ls);
+void createBPrintT(printTAddr(*printHolder), btAddr rootHolder)
+{
 
-	createBPrintT(&(*printHolder),rootHolder->rs);
+    if (rootHolder == NULL)
+    {
+        return;
+    }
+    if (rootHolder->pr != NULL)
+    {
+        printTInsert(&(*printHolder), rootHolder->info, rootHolder->pr->info);
+    }
+    else
+    {
+        printTInsert(&(*printHolder), rootHolder->info, NULL);
+    }
+
+    createBPrintT(&(*printHolder), rootHolder->ls);
+
+    createBPrintT(&(*printHolder), rootHolder->rs);
 }
 //====================================== printTree preOrderly end =============================================
 
@@ -1223,35 +2191,37 @@ void CreateAvlTree(btAddr bstTree, btAddr *avlTree)
 {
     if (bstTree == NULL)
         return;
-    CreateAvlTree(bstTree->ls, &(*avlTree));
-    (*avlTree) = InsertAvlTree((*avlTree), bstTree->info);
-    CreateAvlTree(bstTree->rs, &(*avlTree));
+    CreateAvlTree(bstTree->ls, avlTree);
+    *avlTree = InsertAvlTree(*avlTree, bstTree->info);
+    CreateAvlTree(bstTree->rs, avlTree);
 }
 
 btAddr InsertAvlTree(btAddr root, infoType info)
 {
-    /* 1.  Perform the normal BST insertion */
     if (root == NULL)
-        return (CreateBtNode(info));
+        return (CreateBtNode(info, 0));
 
     if (info < root->info)
+    {
         root->ls = InsertAvlTree(root->ls, info);
+        if (root->ls)
+            root->ls->pr = root;
+    }
     else if (info > root->info)
+    {
         root->rs = InsertAvlTree(root->rs, info);
-    else // Equal keys are not allowed in BST
+        if (root->rs)
+            root->rs->pr = root;
+    }
+    else
+    {
         return root;
+    }
 
-    /* 2. Update height of this ancestor root */
     root->level = 1 + Max(GetLevel(root->ls),
                           GetLevel(root->rs));
 
-    /* 3. Get the balance factor of this ancestor
-          root to check whether this root became
-          unbalanced */
     int balance = GetBalance(root);
-
-    // If this root becomes unbalanced, then
-    // there are 4 cases
 
     // ls ls Case
     if (balance > 1 && info < root->ls->info)
@@ -1308,6 +2278,11 @@ btAddr RightRotate(btAddr root)
                    GetLevel(x->rs)) +
                1;
 
+    if (T2)
+        T2->pr = root;
+    x->pr = root->pr;
+    root->pr = x;
+
     // Return new root
     return x;
 }
@@ -1328,6 +2303,11 @@ btAddr LeftRotate(btAddr root)
     y->level = Max(GetLevel(y->ls),
                    GetLevel(y->rs)) +
                1;
+
+    if (T2)
+        T2->pr = root;
+    y->pr = root->pr;
+    root->pr = y;
 
     // Return new root
     return y;
@@ -1367,62 +2347,74 @@ void PrintBtPostorder(btAddr node)
     printf("%c ", node->info);
 }
 
-void PrintBtNbtLevelorder(nbtAddr nbtRoot, btAddr btRoot) {
+void PrintBtNbtLevelorder(nbtAddr nbtRoot, btAddr btRoot)
+{
     if (btRoot == NULL || nbtRoot == NULL)
         return;
-    
+
     Queue *queue = CreateQueue();
     Enqueue(queue, nbtRoot, btRoot);
-    
-    while (!IsQueueEmpty(queue)) {
+
+    while (!IsQueueEmpty(queue))
+    {
         QueueNode *current = Dequeue(queue);
         btAddr btNode = current->btTree;
         nbtAddr nbtNode = current->nbtTree;
-        
+
         printf("Binary Tree Node: %c, Non-Binary Tree Node: %c\n", btNode->info, nbtNode->info);
-        
+
         // Enqueue children of binary tree node
         if (btNode->ls != NULL)
             Enqueue(queue, nbtNode, btNode->ls);
         if (btNode->rs != NULL)
             Enqueue(queue, nbtNode, btNode->rs);
-        
+
         // Enqueue children of non-binary tree node
-        if (nbtNode->fs != NULL) {
+        if (nbtNode->fs != NULL)
+        {
             Enqueue(queue, nbtNode->fs, btNode);
             nbtAddr sibling = nbtNode->fs->nb;
-            while (sibling != NULL) {
+            while (sibling != NULL)
+            {
                 Enqueue(queue, sibling, btNode);
                 sibling = sibling->nb;
             }
         }
-        
+
         free(current);
     }
     free(queue);
 }
 
-void PrintNbtPreorder(nbtAddr root) {
-    if (root == NULL) return;
+void PrintNbtPreorder(nbtAddr root)
+{
+    if (root == NULL)
+        return;
     printf("%c ", root->info);
     PrintNbtPreorder(root->fs);
     PrintNbtPreorder(root->nb);
 }
 
-void PrintNbtPostorder(nbtAddr root) {
-    if (root == NULL) return;
+void PrintNbtPostorder(nbtAddr root)
+{
+    if (root == NULL)
+        return;
     PrintNbtPostorder(root->fs);
     printf("%c ", root->info);
     PrintNbtPostorder(root->nb);
 }
 
-void PrintNbtInorder(nbtAddr root) {
-    if (root == NULL) return;
+void PrintNbtInorder(nbtAddr root)
+{
+    if (root == NULL)
+        return;
     PrintNbtInorder(root->fs);
     printf("%c ", root->info);
-    if (root->fs) {
+    if (root->fs)
+    {
         nbtAddr sibling = root->fs->nb;
-        while (sibling) {
+        while (sibling)
+        {
             PrintNbtInorder(sibling);
             sibling = sibling->nb;
         }
@@ -1459,7 +2451,7 @@ void Enqueue(Queue *queue, nbtAddr nbtTree, btAddr btTree)
         queue->rear = newNode;
     }
 }
-QueueNode * Dequeue(Queue *queue)
+QueueNode *Dequeue(Queue *queue)
 {
     if (IsQueueEmpty(queue))
         return NULL;

@@ -68,6 +68,11 @@ int main(int argc, char **argv)
 					}
 					case '2':
 					{
+						if (cacheFilled)
+						{							 // Periksa apakah cache telah terisi
+							ClearCache("cache.txt"); // Kosongkan cache jika telah terisi
+							cacheFilled = false;	 // Setel ke false setelah mengosongkan cache
+						}
 						LoadTree(&nbtTree);
 						system("pause");
 						break;
@@ -209,7 +214,7 @@ int main(int argc, char **argv)
 				if (nbtTree != NULL)
 				{
 					convertCon = true;
-					btTree = NbtTreeConvertToBtTree(nbtTree);
+					btTree = NbtTreeConvertToBtTree(nbtTree, 0);
 					bstTree = DuplicateBtTree(btTree);
 					BtTreeConvertToBstTree(bstTree);
 					CreateAvlTree(bstTree,&avlTree);
@@ -335,8 +340,8 @@ int main(int argc, char **argv)
 						{
 						case '1':
 						{
-							// education logic here
-							break;
+    						char root = nbtCreateEdu("cache.txt");
+    						break;
 						}
 						case '2':
 						{
