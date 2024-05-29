@@ -790,7 +790,7 @@ btAddr CreateBtNode(infoType info)
     btAddr newNode = (btAddr)malloc(sizeof(btType));
     newNode->info = info;
     newNode->ls = newNode->rs = newNode->pr = NULL;
-    newNode->level = 0;
+    newNode->level = 1;
     return newNode;
 }
 /*================== END MODUL CONVERT NON-BINARY-TREE TO BINARY-TREE==========================*/
@@ -853,43 +853,34 @@ void ArrayToBST(char *arr, btAddr root, int *index_ptr)
     ArrayToBST(arr, root->rs, index_ptr);
 }
 
-// void PrintInorder(btAddr node) {
-//     if (node == NULL)
-//         return;
-
-//     /* first recur on ls child */
-//     PrintInorder(node->ls);
-
-//     /* then print the info of node */
-//     printf("%c ", node->info);
-
-//     /* now recur on rs child */
-//     PrintInorder(node->rs);
-// }
-
 // Fungsi untuk menduplikasi binary tree
-btAddr DuplicateBtTree(btAddr root) {
-    if (root == NULL) {
+btAddr DuplicateBtTree(btAddr root)
+{
+    if (root == NULL)
+    {
         return NULL;
     }
-    
+
     btAddr newRoot = CreateBtNode(root->info);
-    if (newRoot == NULL) {
+    if (newRoot == NULL)
+    {
         fprintf(stderr, "Memory allocation failed\n");
         return NULL;
     }
-    
+
     newRoot->ls = DuplicateBtTree(root->ls);
     newRoot->rs = DuplicateBtTree(root->rs);
-    
+
     // Atur pointer parent (pr) untuk node anak
-    if (newRoot->ls != NULL) {
+    if (newRoot->ls != NULL)
+    {
         newRoot->ls->pr = newRoot;
     }
-    if (newRoot->rs != NULL) {
+    if (newRoot->rs != NULL)
+    {
         newRoot->rs->pr = newRoot;
     }
-    
+
     return newRoot;
 }
 /*================== END MODUL CONVERSION BINARY-TREE TO BINARY-SEARCH-TREE===========================*/
@@ -1238,3 +1229,259 @@ void createBPrintT(printTAddr (*printHolder), btAddr rootHolder){
 	createBPrintT(&(*printHolder),rootHolder->rs);
 }
 //====================================== printTree preOrderly end =============================================
+
+/*==================== MODUL CONVERSION BINARY-SEARCH-TREE TO AVL-TREE===========================*/
+void CreateAvlTree(btAddr bstTree, btAddr *avlTree)
+{
+    if (bstTree == NULL)
+        return;
+    CreateAvlTree(bstTree->ls, &(*avlTree));
+    (*avlTree) = InsertAvlTree((*avlTree), bstTree->info);
+    CreateAvlTree(bstTree->rs, &(*avlTree));
+}
+
+btAddr InsertAvlTree(btAddr root, infoType info)
+{
+    /* 1.  Perform the normal BST insertion */
+    if (root == NULL)
+        return (CreateBtNode(info));
+
+    if (info < root->info)
+        root->ls = InsertAvlTree(root->ls, info);
+    else if (info > root->info)
+        root->rs = InsertAvlTree(root->rs, info);
+    else // Equal keys are not allowed in BST
+        return root;
+
+    /* 2. Update height of this ancestor root */
+    root->level = 1 + Max(GetLevel(root->ls),
+                          GetLevel(root->rs));
+
+    /* 3. Get the balance factor of this ancestor
+          root to check whether this root became
+          unbalanced */
+    int balance = GetBalance(root);
+
+    // If this root becomes unbalanced, then
+    // there are 4 cases
+
+    // ls ls Case
+    if (balance > 1 && info < root->ls->info)
+        return RightRotate(root);
+
+    // Right Right Case
+    if (balance < -1 && info > root->rs->info)
+        return LeftRotate(root);
+
+    // Left Right Case
+    if (balance > 1 && info > root->ls->info)
+    {
+        root->ls = LeftRotate(root->ls);
+        return RightRotate(root);
+    }
+
+    // Right Left Case
+    if (balance < -1 && info < root->rs->info)
+    {
+        root->rs = RightRotate(root->rs);
+        return LeftRotate(root);
+    }
+
+    /* return the (unchanged) root pointer */
+    return root;
+}
+
+int GetLevel(btAddr node)
+{
+    if (node == NULL)
+        return 0;
+    return node->level;
+}
+
+int Max(int a, int b)
+{
+    return (a > b) ? a : b;
+}
+
+btAddr RightRotate(btAddr root)
+{
+    btAddr x = root->ls;
+    btAddr T2 = x->rs;
+
+    // Perform rotation
+    x->rs = root;
+    root->ls = T2;
+
+    // Update heights
+    root->level = Max(GetLevel(root->ls),
+                      GetLevel(root->rs)) +
+                  1;
+    x->level = Max(GetLevel(x->ls),
+                   GetLevel(x->rs)) +
+               1;
+
+    // Return new root
+    return x;
+}
+
+btAddr LeftRotate(btAddr root)
+{
+    btAddr y = root->rs;
+    btAddr T2 = y->ls;
+
+    // Perform rotation
+    y->ls = root;
+    root->rs = T2;
+
+    //  Update heights
+    root->level = Max(GetLevel(root->ls),
+                      GetLevel(root->rs)) +
+                  1;
+    y->level = Max(GetLevel(y->ls),
+                   GetLevel(y->rs)) +
+               1;
+
+    // Return new root
+    return y;
+}
+
+int GetBalance(btAddr root)
+{
+    if (root == NULL)
+        return 0;
+    return GetLevel(root->ls) - GetLevel(root->rs);
+}
+/*================== END MODUL CONVERSION BINARY-SEARCH-TREE TO AVL-TREE===========================*/
+
+/*==================== TRAVERSAL NBT & BT ===========================*/
+void PrintBtPreorder(btAddr node)
+{
+    if (node == NULL)
+        return;
+    printf("%c ", node->info);
+    PrintInorder(node->ls);
+    PrintInorder(node->rs);
+}
+void PrintBtInorder(btAddr node)
+{
+    if (node == NULL)
+        return;
+    PrintInorder(node->ls);
+    printf("%c ", node->info);
+    PrintInorder(node->rs);
+}
+void PrintBtPostorder(btAddr node)
+{
+    if (node == NULL)
+        return;
+    PrintInorder(node->ls);
+    PrintInorder(node->rs);
+    printf("%c ", node->info);
+}
+
+void PrintBtNbtLevelorder(nbtAddr nbtRoot, btAddr btRoot) {
+    if (btRoot == NULL || nbtRoot == NULL)
+        return;
+    
+    Queue *queue = CreateQueue();
+    Enqueue(queue, nbtRoot, btRoot);
+    
+    while (!IsQueueEmpty(queue)) {
+        QueueNode *current = Dequeue(queue);
+        btAddr btNode = current->btTree;
+        nbtAddr nbtNode = current->nbtTree;
+        
+        printf("Binary Tree Node: %c, Non-Binary Tree Node: %c\n", btNode->info, nbtNode->info);
+        
+        // Enqueue children of binary tree node
+        if (btNode->ls != NULL)
+            Enqueue(queue, nbtNode, btNode->ls);
+        if (btNode->rs != NULL)
+            Enqueue(queue, nbtNode, btNode->rs);
+        
+        // Enqueue children of non-binary tree node
+        if (nbtNode->fs != NULL) {
+            Enqueue(queue, nbtNode->fs, btNode);
+            nbtAddr sibling = nbtNode->fs->nb;
+            while (sibling != NULL) {
+                Enqueue(queue, sibling, btNode);
+                sibling = sibling->nb;
+            }
+        }
+        
+        free(current);
+    }
+    free(queue);
+}
+
+void PrintNbtPreorder(nbtAddr root) {
+    if (root == NULL) return;
+    printf("%c ", root->info);
+    PrintNbtPreorder(root->fs);
+    PrintNbtPreorder(root->nb);
+}
+
+void PrintNbtPostorder(nbtAddr root) {
+    if (root == NULL) return;
+    PrintNbtPostorder(root->fs);
+    printf("%c ", root->info);
+    PrintNbtPostorder(root->nb);
+}
+
+void PrintNbtInorder(nbtAddr root) {
+    if (root == NULL) return;
+    PrintNbtInorder(root->fs);
+    printf("%c ", root->info);
+    if (root->fs) {
+        nbtAddr sibling = root->fs->nb;
+        while (sibling) {
+            PrintNbtInorder(sibling);
+            sibling = sibling->nb;
+        }
+    }
+}
+
+/*================== END TRAVERSAL NBT & BT ===========================*/
+
+/*====================== QUEUE ===========================*/
+Queue *CreateQueue()
+{
+    Queue *queue = (Queue *)malloc(sizeof(Queue));
+    queue->front = NULL;
+    queue->rear = NULL;
+    return queue;
+}
+int IsQueueEmpty(Queue *queue)
+{
+    return queue->front == NULL;
+}
+void Enqueue(Queue *queue, nbtAddr nbtTree, btAddr btTree)
+{
+    QueueNode *newNode = (QueueNode *)malloc(sizeof(QueueNode));
+    newNode->nbtTree = nbtTree;
+    newNode->btTree = btTree;
+    newNode->next = NULL;
+    if (IsQueueEmpty(queue))
+    {
+        queue->front = newNode;
+        queue->rear = newNode;
+    }
+    else
+    {
+        queue->rear->next = newNode;
+        queue->rear = newNode;
+    }
+}
+QueueNode * Dequeue(Queue *queue)
+{
+    if (IsQueueEmpty(queue))
+        return NULL;
+    QueueNode *temp = queue->front;
+    queue->front = queue->front->next;
+    if (queue->front == NULL)
+    {
+        queue->rear = NULL;
+    }
+    return temp;
+}
+/*==================== END QUEUE ===========================*/

@@ -23,6 +23,7 @@ int main(int argc, char **argv)
 	printTAddr printBT = NULL;
 	printTAddr printBST = NULL;
 	printTAddr printAVLT = NULL;
+	btAddr avlTree = NULL;
 
 	LoadCache(&nbtTree);
 	if (nbtTree != NULL)
@@ -217,6 +218,7 @@ int main(int argc, char **argv)
 					while (convertCon)
 					{
 						
+						CreateAvlTree(bstTree,&avlTree);
 						printAppHeader();
 						printAppConvertTree();
 						errorMsg(isError, isAvailable);
