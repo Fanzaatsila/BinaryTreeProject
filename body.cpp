@@ -756,8 +756,8 @@ void btShowElsMetaData(btAddr nodeHolder){
 	if (nodeHolder == NULL){
 		return;
 	}
-	btShowElsMetaData(nodeHolder->ls);
 	btShowElMetaData(nodeHolder);
+	btShowElsMetaData(nodeHolder->ls);
 	btShowElsMetaData(nodeHolder->rs);
 }
 //===========================================================================================================
@@ -774,11 +774,13 @@ btAddr NbtTreeConvertToBtTree(nbtAddr root)
     if (root->fs)
     {
         binaryRoot->ls = NbtTreeConvertToBtTree(root->fs);
+        binaryRoot->ls->level = binaryRoot->level + 1;
         binaryRoot->ls->pr = binaryRoot; // Set parent for the left subtree
     }
     if (root->nb)
     {
         binaryRoot->rs = NbtTreeConvertToBtTree(root->nb);
+        binaryRoot->rs->level = binaryRoot->level + 1;
         binaryRoot->rs->pr = binaryRoot; // Set parent for the right subtree
     }
     return binaryRoot;
@@ -790,7 +792,7 @@ btAddr CreateBtNode(infoType info)
     btAddr newNode = (btAddr)malloc(sizeof(btType));
     newNode->info = info;
     newNode->ls = newNode->rs = newNode->pr = NULL;
-    newNode->level = 1;
+    newNode->level = 0;
     return newNode;
 }
 /*================== END MODUL CONVERT NON-BINARY-TREE TO BINARY-TREE==========================*/
@@ -1176,13 +1178,6 @@ void printTInsert(printTAddr (*rootHolder), char info, char pr){
 		}	
 	}
 }
-//====================================== printTree preOrderly end =============================================
-
-
-
-
-
-
 
 void createNBPrintT(printTAddr (*printHolder), nbtAddr rootHolder){
 	
@@ -1217,7 +1212,6 @@ void createBPrintT(printTAddr (*printHolder), btAddr rootHolder){
 	if(rootHolder==NULL){
 		return;
 	}
-	
 	if(rootHolder->pr!=NULL){
 		printTInsert(&(*printHolder),rootHolder->info,rootHolder->pr->info);
 	}else{
@@ -1440,7 +1434,6 @@ void PrintNbtInorder(nbtAddr root) {
         }
     }
 }
-
 /*================== END TRAVERSAL NBT & BT ===========================*/
 
 /*====================== QUEUE ===========================*/
