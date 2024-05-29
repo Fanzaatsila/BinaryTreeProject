@@ -855,6 +855,7 @@ char nbtCreateEdu(const char *filename) {
         system("pause");
     }
     fclose(fp);
+    return '0';
 }
 /* ======================= END EDUCATION CREATE TREE ========================*/
 
@@ -945,7 +946,7 @@ void InsertNbtNode(nbtAddr *nbtRoot, nbtAddr parent, infoType info)
         parent->nb = newNode;
     }
     recordInsertedNode(newNode);
-    WriteCache(*nbtRoot, "cache.txt");
+//    WriteCache(*nbtRoot, "cache.txt");
 }
 
 void NbtCreateTree(nbtAddr *nbtRoot)
@@ -954,7 +955,7 @@ void NbtCreateTree(nbtAddr *nbtRoot)
     boolean check;
 
     nbDeleteSub(nbtRoot, *nbtRoot);
-    char root = nbtCreateEdu("cache.txt");
+//    char root = nbtCreateEdu("cache.txt");
     while (true)
     {
         if (*nbtRoot == NULL)
@@ -1041,6 +1042,7 @@ void ClearCache(const char *filename)
         printf("Gagal membuka file\n");
         return;
     }
+    fprintf(fp," ");
     fclose(fp); // Mengosongkan isi file dengan membuka file dengan mode write (w), lalu langsung menutupnya
     printf("Cache berhasil dihapus!\n");
 }
