@@ -1378,24 +1378,69 @@ void PrintBtPostorder(btAddr node)
     PrintInorder(node->rs);
     printf("%c ", node->info);
 }
-void PrintBtLevelorder(btAddr root)
-{
-    if (root == NULL)
+
+void PrintBtNbtLevelorder(nbtAddr nbtRoot, btAddr btRoot) {
+    if (btRoot == NULL || nbtRoot == NULL)
         return;
+    
     Queue *queue = CreateQueue();
-    Enqueue(queue, root);
-    while (!isQueueEmpty(queue))
-    {
-        btAddr btNode = Dequeue(queue);
-        nbtAddr nbtNode;
-        printf("%c ", node->info);
-        if (node->ls != NULL)
-            Enqueue(queue, nbtNode ,btNode->ls);
-        if (node->rs != NULL)
-            Enqueue(queue, nbtNode ,btNode->rs);
+    Enqueue(queue, nbtRoot, btRoot);
+    
+    while (!IsQueueEmpty(queue)) {
+        QueueNode *current = Dequeue(queue);
+        btAddr btNode = current->btTree;
+        nbtAddr nbtNode = current->nbtTree;
+        
+        printf("Binary Tree Node: %c, Non-Binary Tree Node: %c\n", btNode->info, nbtNode->info);
+        
+        // Enqueue children of binary tree node
+        if (btNode->ls != NULL)
+            Enqueue(queue, nbtNode, btNode->ls);
+        if (btNode->rs != NULL)
+            Enqueue(queue, nbtNode, btNode->rs);
+        
+        // Enqueue children of non-binary tree node
+        if (nbtNode->fs != NULL) {
+            Enqueue(queue, nbtNode->fs, btNode);
+            nbtAddr sibling = nbtNode->fs->nb;
+            while (sibling != NULL) {
+                Enqueue(queue, sibling, btNode);
+                sibling = sibling->nb;
+            }
+        }
+        
+        free(current);
     }
     free(queue);
 }
+
+void PrintNbtPreorder(nbtAddr root) {
+    if (root == NULL) return;
+    printf("%c ", root->info);
+    PrintNbtPreorder(root->fs);
+    PrintNbtPreorder(root->nb);
+}
+
+void PrintNbtPostorder(nbtAddr root) {
+    if (root == NULL) return;
+    PrintNbtPostorder(root->fs);
+    printf("%c ", root->info);
+    PrintNbtPostorder(root->nb);
+}
+
+void PrintNbtInorder(nbtAddr root) {
+    if (root == NULL) return;
+    PrintNbtInorder(root->fs);
+    printf("%c ", root->info);
+    if (root->fs) {
+        nbtAddr sibling = root->fs->nb;
+        while (sibling) {
+            PrintNbtInorder(sibling);
+            sibling = sibling->nb;
+        }
+    }
+}
+
 /*================== END TRAVERSAL NBT & BT ===========================*/
 
 /*====================== QUEUE ===========================*/
@@ -1427,18 +1472,16 @@ void Enqueue(Queue *queue, nbtAddr nbtTree, btAddr btTree)
         queue->rear = newNode;
     }
 }
-btAddr Dequeue(Queue *queue)
+QueueNode * Dequeue(Queue *queue)
 {
     if (IsQueueEmpty(queue))
         return NULL;
     QueueNode *temp = queue->front;
-    btAddr treeNode = temp->btTree;
     queue->front = queue->front->next;
     if (queue->front == NULL)
     {
         queue->rear = NULL;
     }
-    free(temp);
-    return treeNode;
+    return temp;
 }
 /*==================== END QUEUE ===========================*/

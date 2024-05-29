@@ -24,22 +24,25 @@ typedef struct bTree
     btAddr ls, rs, pr;
 } btType;
 
-typedef struct printT* (printTAddr);
-typedef struct printT{
-	printTAddr next;
-	int row,column;
-	char info,pr;
-}printTType;
+typedef struct printT *(printTAddr);
+typedef struct printT
+{
+    printTAddr next;
+    int row, column;
+    char info, pr;
+} printTType;
 
-typedef struct QueueNode {
+typedef struct QueueNode
+{
     btAddr btTree;
     nbtAddr nbtTree;
-    struct QueueNode* next;
+    struct QueueNode *next;
 } QueueNode;
 
-typedef struct Queue {
-    QueueNode* front;
-    QueueNode* rear;
+typedef struct Queue
+{
+    QueueNode *front;
+    QueueNode *rear;
 } Queue;
 
 /* Membuat visualisasi sederhana non binary tree yang telah dibuat */
@@ -229,28 +232,26 @@ btAddr DuplicateBtTree(btAddr root);
 /*================== END MODUL CONVERSION BINARY-TREE TO BINARY-SEARCH-TREE===========================*/
 
 //========================================= printTree preOrderly =============================================
-void printTAllocBlank(printTAddr (*nodeMaker));
-void printTAllocVert(printTAddr (*nodeMaker));
-void printTAllocHoriz(printTAddr (*nodeMaker));
-void printTAllocNL(printTAddr (*nodeMaker));
-void printTCreate(printTAddr (*rootHolder));
+void printTAllocBlank(printTAddr(*nodeMaker));
+void printTAllocVert(printTAddr(*nodeMaker));
+void printTAllocHoriz(printTAddr(*nodeMaker));
+void printTAllocNL(printTAddr(*nodeMaker));
+void printTCreate(printTAddr(*rootHolder));
 printTAddr printTSrchByInfo(printTAddr rootHolder, char info);
 printTAddr printTSrchByPr(printTAddr rootHolder, char pr);
 printTAddr printTSrchByRow(printTAddr rootHolder, int row);
 printTAddr printTSrchByColumn(printTAddr rootHolder, int column);
 printTAddr printTSrchByLoc(printTAddr rootHolder, int row, int column);
-void printTInsert(printTAddr (*rootHolder), char info, char pr);
-void printTTravNull(printTAddr (*holder), printTAddr start);
-void printTTravSpecif(printTAddr (*holder), printTAddr start);
+void printTInsert(printTAddr(*rootHolder), char info, char pr);
+void printTTravNull(printTAddr(*holder), printTAddr start);
+void printTTravSpecif(printTAddr(*holder), printTAddr start);
 void printTToString(printTAddr rootHolder);
-void printTCn(printTAddr trNode, printTAddr (*firstNode), printTAddr (*secNode));
+void printTCn(printTAddr trNode, printTAddr(*firstNode), printTAddr(*secNode));
 int printTCountCh(printTAddr root, char pr);
 
-void createNBPrintT(printTAddr (*printHolder), nbtAddr rootHolder);
-void createBPrintT(printTAddr (*printHolder), btAddr rootHolder);
+void createNBPrintT(printTAddr(*printHolder), nbtAddr rootHolder);
+void createBPrintT(printTAddr(*printHolder), btAddr rootHolder);
 //====================================== printTree preOrderly end =============================================
-
-
 
 /*==================== MODUL CONVERSION BINARY-SEARCH-TREE TO AVL-TREE ===========================*/
 void CreateAvlTree(btAddr bstTree, btAddr *avlTree);
@@ -266,13 +267,16 @@ int GetBalance(btAddr root);
 void PrintBtPreorder(btAddr node);
 void PrintBtInorder(btAddr node);
 void PrintBtPostorder(btAddr node);
-void PrintBtLevelorder(btAddr node);
+void PrintBtNbtLevelorder(nbtAddr nbtRoot, btAddr btRoot);
+void PrintNbtPreorder(nbtAddr root);
+void PrintNbtPostorder(nbtAddr root);
+void PrintNbtInorder(nbtAddr root);
 /*================== END TRAVERSAL NBT & BT ===========================*/
 
 /*==================== Queue ===========================*/
-Queue* CreateQueue();
-int IsQueueEmpty(Queue* queue);
+Queue *CreateQueue();
+int IsQueueEmpty(Queue *queue);
 void Enqueue(Queue *queue, nbtAddr nbtTree, btAddr btTree);
-btAddr Dequeue(Queue* queue);
+QueueNode *Dequeue(Queue *queue);
 /*================== END Queue ===========================*/
 #endif // HEADER_H
