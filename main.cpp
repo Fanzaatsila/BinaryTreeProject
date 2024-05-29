@@ -10,6 +10,7 @@
 int main(int argc, char **argv)
 {
 	//============================================ KAMUS DATA GLOBAL ============================================
+	int i, maxLvl=0;
 	bool appCon = true;
 	bool menuCon = false, createCon = false, editCon = false, delCon = false, convertCon = false, saveCon = false, eduCon = false;
 	char inUser = ' ';
@@ -213,22 +214,24 @@ int main(int argc, char **argv)
 				if (nbtTree != NULL)
 				{
 					convertCon = true;
-					btTree = NbtTreeConvertToBtTree(nbtTree);
+					btTree = NbtTreeConvertToBtTree(nbtTree, 0);
 					bstTree = DuplicateBtTree(btTree);
 					BtTreeConvertToBstTree(bstTree);
+					CreateAvlTree(bstTree,&avlTree);
 					
 
 					createNBPrintT(&printNBT,nbtTree);
 					createBPrintT(&printBT,btTree);
 					createBPrintT(&printBST,bstTree);
+//					createBPrintT(&printAVLT,avlTree); //belum work! avlTree tidak mengubah nilai pr nodenya, jadi error
 					while (convertCon)
 					{
 						
-						CreateAvlTree(bstTree,&avlTree);
 						printAppHeader();
 						printAppConvertTree();
 						errorMsg(isError, isAvailable);
 						userInput(&inUser);
+						
 						switch (inUser)
 						{
 						case '1':
@@ -236,14 +239,30 @@ int main(int argc, char **argv)
 							printAppHeader();
 							printf("\n~~~~~~~~~~~~~~~~~~ NB-TREE VISUALIZATION ~~~~~~~~~~~~~~~~~~\n");
 							printTToString(printNBT);
+							printf("Preorder Traversal\t:");PrintNbtPreorder(nbtTree);printf("\n");
+							printf("Postoder Traversal\t:");PrintNbtPostorder(nbtTree);printf("\n");
+							printf("Inorder Traversal\t:");PrintNbtInorder(nbtTree);printf("\n");
+							printf("\n");
 							system("pause");
 							printAppHeader();
 							printf("\n~~~~~~~~~~~~~~~~~~ B-TREE VISUALIZATION ~~~~~~~~~~~~~~~~~~\n");
 							printTToString(printBT);
+							printf("Preorder Traversal\t:");PrintBtPreorder(btTree);printf("\n");
+							printf("Postoder Traversal\t:");PrintBtPostorder(btTree);printf("\n");
+							printf("Inorder Traversal\t:");PrintBtInorder(btTree);printf("\n");
 							system("pause");
 							printAppHeader();
 							printf("\n~~~~~~~~~~~~~~~~~~ BST-TREE VISUALIZATION ~~~~~~~~~~~~~~~~~~\n");
 							printTToString(printBST);
+							printf("Preorder Traversal\t:");PrintBtPreorder(bstTree);printf("\n");
+							printf("Postoder Traversal\t:");PrintBtPostorder(bstTree);printf("\n");
+							printf("Inorder Traversal\t:");PrintBtInorder(bstTree);printf("\n");
+							system("pause");
+							printAppHeader();
+							printf("\n~~~~~~~~~~~~~~~~~~ AVL-TREE VISUALIZATION ~~~~~~~~~~~~~~~~~~\n");
+							printf("Preorder Traversal\t:");PrintBtPreorder(avlTree);printf("\n");
+							printf("Postoder Traversal\t:");PrintBtPostorder(avlTree);printf("\n");
+							printf("Inorder Traversal\t:");PrintBtInorder(avlTree);printf("\n");
 							system("pause");
 							// conversion logic here
 							break;
@@ -263,6 +282,11 @@ int main(int argc, char **argv)
 							printf("\n~~~~~~~~~~~~~~~~~~ BS-TREE DETAIL INFORMATION ~~~~~~~~~~~~~~~~~~\n");
 							btShowTreeMetaData(bstTree);
 							btShowElsMetaData(bstTree);
+							system("pause");
+							printAppHeader();
+							printf("\n~~~~~~~~~~~~~~~~~~ AVL-TREE DETAIL INFORMATION ~~~~~~~~~~~~~~~~~~\n");
+							btShowTreeMetaData(avlTree);
+							btShowElsMetaData(avlTree);
 							system("pause");
 							break;
 						}
