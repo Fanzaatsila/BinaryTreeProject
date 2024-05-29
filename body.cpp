@@ -2347,43 +2347,77 @@ void PrintBtPostorder(btAddr node)
     printf("%c ", node->info);
 }
 
-void PrintBtNbtLevelorder(nbtAddr nbtRoot, btAddr btRoot)
-{
-    if (btRoot == NULL || nbtRoot == NULL)
-        return;
+// void PrintBtNbtLevelorder(nbtAddr nbtRoot, btAddr btRoot)
+// {
+//     if (btRoot == NULL || nbtRoot == NULL)
+//         return;
 
-    Queue *queue = CreateQueue();
-    Enqueue(queue, nbtRoot, btRoot);
+//     Queue *queue = CreateQueue();
+//     Enqueue(queue, nbtRoot, btRoot);
 
-    while (!IsQueueEmpty(queue))
-    {
-        QueueNode *current = Dequeue(queue);
-        btAddr btNode = current->btTree;
-        nbtAddr nbtNode = current->nbtTree;
+//     while (!IsQueueEmpty(queue))
+//     {
+//         QueueNode *current = Dequeue(queue);
+//         btAddr btNode = current->btTree;
+//         nbtAddr nbtNode = current->nbtTree;
 
-        printf("Binary Tree Node: %c, Non-Binary Tree Node: %c\n", btNode->info, nbtNode->info);
+//         printf("Binary Tree Node: %c, Non-Binary Tree Node: %c\n", btNode->info, nbtNode->info);
 
-        // Enqueue children of binary tree node
-        if (btNode->ls != NULL)
-            Enqueue(queue, nbtNode, btNode->ls);
-        if (btNode->rs != NULL)
-            Enqueue(queue, nbtNode, btNode->rs);
+//         // Enqueue children of binary tree node
+//         if (btNode->ls != NULL)
+//             Enqueue(queue, nbtNode, btNode->ls);
+//         if (btNode->rs != NULL)
+//             Enqueue(queue, nbtNode, btNode->rs);
 
-        // Enqueue children of non-binary tree node
-        if (nbtNode->fs != NULL)
-        {
-            Enqueue(queue, nbtNode->fs, btNode);
-            nbtAddr sibling = nbtNode->fs->nb;
-            while (sibling != NULL)
-            {
-                Enqueue(queue, sibling, btNode);
-                sibling = sibling->nb;
-            }
-        }
+//         // Enqueue children of non-binary tree node
+//         if (nbtNode->fs != NULL)
+//         {
+//             Enqueue(queue, nbtNode->fs, btNode);
+//             nbtAddr sibling = nbtNode->fs->nb;
+//             while (sibling != NULL)
+//             {
+//                 Enqueue(queue, sibling, btNode);
+//                 sibling = sibling->nb;
+//             }
+//         }
 
-        free(current);
+//         free(current);
+//     }
+//     free(queue);
+// }
+
+void PrintBtLevelorder(btAddr root) {
+    // Menentukan level maksimum dari tree
+    int maxLevel = 0;
+    CalculateBtMaxLevel(root, &maxLevel);
+
+    // Melakukan traversal level order
+    for (int level = 0; level <= maxLevel; level++) {
+        PrintBtNodesAtLevel(root, level);
     }
-    free(queue);
+}
+
+void CalculateBtMaxLevel(btAddr root, int* maxLevel) {
+    if (root == NULL) return;
+    
+    if (root->level > *maxLevel) {
+        *maxLevel = root->level;
+    }
+
+    CalculateBtMaxLevel(root->ls, maxLevel);
+    CalculateBtMaxLevel(root->rs, maxLevel);
+}
+
+// Fungsi rekursif untuk mencetak node pada suatu level
+void PrintBtNodesAtLevel(btAddr root, int level) {
+    if (root == NULL) return;
+
+    if (root->level == level) {
+        printf("%c ", root->info); // Misalnya, mencetak nilai info
+    }
+
+    PrintBtNodesAtLevel(root->ls, level);
+    PrintBtNodesAtLevel(root->rs, level);
 }
 
 void PrintNbtPreorder(nbtAddr root)
@@ -2420,47 +2454,81 @@ void PrintNbtInorder(nbtAddr root)
         }
     }
 }
+
+void PrintNbtLevelorder(nbtAddr root) {
+    // Menentukan level maksimum dari tree
+    int maxLevel = 0;
+    CalculateNbtMaxLevel(root, &maxLevel);
+
+    // Melakukan traversal level order
+    for (int level = 0; level <= maxLevel; level++) {
+        PrintNbtNodesAtLevel(root, level);
+    }
+}
+
+void CalculateNbtMaxLevel(nbtAddr root, int* maxLevel) {
+    if (root == NULL) return;
+    
+    if (root->level > *maxLevel) {
+        *maxLevel = root->level;
+    }
+
+    CalculateNbtMaxLevel(root->fs, maxLevel);
+    CalculateNbtMaxLevel(root->nb, maxLevel);
+}
+
+// Fungsi rekursif untuk mencetak node pada suatu level
+void PrintNbtNodesAtLevel(nbtAddr root, int level) {
+    if (root == NULL) return;
+
+    if (root->level == level) {
+        printf("%c ", root->info); // Misalnya, mencetak nilai info
+    }
+
+    PrintNbtNodesAtLevel(root->fs, level);
+    PrintNbtNodesAtLevel(root->nb, level);
+}
 /*================== END TRAVERSAL NBT & BT ===========================*/
 
 /*====================== QUEUE ===========================*/
-Queue *CreateQueue()
-{
-    Queue *queue = (Queue *)malloc(sizeof(Queue));
-    queue->front = NULL;
-    queue->rear = NULL;
-    return queue;
-}
-int IsQueueEmpty(Queue *queue)
-{
-    return queue->front == NULL;
-}
-void Enqueue(Queue *queue, nbtAddr nbtTree, btAddr btTree)
-{
-    QueueNode *newNode = (QueueNode *)malloc(sizeof(QueueNode));
-    newNode->nbtTree = nbtTree;
-    newNode->btTree = btTree;
-    newNode->next = NULL;
-    if (IsQueueEmpty(queue))
-    {
-        queue->front = newNode;
-        queue->rear = newNode;
-    }
-    else
-    {
-        queue->rear->next = newNode;
-        queue->rear = newNode;
-    }
-}
-QueueNode *Dequeue(Queue *queue)
-{
-    if (IsQueueEmpty(queue))
-        return NULL;
-    QueueNode *temp = queue->front;
-    queue->front = queue->front->next;
-    if (queue->front == NULL)
-    {
-        queue->rear = NULL;
-    }
-    return temp;
-}
+// Queue *CreateQueue()
+// {
+//     Queue *queue = (Queue *)malloc(sizeof(Queue));
+//     queue->front = NULL;
+//     queue->rear = NULL;
+//     return queue;
+// }
+// int IsQueueEmpty(Queue *queue)
+// {
+//     return queue->front == NULL;
+// }
+// void Enqueue(Queue *queue, nbtAddr nbtTree, btAddr btTree)
+// {
+//     QueueNode *newNode = (QueueNode *)malloc(sizeof(QueueNode));
+//     newNode->nbtTree = nbtTree;
+//     newNode->btTree = btTree;
+//     newNode->next = NULL;
+//     if (IsQueueEmpty(queue))
+//     {
+//         queue->front = newNode;
+//         queue->rear = newNode;
+//     }
+//     else
+//     {
+//         queue->rear->next = newNode;
+//         queue->rear = newNode;
+//     }
+// }
+// QueueNode *Dequeue(Queue *queue)
+// {
+//     if (IsQueueEmpty(queue))
+//         return NULL;
+//     QueueNode *temp = queue->front;
+//     queue->front = queue->front->next;
+//     if (queue->front == NULL)
+//     {
+//         queue->rear = NULL;
+//     }
+//     return temp;
+// }
 /*==================== END QUEUE ===========================*/

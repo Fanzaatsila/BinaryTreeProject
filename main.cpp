@@ -241,6 +241,7 @@ int main(int argc, char **argv)
 							printf("Preorder Traversal\t:");PrintNbtPreorder(nbtTree);printf("\n");
 							printf("Postoder Traversal\t:");PrintNbtPostorder(nbtTree);printf("\n");
 							printf("Inorder Traversal\t:");PrintNbtInorder(nbtTree);printf("\n");
+							printf("Levelorder Traversal\t:");PrintNbtLevelorder(nbtTree);printf("\n");
 							printf("\n");
 							system("pause");
 							printAppHeader();
@@ -249,6 +250,7 @@ int main(int argc, char **argv)
 							printf("Preorder Traversal\t:");PrintBtPreorder(btTree);printf("\n");
 							printf("Postoder Traversal\t:");PrintBtPostorder(btTree);printf("\n");
 							printf("Inorder Traversal\t:");PrintBtInorder(btTree);printf("\n");
+							printf("Levelorder Traversal\t:");PrintBtLevelorder(btTree);printf("\n");
 							system("pause");
 							printAppHeader();
 							printf("\n~~~~~~~~~~~~~~~~~~ BST-TREE VISUALIZATION ~~~~~~~~~~~~~~~~~~\n");
@@ -256,6 +258,7 @@ int main(int argc, char **argv)
 							printf("Preorder Traversal\t:");PrintBtPreorder(bstTree);printf("\n");
 							printf("Postoder Traversal\t:");PrintBtPostorder(bstTree);printf("\n");
 							printf("Inorder Traversal\t:");PrintBtInorder(bstTree);printf("\n");
+							printf("Levelorder Traversal\t:");PrintBtLevelorder(bstTree);printf("\n");
 							system("pause");
 							printAppHeader();
 							printf("\n~~~~~~~~~~~~~~~~~~ AVL-TREE VISUALIZATION ~~~~~~~~~~~~~~~~~~\n");

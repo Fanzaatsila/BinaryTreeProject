@@ -277,16 +277,24 @@ char nbtCreateEdu(const char* filename);
 void PrintBtPreorder(btAddr node);
 void PrintBtInorder(btAddr node);
 void PrintBtPostorder(btAddr node);
-void PrintBtNbtLevelorder(nbtAddr nbtRoot, btAddr btRoot);
+// void PrintBtNbtLevelorder(nbtAddr nbtRoot, btAddr btRoot);
 void PrintNbtPreorder(nbtAddr root);
 void PrintNbtPostorder(nbtAddr root);
 void PrintNbtInorder(nbtAddr root);
+
+void PrintBtLevelorder(btAddr root);
+void CalculateBtMaxLevel(btAddr root, int* maxLevel);
+void PrintBtNodesAtLevel(btAddr root, int level);
+
+void PrintNbtLevelorder(nbtAddr root);
+void CalculateNbtMaxLevel(nbtAddr root, int* maxLevel);
+void PrintNbtNodesAtLevel(nbtAddr root, int level);
 /*================== END TRAVERSAL NBT & BT ===========================*/
 
 /*==================== Queue ===========================*/
-Queue *CreateQueue();
-int IsQueueEmpty(Queue *queue);
-void Enqueue(Queue *queue, nbtAddr nbtTree, btAddr btTree);
-QueueNode *Dequeue(Queue *queue);
+// Queue *CreateQueue();
+// int IsQueueEmpty(Queue *queue);
+// void Enqueue(Queue *queue, nbtAddr nbtTree, btAddr btTree);
+// QueueNode *Dequeue(Queue *queue);
 /*================== END Queue ===========================*/
 #endif // HEADER_H
