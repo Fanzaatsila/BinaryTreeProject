@@ -3,8 +3,7 @@
 #include <stdio.h>
 #include "ui.h"
 #include "header.h"
-#include "ui.cpp"
-#include "body.cpp"
+
 
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
@@ -68,6 +67,11 @@ int main(int argc, char **argv)
 					}
 					case '2':
 					{
+						if (cacheFilled)
+						{							 // Periksa apakah cache telah terisi
+							ClearCache("cache.txt"); // Kosongkan cache jika telah terisi
+							cacheFilled = false;	 // Setel ke false setelah mengosongkan cache
+						}
 						LoadTree(&nbtTree);
 						system("pause");
 						break;
@@ -313,8 +317,8 @@ int main(int argc, char **argv)
 						{
 						case '1':
 						{
-							// education logic here
-							break;
+    						char root = nbtCreateEdu("cache.txt");
+    						break;
 						}
 						case '2':
 						{
