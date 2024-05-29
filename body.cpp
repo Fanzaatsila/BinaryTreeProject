@@ -680,9 +680,9 @@ int btGetDepth(btAddr rootHolder){ //geeksforgeeks algorithm
 		rDepth = btGetDepth(rootHolder->rs);
 		
 		if (lDepth>rDepth){
-			return lDepth;
+			return lDepth + 1;
 		}else {
-			return rDepth;
+			return rDepth + 1;
 		}
 	}
 }
@@ -706,7 +706,7 @@ int btGetLeaves(btAddr rootHolder){//geeksforgeeks algorithm
 	if (rootHolder==NULL){
 		return 0;
 	}
-	if (rootHolder->ls&&rootHolder->rs){
+	if (!rootHolder->ls&&!rootHolder->rs){
 		return 1;
 	}else{
 		return btGetLeaves(rootHolder->ls) + btGetLeaves(rootHolder->rs);
@@ -714,17 +714,12 @@ int btGetLeaves(btAddr rootHolder){//geeksforgeeks algorithm
 }
 
 int btGetChilds(btAddr nodeHolder){//geeksforgeeks algorithm
-	int lCount;
-	int rCount;
+	int count = 0;
 	
-	if (nodeHolder==NULL){
-		return 0;
-	}
-	
-	lCount = btGetElements(nodeHolder->ls);
-	rCount = btGetElements(nodeHolder->rs);
-	
-	return lCount + rCount;
+	if (nodeHolder==NULL) return 0;
+	if (nodeHolder->ls) count = count + 1;
+	if (nodeHolder->rs) count = count + 1;
+	return count;
 }
 
 void btShowElStatus(btAddr nodeHolder){
@@ -737,8 +732,8 @@ void btShowElStatus(btAddr nodeHolder){
 
 void btShowLeafStatus(btAddr nodeHolder){
 	if (nodeHolder->ls!=NULL || nodeHolder->rs!=NULL){
-		printf("true");
-	}else printf("false");
+		printf("false");
+	}else printf("true");
 }
 
 void btShowElMetaData(btAddr nodeHolder){
@@ -1188,7 +1183,6 @@ void createNBPrintT(printTAddr (*printHolder), nbtAddr rootHolder){
 		if(resmi){
 			
 			if (p->pr!=NULL){
-
 				printTInsert(&(*printHolder),p->info,p->pr->info);
 			}else{
 				printTInsert(&(*printHolder),p->info,NULL);

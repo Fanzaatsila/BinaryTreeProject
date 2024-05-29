@@ -213,7 +213,6 @@ int main(int argc, char **argv)
 					bstTree = DuplicateBtTree(btTree);
 					BtTreeConvertToBstTree(bstTree);
 					CreateAvlTree(bstTree,&avlTree);
-					
 
 					createNBPrintT(&printNBT,nbtTree);
 					createBPrintT(&printBT,btTree);
