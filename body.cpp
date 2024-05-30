@@ -2049,7 +2049,7 @@ void nbDeleteSub(nbtAddr *rootHolder, nbtAddr pDel)
 /* Prosedur untuk melakukan delete untuk suatu node */
 void bDNode(nbtType **Node)
 {
-    free(*Node); // Menghapus node
+    free(*Node);
     *Node = NULL;
 }
 

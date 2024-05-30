@@ -119,9 +119,24 @@ void LoadNbtTreeFromFile(nbtAddr *nbtRoot, char *fileName);
 void editNode(nbtAddr root, infoType oldInfo, infoType newInfo);
 /* I.S.: Pointer mengarah ke root non-binary tree, oldInfo dan newInfo terdefinisi
    F.S.: Node dengan info oldInfo diubah menjadi newInfo
+   Created By : Rizq Hilal Rifaasya dan Zahratul Mardiyah
+   Github :
+   Edited By : Fanza Atsila Fizarli
 */
+
+/* Prosedur untuk menampilkan ui */
 void getEditInfo(nbtAddr root, infoType *oldInfo, infoType *newInfo);
+/* I.S.: Pointer mengarah ke root non-binary tree, oldInfo dan newInfo terdefinisi
+   F.S.: Node dengan info oldInfo diubah menjadi newInfo
+   Created By : Fanza Atsila Fizarli
+*/
+
+/* Prosedur untuk menampilkan ui */
 void getAddInfo(nbtAddr root, nbtAddr nbtTree);
+/* I.S.: Pointer mengarah ke root non-binary tree, oldInfo dan newInfo terdefinisi
+   F.S.: Node dengan info oldInfo diubah menjadi newInfo
+   Created By : Fanza Atsila Fizarli
+*/
 /* ======================= END EDIT NODE TREE ========================*/
 
 /* ======================= DELETE NODE TREE ========================*/
@@ -129,6 +144,9 @@ void getAddInfo(nbtAddr root, nbtAddr nbtTree);
 void nbDelete(nbtAddr *rootHolder, nbtAddr pDel);
 /*  IS : Node yang ditunjuk masih terhubung dengan tree dan masih berada di memori
     FS : Node yang ditunjuk sudah terlepas dari tree tanpa merusak struktur tree dan node sudah di delete dari memori
+    Created By : Rizq Hilal Rifaasya dan Zahratul Mardiyah
+    Github :
+    Edited By : Fanza Atsila Fizarli
 */
 void btDelete(btAddr *rootHolder, btAddr pDel);
 void btDeleteSub(btAddr *rootHolder, btAddr pDel);
@@ -136,26 +154,49 @@ void btDeleteSub(btAddr *rootHolder, btAddr pDel);
 void nbDeleteSub(nbtAddr *rootHolder, nbtAddr pDel);
 /*  IS : Node yang ditunjuk masih terhubung dengan tree dan masih berada di memori
     FS : Node yang ditunjuk dan semua child node-nya sudah terlepas dari tree dan sudah dihapus dari memori
+    Created By : Rizq Hilal Rifaasya dan Zahratul Mardiyah
+    Github :
+    Edited By : Fanza Atsila Fizarli
 */
 
 /* Prosedur untuk melakukan delete untuk suatu node */
 void bDNode(nbtType **Node);
 /*  IS:Node yang ditentukan
     FS:Node terhapus
+    Created By : Rizq Hilal Rifaasya dan Zahratul Mardiyah
+    Github :
+    Edited By : Fanza Atsila Fizarli
 */
 
 /* Prosedur untuk mencari node yang akan dilakukan delete dan menyesuaikan node-node pada struktur data tree sehingga tidak rusak */
 nbtAddr deleteNode(nbtAddr *root, infoType X);
 /*  IS:Pointer menunjuk ke root
     FS:Pointer menunjuk ke node yang akan dihapus dan mereturn node teresbut
+    Created By : Fanza Atsila Fizarli
 */
 /* ======================= END DELETE NODE TREE ========================*/
 
 /* ======================= LOAD CACHE TREE ========================*/
+/* Modul untuk menyimpan non-binary tree ke dalam file cache */
 void WriteCache(nbtAddr root, const char *filename);
-void traverseAndSave(nbtAddr node, nbtAddr parent, FILE *fp);
+/* IS.: Pointer yang menunjuk ke root non-binary tree, nama file cache terdefinisi 
+   FS.: Data non-binary tree disimpan ke dalam file cache dengan nama yang telah ditentukan 
+   Created By : Fanza Atsila Fizarli
+*/
+
+/* Modul untuk memuat non-binary tree dari file cache */
 void LoadCache(nbtAddr *nbtTree);
+/* IS.: Pointer yang menunjuk ke root non-binary tree sembarang 
+   FS.: Data non-binary tree dimuat dari file cache dan pointer root menunjuk ke root non-binary tree yang telah dimuat 
+   Created By : Fanza Atsila Fizarli
+*/
+
+/* Modul untuk menghapus file cache */
 void ClearCache(const char *filename);
+/* IS.: Nama file cache terdefinisi 
+   FS.: Isi cache dengan nama yang telah ditentukan dihapus 
+   Created By : Fanza Atsila Fizarli
+*/
 /* ======================= END LOAD CACHE TREE ========================*/
 
 /*======================== detail information nbTree ============================*/
@@ -298,11 +339,27 @@ int GetBalance(btAddr root);
 /*================== END MODUL CONVERSION BINARY-SEARCH-TREE TO AVL-TREE ===========================*/
 
 /*==================== EDUCATION CREATE TREE ===========================*/
+
 int eduCreateTHeader();
 int eduCreateT(int time, char root);
+=======
+int nbtEduCreateTHeader();
+/* IS: Menunjukkan bahwa fungsi ini akan membuat header untuk pembuatan tree Rducation */
+
+int nbtEduCreateT(int time, char root);
+/* IS: Menerima input waktu dan karakter root dari user */
+/* FS: Mengembalikan nilai 1 jika pembuatan tree berhasil, 0 jika gagal */
+
+
 int nbtEduInsFsHeader();
+/* IS: Menunjukkan bahwa fungsi ini akan membuat header untuk menyisipkan node fs pada tree Education */
+
 int nbtEduInsFs(int time, char fs, char pr);
+/* IS: Menerima input waktu, karakter fs, dan karakter pr dari user */
+/* FS: Mengembalikan nilai 1 jika penyisipan node fs berhasil, 0 jika gagal */
+
 int nbtEduInsNbHeader();
+
 int nbtEduInsNb(int time,  char nb, char pr);
 void eduLRotationHeader();
 void eduLRotation(int time,btAddr root);
@@ -324,6 +381,19 @@ void arrStoreEdu(btAddr root, int time);
 void arrSortEdu(char *arr, btAddr root, int *index_ptr, int time);
 void avlCreateEdu(btAddr bstTree, btAddr *avlTree, int time);
 btAddr InsertAvlEdu(btAddr rootAvl, infoType info, int time);
+
+
+/* IS: Menunjukkan bahwa fungsi ini akan membuat header untuk menyisipkan node nb pada tree Education */
+
+int nbtEduInsNb(int time, char nb, char pr);
+/* IS: Menerima input waktu, karakter nb, dan karakter pr dari user */
+/* FS: Mengembalikan nilai 1 jika penyisipan node nb berhasil, 0 jika gagal */
+
+void nbtCreateEdu(const char* filename);
+/* IS: Menerima input nama file 
+   FS: Membuat tree pendidikan berdasarkan data yang ada di file 
+   Created By : Fanza Atsila Fizarli
+*/
 
 /*================== END EDUCATION CREATE TREE ===========================*/
 
