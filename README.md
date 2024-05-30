@@ -51,8 +51,7 @@ Program juga menyediakan fitur-fitur pada umumnya yang ada pada Abstract Data Ty
 
 ![Create-Tree-demo](https://github.com/Fanzaatsila/BinaryTreeProject/raw/main/Assets/vid/CreateTree.mov)
 
-![Transformation-Tree-demo](https://github.com/Fanzaatsila/BinaryTreeProject/blob/main/Assets/vid/ConvertTreenDetail.mov)
-
+[![Watch the video](https://github.com/Fanzaatsila/BinaryTreeProject/blob/main/Assets/preview.png)](https://github.com/Fanzaatsila/BinaryTreeProject/blob/main/Assets/ConvertTreenDetail.mov)
 ![EducationNBT-Tree-demo](https://github.com/Fanzaatsila/BinaryTreeProject/blob/main/Assets/vid/EducationNBT.mov)
 
 ![Save-Tree-demo](https://github.com/Fanzaatsila/BinaryTreeProject/blob/main/Assets/vid/SaveTree.mov)
