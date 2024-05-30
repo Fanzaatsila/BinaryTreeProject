@@ -21,7 +21,7 @@ typedef struct bTree
 {
     infoType info;
     int level;
-    btAddr ls, rs, pr;
+    btAddr ls, rs, pr = NULL;
 } btType;
 
 typedef struct printT *(printTAddr);
@@ -57,6 +57,11 @@ nbtAddr SearchNbtNode(nbtAddr nbtRoot, infoType info);
 
 /* ======================= KONSTRUKTOR NODE DAN TREE ========================*/
 /* Function untuk mengalokasikan node non-binary tree dan mengembalikan alamat node baru */
+/*
+	Created By : Rizq Hilal Rifaasya dan Zahratul Mardiyah
+	GitHub : 
+	Edited By : Fanza
+*/
 nbtAddr CreateNbtNode(infoType info);
 /*  IS : Pointer yang tidak mengarah kemanapun
     FS : Pointer mengarah ke node yang sudah dialokasi dan memiliki data
@@ -143,7 +148,8 @@ void nbDelete(nbtAddr *rootHolder, nbtAddr pDel);
     Github :
     Edited By : Fanza Atsila Fizarli
 */
-
+void btDelete(btAddr *rootHolder, btAddr pDel);
+void btDeleteSub(btAddr *rootHolder, btAddr pDel);
 /* Prosedur untuk menghapus node beserta bawahannya dari sebuah tree */
 void nbDeleteSub(nbtAddr *rootHolder, nbtAddr pDel);
 /*  IS : Node yang ditunjuk masih terhubung dengan tree dan masih berada di memori
@@ -287,6 +293,8 @@ void printTTravSpecif(printTAddr(*holder), printTAddr start);
 void printTToString(printTAddr rootHolder);
 void printTCn(printTAddr trNode, printTAddr(*firstNode), printTAddr(*secNode));
 int printTCountCh(printTAddr root, char pr);
+void printTdelEl(printTAddr *rootHolder, printTAddr pDel);
+void printTdelSub(printTAddr *rootHolder, printTAddr pDel);
 
 void createNBPrintT(printTAddr(*printHolder), nbtAddr rootHolder);
 void createBPrintT(printTAddr(*printHolder), btAddr rootHolder);
@@ -331,12 +339,17 @@ int GetBalance(btAddr root);
 /*================== END MODUL CONVERSION BINARY-SEARCH-TREE TO AVL-TREE ===========================*/
 
 /*==================== EDUCATION CREATE TREE ===========================*/
+
+int eduCreateTHeader();
+int eduCreateT(int time, char root);
+=======
 int nbtEduCreateTHeader();
 /* IS: Menunjukkan bahwa fungsi ini akan membuat header untuk pembuatan tree Rducation */
 
 int nbtEduCreateT(int time, char root);
 /* IS: Menerima input waktu dan karakter root dari user */
 /* FS: Mengembalikan nilai 1 jika pembuatan tree berhasil, 0 jika gagal */
+
 
 int nbtEduInsFsHeader();
 /* IS: Menunjukkan bahwa fungsi ini akan membuat header untuk menyisipkan node fs pada tree Education */
@@ -346,6 +359,30 @@ int nbtEduInsFs(int time, char fs, char pr);
 /* FS: Mengembalikan nilai 1 jika penyisipan node fs berhasil, 0 jika gagal */
 
 int nbtEduInsNbHeader();
+
+int nbtEduInsNb(int time,  char nb, char pr);
+void eduLRotationHeader();
+void eduLRotation(int time,btAddr root);
+void eduRRotationHeader();
+void eduRRotation(int time,btAddr root);
+void nbtCreateEdu(const char *filename, int time);
+int eduFsToLsHeader();
+int eduFsToLs(int time,char pr, char ls);
+int eduNbToRsHeader();
+int eduNbToRs(int time, char rs, char pr);
+
+void eduLsAddHeader();
+void eduLsAdd(int time,char pr, char ls);
+void eduRsAddHeader();
+void eduRsAdd(int time,char pr, char rs);
+
+void btCreateEdu(btAddr root,int time,printTAddr *printQ);
+void arrStoreEdu(btAddr root, int time);
+void arrSortEdu(char *arr, btAddr root, int *index_ptr, int time);
+void avlCreateEdu(btAddr bstTree, btAddr *avlTree, int time);
+btAddr InsertAvlEdu(btAddr rootAvl, infoType info, int time);
+
+
 /* IS: Menunjukkan bahwa fungsi ini akan membuat header untuk menyisipkan node nb pada tree Education */
 
 int nbtEduInsNb(int time, char nb, char pr);
@@ -357,6 +394,7 @@ void nbtCreateEdu(const char* filename);
    FS: Membuat tree pendidikan berdasarkan data yang ada di file 
    Created By : Fanza Atsila Fizarli
 */
+
 /*================== END EDUCATION CREATE TREE ===========================*/
 
 /*==================== TRAVERSAL NBT & BT ===========================*/
