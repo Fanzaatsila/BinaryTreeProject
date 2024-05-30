@@ -32,11 +32,9 @@ typedef struct printT
     char info, pr;
 } printTType;
 
-typedef struct QueueNode
-{
-    btAddr btTree;
-    nbtAddr nbtTree;
-    struct QueueNode *next;
+typedef struct QueueNode {
+    btAddr treeNode;
+    struct QueueNode* next;
 } QueueNode;
 
 typedef struct Queue
@@ -253,13 +251,41 @@ void createBPrintT(printTAddr(*printHolder), btAddr rootHolder);
 //====================================== printTree preOrderly end =============================================
 
 /*==================== MODUL CONVERSION BINARY-SEARCH-TREE TO AVL-TREE ===========================*/
+/* Membuat sebuah Avl Tree */
 void CreateAvlTree(btAddr bstTree, btAddr *avlTree);
-btAddr InsertAvlTree(btAddr root, infoType info);
+/*  IS:Pointer of node yang menunjuk root dari sebuah binary-search-tree, dan juga node yang akan menunjuk pada avl-tree
+    FS:avl-tree terbentuk
+*/
+
+/* Melakukan insert ke dalam info ke dalam avl-tree dan dilakukan balancing */
+btAddr InsertAvlTree(btAddr rootAvl, infoType info);
+/*  IS:Pointer of node yang akan menunjuk root dari sebuah avl-tree, dan juga node yang akan menunjuk pada avl-tree
+    FS:Info yang ada dimasukkan ke dalam node dan dilakukan balancing sehingga tercipta avl-tree
+*/
+
+/* Mengambil level dari node */
 int GetLevel(btAddr node);
+/*  IS:Pointer of node yang menunjuk root dari sebuah binary-tree
+    FS:Mengembalikan nilai level dari node
+*/
+
+/* Membandingkan dua nilai dan mengembalikan nilai terbesar */
 int Max(int a, int b);
+/*  IS:2 nilai integer
+    FS:Nilai terbesar diantara 2 nilai dikembalikan
+*/
+
+/* Melakukan rotasi ke kanan */
 btAddr RightRotate(btAddr root);
+
+/* Melakukan rotasi ke kiri */
 btAddr LeftRotate(btAddr root);
+
+/* Mengembalikan nilai yang keseimbangan antara left son dan rigt son */
 int GetBalance(btAddr root);
+/*  IS:Pointer of node yang menunjuk root dari sebuah avl-tree
+    FS:Nilai terbesar diantara 2 nilai dikembalikan
+*/
 /*================== END MODUL CONVERSION BINARY-SEARCH-TREE TO AVL-TREE ===========================*/
 
 /*==================== EDUCATION CREATE TREE ===========================*/
@@ -269,31 +295,95 @@ int nbtEduInsFsHeader();
 int nbtEduInsFs(int time, char fs, char pr);
 int nbtEduInsNbHeader();
 int nbtEduInsNb(int time,  char nb, char pr);
-char nbtCreateEdu(const char* filename);
+void nbtCreateEdu(const char* filename);
 /*================== END EDUCATION CREATE TREE ===========================*/
 
 /*==================== TRAVERSAL NBT & BT ===========================*/
-void PrintBtPreorder(btAddr node);
-void PrintBtInorder(btAddr node);
-void PrintBtPostorder(btAddr node);
-// void PrintBtNbtLevelorder(nbtAddr nbtRoot, btAddr btRoot);
-void PrintNbtPreorder(nbtAddr root);
-void PrintNbtPostorder(nbtAddr root);
-void PrintNbtInorder(nbtAddr root);
+/* Melakukan traversal secara preorder untuk binary-tree dan ditampilkan di layar */
+void PrintBtPreorder(btAddr root);
+/*  IS:Pointer of node yang menunjuk root dari sebuah binary-tree
+    FS:Setiap info di dalam node sudah ditampilkan di layar dengan metode preorder
+*/
 
+/* Melakukan traversal secara inorder untuk binary-tree dan ditampilkan di layar */
+void PrintBtInorder(btAddr root);
+/*  IS:Pointer of node yang menunjuk root dari sebuah binary-tree
+    FS:Setiap info di dalam node sudah ditampilkan di layar dengan metode inorder
+*/
+
+/* Melakukan traversal secara postorder untuk binary-tree dan ditampilkan di layar */
+void PrintBtPostorder(btAddr root);
+/*  IS:Pointer of node yang menunjuk root dari sebuah binary-tree
+    FS:Setiap info di dalam node sudah ditampilkan di layar dengan metode postorder
+*/
+
+/* Melakukan traversal secara levelorder untuk binary-tree dan ditampilkan di layar */
 void PrintBtLevelorder(btAddr root);
+/*  IS:Pointer of node yang menunjuk root dari sebuah binary-tree
+    FS:Setiap info di dalam node sudah ditampilkan di layar dengan metode levelorder
+*/
+
+/* Melakukan traversal secara preorder untuk non-binary-tree dan ditampilkan di layar */
+void PrintNbtPreorder(nbtAddr root);
+/*  IS:Pointer of node yang menunjuk root dari sebuah non-binary-tree
+    FS:Setiap info di dalam node sudah ditampilkan di layar dengan metode preorder
+*/
+
+/* Melakukan traversal secara postorder untuk non-binary-tree dan ditampilkan di layar */
+void PrintNbtPostorder(nbtAddr root);
+/*  IS:Pointer of node yang menunjuk root dari sebuah non-binary-tree
+    FS:Setiap info di dalam node sudah ditampilkan di layar dengan metode postorder
+*/
+
+/* Melakukan traversal secara inorder untuk non-binary-tree dan ditampilkan di layar */
+void PrintNbtInorder(nbtAddr root);
+/*  IS:Pointer of node yang menunjuk root dari sebuah non-binary-tree
+    FS:Setiap info di dalam node sudah ditampilkan di layar dengan metode inorder
+*/
+
+/* Melakukan traversal secara levelorder untuk non-binary-tree dan ditampilkan di layar */
+void PrintNbtLevelorder(nbtAddr root);
+/*  IS:Pointer of node yang menunjuk root dari sebuah non-binary-tree
+    FS:Setiap info di dalam node sudah ditampilkan di layar dengan metode levelorder
+*/
+
+/* Menghitung max level di level terakahir untuk binary-tree*/
 void CalculateBtMaxLevel(btAddr root, int* maxLevel);
+/*  IS:Pointer of node yang menunjuk root dari sebuah binary-tree, dan juga parsing by refrence untuk maxLevel
+    FS:maxLevel memiliki nilai max jumlah node yang dimiliki tree
+*/
+
+/* Melakukan print info untuk setiap node di setiap level di binary-tree*/
 void PrintBtNodesAtLevel(btAddr root, int level);
 
-void PrintNbtLevelorder(nbtAddr root);
+/* Menghitung max level di level terakahir untuk non-binary-tree*/
 void CalculateNbtMaxLevel(nbtAddr root, int* maxLevel);
+/*  IS:Pointer of node yang menunjuk root dari sebuah -non-binary-tree, dan juga parsing by refrence untuk maxLevel
+    FS:maxLevel memiliki nilai max jumlah node yang dimiliki tree
+*/
+
+/* Melakukan print info untuk setiap node di setiap level di non-binary-tree*/
 void PrintNbtNodesAtLevel(nbtAddr root, int level);
+
+/* Melakukan traversal secara levelorder untuk avl-tree dan ditampilkan di layar */
+void PrintAvlLevelorder(btAddr root);
+/*  IS:Pointer of node yang menunjuk root dari sebuah avl-tree
+    FS:Setiap info di dalam node sudah ditampilkan di layar dengan metode levelorder
+*/
 /*================== END TRAVERSAL NBT & BT ===========================*/
 
 /*==================== Queue ===========================*/
-// Queue *CreateQueue();
-// int IsQueueEmpty(Queue *queue);
-// void Enqueue(Queue *queue, nbtAddr nbtTree, btAddr btTree);
-// QueueNode *Dequeue(Queue *queue);
+/* Mengalokasikan node queue */
+Queue *CreateQueue();
+
+/* Mengecek nilai apakah masih ada queue atau tidak */
+int IsQueueEmpty(Queue *queue);
+
+/* Memasukkan suatu node binary-tree ke dalam queue */
+void Enqueue(Queue *queue, btAddr treeNode);
+
+/* Mengeluarkan suatu node binary-tree dari queue */
+btAddr Dequeue(Queue *queue);
 /*================== END Queue ===========================*/
+void numInsertedNodesCls();
 #endif // HEADER_H

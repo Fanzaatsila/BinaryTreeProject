@@ -830,13 +830,13 @@ int nbtEduInsNb(int time, char nb, char pr) {
 	Sleep(time);
 }
 
-char nbtCreateEdu(const char *filename) {
+void nbtCreateEdu(const char *filename) {
     nbtAddr nbtEdu = NULL;
     printTAddr printEdu;
     FILE *fp = fopen(filename, "r");
     if (fp == NULL) {
         printf("Tidak ada cache yang ditemukan\n");
-        return '0';
+        return;
     }
     char parent, node;
     while (fscanf(fp, "(%c, %c) ", &parent, &node) != EOF) {
@@ -855,7 +855,6 @@ char nbtCreateEdu(const char *filename) {
         system("pause");
     }
     fclose(fp);
-    return '0';
 }
 /* ======================= END EDUCATION CREATE TREE ========================*/
 
@@ -1042,7 +1041,6 @@ void ClearCache(const char *filename)
         printf("Gagal membuka file\n");
         return;
     }
-    fprintf(fp," ");
     fclose(fp); // Mengosongkan isi file dengan membuka file dengan mode write (w), lalu langsung menutupnya
     printf("Cache berhasil dihapus!\n");
 }
@@ -1123,16 +1121,19 @@ void NbtTreeToFile(nbtAddr root, FILE *fp)
 void LoadTree(nbtAddr(*nbtTree))
 {
     char fileName[20];
-
+    
+    nbDeleteSub(nbtTree, *nbtTree);
     printf("\nSilahkan Masukkan Nama File (.txt): ");
     scanf(" %s", &fileName);
     LoadNbtTreeFromFile(&(*nbtTree), fileName);
 }
-
+void numInsertedNodesCls(){
+	numInsertedNodes = 0;
+}
 void LoadNbtTreeFromFile(nbtAddr *nbtRoot, char *fileName)
 {
     FILE *fp = fopen(fileName, "r");
-
+    numInsertedNodesCls();
     if (fp == NULL)
     {
         printf("Gagal membuka file\n");
@@ -2198,57 +2199,55 @@ void CreateAvlTree(btAddr bstTree, btAddr *avlTree)
     CreateAvlTree(bstTree->rs, avlTree);
 }
 
-btAddr InsertAvlTree(btAddr root, infoType info)
+btAddr InsertAvlTree(btAddr rootAvl, infoType info)
 {
-    if (root == NULL)
-        return (CreateBtNode(info, 0));
+    if (rootAvl == NULL)
+        return (CreateBtNode(info, 1));
 
-    if (info < root->info)
+    if (info < rootAvl->info)
     {
-        root->ls = InsertAvlTree(root->ls, info);
-        if (root->ls)
-            root->ls->pr = root;
+        rootAvl->ls = InsertAvlTree(rootAvl->ls, info);
+        if (rootAvl->ls)
+            rootAvl->ls->pr = rootAvl;
     }
-    else if (info > root->info)
+    else if (info > rootAvl->info)
     {
-        root->rs = InsertAvlTree(root->rs, info);
-        if (root->rs)
-            root->rs->pr = root;
+        rootAvl->rs = InsertAvlTree(rootAvl->rs, info);
+        if (rootAvl->rs)
+            rootAvl->rs->pr = rootAvl;
     }
     else
     {
-        return root;
+        return rootAvl;
     }
 
-    root->level = 1 + Max(GetLevel(root->ls),
-                          GetLevel(root->rs));
+    rootAvl->level = 1 + Max(GetLevel(rootAvl->ls),
+                          GetLevel(rootAvl->rs));
 
-    int balance = GetBalance(root);
+    int balance = GetBalance(rootAvl);
 
-    // ls ls Case
-    if (balance > 1 && info < root->ls->info)
-        return RightRotate(root);
+    if (balance > 1 && info < rootAvl->ls->info)
+        return RightRotate(rootAvl);
 
     // Right Right Case
-    if (balance < -1 && info > root->rs->info)
-        return LeftRotate(root);
+    if (balance < -1 && info > rootAvl->rs->info)
+        return LeftRotate(rootAvl);
 
     // Left Right Case
-    if (balance > 1 && info > root->ls->info)
+    if (balance > 1 && info > rootAvl->ls->info)
     {
-        root->ls = LeftRotate(root->ls);
-        return RightRotate(root);
+        rootAvl->ls = LeftRotate(rootAvl->ls);
+        return RightRotate(rootAvl);
     }
 
     // Right Left Case
-    if (balance < -1 && info < root->rs->info)
+    if (balance < -1 && info < rootAvl->rs->info)
     {
-        root->rs = RightRotate(root->rs);
-        return LeftRotate(root);
+        rootAvl->rs = RightRotate(rootAvl->rs);
+        return LeftRotate(rootAvl);
     }
 
-    /* return the (unchanged) root pointer */
-    return root;
+    return rootAvl;
 }
 
 int GetLevel(btAddr node)
@@ -2324,69 +2323,32 @@ int GetBalance(btAddr root)
 /*================== END MODUL CONVERSION BINARY-SEARCH-TREE TO AVL-TREE===========================*/
 
 /*==================== TRAVERSAL NBT & BT ===========================*/
-void PrintBtPreorder(btAddr node)
+void PrintBtPreorder(btAddr root)
 {
-    if (node == NULL)
+    if (root == NULL)
         return;
-    printf("%c ", node->info);
-    PrintBtPreorder(node->ls);
-    PrintBtPreorder(node->rs);
-}
-void PrintBtInorder(btAddr node)
-{
-    if (node == NULL)
-        return;
-    PrintBtInorder(node->ls);
-    printf("%c ", node->info);
-    PrintBtInorder(node->rs);
-}
-void PrintBtPostorder(btAddr node)
-{
-    if (node == NULL)
-        return;
-    PrintBtPostorder(node->ls);
-    PrintBtPostorder(node->rs);
-    printf("%c ", node->info);
+    printf("%c ", root->info);
+    PrintBtPreorder(root->ls);
+    PrintBtPreorder(root->rs);
 }
 
-// void PrintBtNbtLevelorder(nbtAddr nbtRoot, btAddr btRoot)
-// {
-//     if (btRoot == NULL || nbtRoot == NULL)
-//         return;
+void PrintBtInorder(btAddr root)
+{
+    if (root == NULL)
+        return;
+    PrintBtInorder(root->ls);
+    printf("%c ", root->info);
+    PrintBtInorder(root->rs);
+}
 
-//     Queue *queue = CreateQueue();
-//     Enqueue(queue, nbtRoot, btRoot);
-
-//     while (!IsQueueEmpty(queue))
-//     {
-//         QueueNode *current = Dequeue(queue);
-//         btAddr btNode = current->btTree;
-//         nbtAddr nbtNode = current->nbtTree;
-
-//         printf("Binary Tree Node: %c, Non-Binary Tree Node: %c\n", btNode->info, nbtNode->info);
-
-//         // Enqueue children of binary tree node
-//         if (btNode->ls != NULL)
-//             Enqueue(queue, nbtNode, btNode->ls);
-//         if (btNode->rs != NULL)
-//             Enqueue(queue, nbtNode, btNode->rs);
-
-//         // Enqueue children of non-binary tree node
-//         if (nbtNode->fs != NULL)
-//         {
-//             Enqueue(queue, nbtNode->fs, btNode);
-//             nbtAddr sibling = nbtNode->fs->nb;
-//             while (sibling != NULL)
-//             {
-//                 Enqueue(queue, sibling, btNode);
-//                 sibling = sibling->nb;
-//             }
-//         }
-
-//         free(current);
-//     }
-//     free(queue);
-// }
+void PrintBtPostorder(btAddr root)
+{
+    if (root == NULL)
+        return;
+    PrintBtPostorder(root->ls);
+    PrintBtPostorder(root->rs);
+    printf("%c ", root->info);
+}
 
 void PrintBtLevelorder(btAddr root) {
     // Menentukan level maksimum dari tree
@@ -2490,47 +2452,57 @@ void PrintNbtNodesAtLevel(nbtAddr root, int level) {
     PrintNbtNodesAtLevel(root->fs, level);
     PrintNbtNodesAtLevel(root->nb, level);
 }
+
+void PrintAvlLevelorder(btAddr root) {
+    if (root == NULL) return;
+    Queue* queue = CreateQueue();
+    Enqueue(queue, root);
+    while (!IsQueueEmpty(queue)) {
+        btAddr node = Dequeue(queue);
+        printf("%c ", node->info);
+        if (node->ls != NULL) Enqueue(queue, node->ls);
+        if (node->rs != NULL) Enqueue(queue, node->rs);
+    }
+    free(queue);
+}
 /*================== END TRAVERSAL NBT & BT ===========================*/
 
 /*====================== QUEUE ===========================*/
-// Queue *CreateQueue()
-// {
-//     Queue *queue = (Queue *)malloc(sizeof(Queue));
-//     queue->front = NULL;
-//     queue->rear = NULL;
-//     return queue;
-// }
-// int IsQueueEmpty(Queue *queue)
-// {
-//     return queue->front == NULL;
-// }
-// void Enqueue(Queue *queue, nbtAddr nbtTree, btAddr btTree)
-// {
-//     QueueNode *newNode = (QueueNode *)malloc(sizeof(QueueNode));
-//     newNode->nbtTree = nbtTree;
-//     newNode->btTree = btTree;
-//     newNode->next = NULL;
-//     if (IsQueueEmpty(queue))
-//     {
-//         queue->front = newNode;
-//         queue->rear = newNode;
-//     }
-//     else
-//     {
-//         queue->rear->next = newNode;
-//         queue->rear = newNode;
-//     }
-// }
-// QueueNode *Dequeue(Queue *queue)
-// {
-//     if (IsQueueEmpty(queue))
-//         return NULL;
-//     QueueNode *temp = queue->front;
-//     queue->front = queue->front->next;
-//     if (queue->front == NULL)
-//     {
-//         queue->rear = NULL;
-//     }
-//     return temp;
-// }
+Queue *CreateQueue()
+{
+    Queue *queue = (Queue *)malloc(sizeof(Queue));
+    queue->front = NULL;
+    queue->rear = NULL;
+    return queue;
+}
+
+int IsQueueEmpty(Queue *queue)
+{
+    return queue->front == NULL;
+}
+
+void Enqueue(Queue* queue, btAddr treeNode) {
+    QueueNode* newNode = (QueueNode*)malloc(sizeof(QueueNode));
+    newNode->treeNode = treeNode;
+    newNode->next = NULL;
+    if (queue->rear == NULL) {
+        queue->front = newNode;
+        queue->rear = newNode;
+    } else {
+        queue->rear->next = newNode;
+        queue->rear = newNode;
+    }
+}
+
+btAddr Dequeue(Queue* queue) {
+    if (IsQueueEmpty(queue)) return NULL;
+    QueueNode* temp = queue->front;
+    btAddr treeNode = temp->treeNode;
+    queue->front = queue->front->next;
+    if (queue->front == NULL) {
+        queue->rear = NULL;
+    }
+    free(temp);
+    return treeNode;
+}
 /*==================== END QUEUE ===========================*/
