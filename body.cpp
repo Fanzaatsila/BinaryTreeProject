@@ -2198,57 +2198,55 @@ void CreateAvlTree(btAddr bstTree, btAddr *avlTree)
     CreateAvlTree(bstTree->rs, avlTree);
 }
 
-btAddr InsertAvlTree(btAddr root, infoType info)
+btAddr InsertAvlTree(btAddr rootAvl, infoType info)
 {
-    if (root == NULL)
+    if (rootAvl == NULL)
         return (CreateBtNode(info, 1));
 
-    if (info < root->info)
+    if (info < rootAvl->info)
     {
-        root->ls = InsertAvlTree(root->ls, info);
-        if (root->ls)
-            root->ls->pr = root;
+        rootAvl->ls = InsertAvlTree(rootAvl->ls, info);
+        if (rootAvl->ls)
+            rootAvl->ls->pr = rootAvl;
     }
-    else if (info > root->info)
+    else if (info > rootAvl->info)
     {
-        root->rs = InsertAvlTree(root->rs, info);
-        if (root->rs)
-            root->rs->pr = root;
+        rootAvl->rs = InsertAvlTree(rootAvl->rs, info);
+        if (rootAvl->rs)
+            rootAvl->rs->pr = rootAvl;
     }
     else
     {
-        return root;
+        return rootAvl;
     }
 
-    root->level = 1 + Max(GetLevel(root->ls),
-                          GetLevel(root->rs));
+    rootAvl->level = 1 + Max(GetLevel(rootAvl->ls),
+                          GetLevel(rootAvl->rs));
 
-    int balance = GetBalance(root);
+    int balance = GetBalance(rootAvl);
 
-    // ls ls Case
-    if (balance > 1 && info < root->ls->info)
-        return RightRotate(root);
+    if (balance > 1 && info < rootAvl->ls->info)
+        return RightRotate(rootAvl);
 
     // Right Right Case
-    if (balance < -1 && info > root->rs->info)
-        return LeftRotate(root);
+    if (balance < -1 && info > rootAvl->rs->info)
+        return LeftRotate(rootAvl);
 
     // Left Right Case
-    if (balance > 1 && info > root->ls->info)
+    if (balance > 1 && info > rootAvl->ls->info)
     {
-        root->ls = LeftRotate(root->ls);
-        return RightRotate(root);
+        rootAvl->ls = LeftRotate(rootAvl->ls);
+        return RightRotate(rootAvl);
     }
 
     // Right Left Case
-    if (balance < -1 && info < root->rs->info)
+    if (balance < -1 && info < rootAvl->rs->info)
     {
-        root->rs = RightRotate(root->rs);
-        return LeftRotate(root);
+        rootAvl->rs = RightRotate(rootAvl->rs);
+        return LeftRotate(rootAvl);
     }
 
-    /* return the (unchanged) root pointer */
-    return root;
+    return rootAvl;
 }
 
 int GetLevel(btAddr node)
@@ -2324,31 +2322,31 @@ int GetBalance(btAddr root)
 /*================== END MODUL CONVERSION BINARY-SEARCH-TREE TO AVL-TREE===========================*/
 
 /*==================== TRAVERSAL NBT & BT ===========================*/
-void PrintBtPreorder(btAddr node)
+void PrintBtPreorder(btAddr root)
 {
-    if (node == NULL)
+    if (root == NULL)
         return;
-    printf("%c ", node->info);
-    PrintBtPreorder(node->ls);
-    PrintBtPreorder(node->rs);
+    printf("%c ", root->info);
+    PrintBtPreorder(root->ls);
+    PrintBtPreorder(root->rs);
 }
 
-void PrintBtInorder(btAddr node)
+void PrintBtInorder(btAddr root)
 {
-    if (node == NULL)
+    if (root == NULL)
         return;
-    PrintBtInorder(node->ls);
-    printf("%c ", node->info);
-    PrintBtInorder(node->rs);
+    PrintBtInorder(root->ls);
+    printf("%c ", root->info);
+    PrintBtInorder(root->rs);
 }
 
-void PrintBtPostorder(btAddr node)
+void PrintBtPostorder(btAddr root)
 {
-    if (node == NULL)
+    if (root == NULL)
         return;
-    PrintBtPostorder(node->ls);
-    PrintBtPostorder(node->rs);
-    printf("%c ", node->info);
+    PrintBtPostorder(root->ls);
+    PrintBtPostorder(root->rs);
+    printf("%c ", root->info);
 }
 
 void PrintBtLevelorder(btAddr root) {
