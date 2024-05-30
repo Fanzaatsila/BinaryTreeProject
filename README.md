@@ -49,16 +49,13 @@ Program juga menyediakan fitur-fitur pada umumnya yang ada pada Abstract Data Ty
 
 **Standard CLI Usage:**
 
-![Create-Tree-demo](https://github.com/Fanzaatsila/BinaryTreeProject/blob/main/Assets/vid/CreateTree.mov
-)
+![Create-Tree-demo](https://github.com/Fanzaatsila/BinaryTreeProject/raw/main/Assets/vid/CreateTree.mov)
 
-![Transformation-Tree-demo](https://github.com/Fanzaatsila/BinaryTreeProject/blob/main/Assets/vid/ConvertTreenDetail.mov
-)
+![Transformation-Tree-demo](https://github.com/Fanzaatsila/BinaryTreeProject/blob/main/Assets/vid/ConvertTreenDetail.mov)
 
 ![EducationNBT-Tree-demo](https://github.com/Fanzaatsila/BinaryTreeProject/blob/main/Assets/vid/EducationNBT.mov)
 
-![Save-Tree-demo](https://github.com/Fanzaatsila/BinaryTreeProject/blob/main/Assets/vid/SaveTree.mov
-)
+![Save-Tree-demo](https://github.com/Fanzaatsila/BinaryTreeProject/blob/main/Assets/vid/SaveTree.mov)
 
 > [!TIP]
 >
