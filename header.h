@@ -296,7 +296,7 @@ int nbtEduInsFsHeader();
 int nbtEduInsFs(int time, char fs, char pr);
 int nbtEduInsNbHeader();
 int nbtEduInsNb(int time,  char nb, char pr);
-char nbtCreateEdu(const char* filename);
+void nbtCreateEdu(const char* filename);
 /*================== END EDUCATION CREATE TREE ===========================*/
 
 /*==================== TRAVERSAL NBT & BT ===========================*/
@@ -386,4 +386,5 @@ void Enqueue(Queue *queue, btAddr treeNode);
 /* Mengeluarkan suatu node binary-tree dari queue */
 btAddr Dequeue(Queue *queue);
 /*================== END Queue ===========================*/
+void numInsertedNodesCls();
 #endif // HEADER_H

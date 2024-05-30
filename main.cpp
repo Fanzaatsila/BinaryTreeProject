@@ -56,24 +56,24 @@ int main(int argc, char **argv)
 					{
 					case '1':
 					{
+						numInsertedNodesCls();
 						if (cacheFilled)
-						{							 // Periksa apakah cache telah terisi
-							ClearCache("cache.txt"); // Kosongkan cache jika telah terisi
-							cacheFilled = false;	 // Setel ke false setelah mengosongkan cache
+						{							 
+							ClearCache("cache.txt");
 						}
 						NbtCreateTree(&(nbtTree));
-						WriteCache(nbtTree, "cache.txt");
+						if (nbtTree!=NULL)WriteCache(nbtTree, "cache.txt");
 						break;
 					}
 					case '2':
 					{
-//						if (cacheFilled)
-//						{							 // Periksa apakah cache telah terisi
-//							ClearCache("cache.txt"); // Kosongkan cache jika telah terisi
-//							cacheFilled = false;	 // Setel ke false setelah mengosongkan cache
-//						}
+						if (cacheFilled)
+						{		
+							ClearCache("cache.txt");
+						}
 						LoadTree(&nbtTree);
-						WriteCache(nbtTree, "cache.txt");
+//						printf("checked before crash");
+						if (nbtTree!=NULL)WriteCache(nbtTree, "cache.txt");
 						system("pause");
 						break;
 					}
@@ -134,8 +134,6 @@ int main(int argc, char **argv)
 				else
 				{
 					isAvailable = false;
-					printf("Tree is not available!\n");
-					system("pause");
 				}
 				break;
 			}
@@ -329,8 +327,6 @@ int main(int argc, char **argv)
 				else
 				{
 					isAvailable = false;
-					printf("Tree is not available!\n");
-					system("pause");
 				}
 				break;
 			}
@@ -349,7 +345,7 @@ int main(int argc, char **argv)
 						{
 						case '1':
 						{
-    						char root = nbtCreateEdu("cache.txt");
+    						nbtCreateEdu("cache.txt");
     						break;
 						}
 						case '2':
