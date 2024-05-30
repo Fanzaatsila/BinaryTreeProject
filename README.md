@@ -119,13 +119,14 @@ To grow the project, we need your help! See the links below to get started.
 - [🐛 Open an Issue][3]
 
 <br>
-Program Ini Dibuat Oleh :
-Kami Mahasiswa Politeknik Negeri Bandung (POLBAN) 
-Jurusan Teknik Komputer dan Informatika
-Prodi D4 - Teknik Informatika
-- Faisal Bashri Albir (231524042)
-- Fanza Atsila Fizarli (231524043)
-- Hanif Ahmad Rizqullah (231524045)
+Program Ini Dibuat Oleh :<br>
+Kami Mahasiswa Politeknik Negeri Bandung (POLBAN)<br>
+Jurusan Teknik Komputer dan Informatika<br>
+Prodi D4 - Teknik Informatika<br>
+- Faisal Bashri Albir (231524042)<br>
+- Fanza Atsila Fizarli (231524043)<br>
+- Hanif Ahmad Rizqullah (231524045)<br>
+<br>
 <p align="left">
   <a href="https://github.com{/Fanzaatsila/BinaryTreeProject/}graphs/contributors">
     <img src="https://contrib.rocks/image?repo=Fanzaatsila/BinaryTreeProject">
