@@ -18,12 +18,9 @@
 - [📍 Overview](#-overview)
 - [👾 Demo](#-demo)
 - [🧩 Features](#-features)
-- [🗂️ Examples](#️-examples)
 - [🚀 Getting Started](#-getting-started)
-  - [⚙️ Installation](#-installation)
-  - [🤖 Usage](#-usage)
-  - [🧪 Tests](#-tests)
-- [📦 Configuration](#️-configuration)
+- [⚙️ Installation](#-installation)
+- [🤖 Usage](#-usage)
 - [🧑‍💻 Contributing](#-contributing)
 </details>
 
@@ -62,5 +59,70 @@ Program juga menyediakan fitur-fitur pada umumnya yang ada pada Abstract Data Ty
 > [!TIP]
 >
 > <sub>Gunakan Code Editor Kesayangan Anda Agar Program Bisa Dijalankan Sesuai Dengan Keinginan!</sub>
+
+---
+
+## 🧩 Features
+
+**Main Menu:**
+![Main-Menu-demo](Assets/img/menu.png)
+* Create Tree
+* Edit Tree
+* Delete Tree
+* Convert Tree
+* Save Tree
+* Education
+
+---
+
+## 🚀 Getting Started
+
+**System Requirements:**
+
+  - C/C++ Language
+
+**Repository URL or Local Path:**
+
+Make sure to have a repository URL or local directory path ready for the CLI.
+
+- [**GitHub**](https://github.com/)
+
+---
+
+### ⚙️ Installation
+**Cloning Project**
+#### Using `Command Prompt`
+> Clone repository and change directory.
+> ```console
+> $ git clone https://github.com/Fanzaatsila/BinaryTreeProject.git
+> ```
+
+---
+
+### 🤖 Usage
+
+**Run Program**
+
+#### Using `Visual Studio Code`
+> Clone repository and change directory.
+> ```console
+> g++ -o main main.cpp body.cpp ui.cpp
+> ```
+
+---
+
+## 🧑‍💻 Contributing
+To grow the project, we need your help! See the links below to get started.
+
+- [🔰 Contributing Guide][1]
+- [👋 Start a Discussion][2]
+- [🐛 Open an Issue][3]
+
+<br>
+<p align="left">
+  <a href="https://github.com{/Fanzaatsila/BinaryTreeProject/}graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=Fanzaatsila/BinaryTreeProject">
+  </a>
+</p>
 
 ---
