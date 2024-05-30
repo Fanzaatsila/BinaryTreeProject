@@ -51,7 +51,7 @@ Program juga menyediakan fitur-fitur pada umumnya yang ada pada Abstract Data Ty
 
 ![Create-Tree-demo](https://github.com/Fanzaatsila/BinaryTreeProject/raw/main/Assets/vid/CreateTree.mov)
 
-[<img src="Assets/ConvertTreenDetail.mov width="600" height="300"/>]
+[<img src="Assets/ConvertTreenDetail.mov" width="600" height="300"/>]
 
 ![EducationNBT-Tree-demo](https://github.com/Fanzaatsila/BinaryTreeProject/blob/main/Assets/vid/EducationNBT.mov)
 
