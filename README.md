@@ -108,6 +108,10 @@ Make sure to have a repository URL or local directory path ready for the CLI.
 > ```console
 > g++ -o main main.cpp body.cpp ui.cpp
 > ```
+#### After that
+> ```console
+> ./main
+> ```
 
 ---
 
