@@ -1,1 +1,1 @@
-(A, B) (A, C) (0, A) (0, A) (A, B) (A, C) (B, D) (B, E) (C, F) (C, G) (C, H) (E, I) (E, J) 
+(0, A) (A, B) (B, E) (B, F) (B, G) (A, C) (C, H) (A, D) (D, I) (D, J) 

@@ -830,13 +830,13 @@ int nbtEduInsNb(int time, char nb, char pr) {
 	Sleep(time);
 }
 
-char nbtCreateEdu(const char *filename) {
+void nbtCreateEdu(const char *filename) {
     nbtAddr nbtEdu = NULL;
     printTAddr printEdu;
     FILE *fp = fopen(filename, "r");
     if (fp == NULL) {
         printf("Tidak ada cache yang ditemukan\n");
-        return '0';
+        return;
     }
     char parent, node;
     while (fscanf(fp, "(%c, %c) ", &parent, &node) != EOF) {
@@ -855,7 +855,6 @@ char nbtCreateEdu(const char *filename) {
         system("pause");
     }
     fclose(fp);
-    return '0';
 }
 /* ======================= END EDUCATION CREATE TREE ========================*/
 
@@ -1042,7 +1041,6 @@ void ClearCache(const char *filename)
         printf("Gagal membuka file\n");
         return;
     }
-    fprintf(fp," ");
     fclose(fp); // Mengosongkan isi file dengan membuka file dengan mode write (w), lalu langsung menutupnya
     printf("Cache berhasil dihapus!\n");
 }
@@ -1123,16 +1121,19 @@ void NbtTreeToFile(nbtAddr root, FILE *fp)
 void LoadTree(nbtAddr(*nbtTree))
 {
     char fileName[20];
-
+    
+    nbDeleteSub(nbtTree, *nbtTree);
     printf("\nSilahkan Masukkan Nama File (.txt): ");
     scanf(" %s", &fileName);
     LoadNbtTreeFromFile(&(*nbtTree), fileName);
 }
-
+void numInsertedNodesCls(){
+	numInsertedNodes = 0;
+}
 void LoadNbtTreeFromFile(nbtAddr *nbtRoot, char *fileName)
 {
     FILE *fp = fopen(fileName, "r");
-
+    numInsertedNodesCls();
     if (fp == NULL)
     {
         printf("Gagal membuka file\n");
