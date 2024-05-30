@@ -149,7 +149,6 @@ nbtAddr deleteNode(nbtAddr *root, infoType X);
 
 /* ======================= LOAD CACHE TREE ========================*/
 void WriteCache(nbtAddr root, const char *filename);
-void traverseAndSave(nbtAddr node, nbtAddr parent, FILE *fp);
 void LoadCache(nbtAddr *nbtTree);
 void ClearCache(const char *filename);
 /* ======================= END LOAD CACHE TREE ========================*/
