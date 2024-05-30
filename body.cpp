@@ -2201,7 +2201,7 @@ void CreateAvlTree(btAddr bstTree, btAddr *avlTree)
 btAddr InsertAvlTree(btAddr root, infoType info)
 {
     if (root == NULL)
-        return (CreateBtNode(info, 0));
+        return (CreateBtNode(info, 1));
 
     if (info < root->info)
     {
