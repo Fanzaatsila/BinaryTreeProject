@@ -5,127 +5,127 @@
 #include <windows.h>
 
 /* ======================= EDUCATION CREATE TREE ========================*/
-int nbtEduCreateTHeader() {
+int eduCreateTHeader() {
     system("cls");
     printf("<<<<<<<<<<<<<<<<<< CREATING A TREE >>>>>>>>>>>>>>>>>>\n");
     printf("\n");
 }
 
-int nbtEduCreateT(int time, char root) {
-	nbtEduCreateTHeader();
+int eduCreateT(int time, char root) {
+	eduCreateTHeader();
 	printf("\t[root]                   \n");
 	printf("\n");
 	Sleep(time*2);
-	nbtEduCreateTHeader();
+	eduCreateTHeader();
 	printf("\t[root] -                 \n");
 	Sleep(time);
-	nbtEduCreateTHeader();
+	eduCreateTHeader();
 	printf("\t[root] --                \n");
 	Sleep(time);
-	nbtEduCreateTHeader();
+	eduCreateTHeader();
 	printf("\t[root] -->               \n");
 	Sleep(time);
-	nbtEduCreateTHeader();
+	eduCreateTHeader();
 	printf("\t[root] --> NULL          \n");
 	printf("\n");
 	Sleep(time*2);
 	//alokasi node
-	nbtEduCreateTHeader();
+	eduCreateTHeader();
 	printf("\t[root] --> NULL          \n");
 	printf("\t                         \n");
 	printf("\t[nodeMaker]              \n");
 	printf("\n");
 	Sleep(time*2);
-	nbtEduCreateTHeader();
+	eduCreateTHeader();
 	printf("\t[root] --> NULL          \n");
 	printf("\t                         \n");
 	printf("\t[nodeMaker] -            \n");
 	Sleep(time);
-	nbtEduCreateTHeader();
+	eduCreateTHeader();
 	printf("\t[root] --> NULL          \n");
 	printf("\t                         \n");
 	printf("\t[nodeMaker] --           \n");
 	Sleep(time);
-	nbtEduCreateTHeader();
+	eduCreateTHeader();
 	printf("\t[root] --> NULL          \n");
 	printf("\t                         \n");
 	printf("\t[nodeMaker] -->          \n");
 	Sleep(time);
-	nbtEduCreateTHeader();
+	eduCreateTHeader();
 	printf("\t[root] --> NULL          \n");
 	printf("\t                         \n");
 	printf("\t[nodeMaker] --> ('%c')   \n",root);
 	printf("\n");
 	Sleep(time*2);
 	//penyambungan node
-	nbtEduCreateTHeader();
+	eduCreateTHeader();
 	printf("\t[root]                   \n");
 	printf("\t                         \n");
 	printf("\t[nodeMaker] --> ('%c')   \n",root);
 	Sleep(time);
-	nbtEduCreateTHeader();
+	eduCreateTHeader();
 	printf("\t[root]                   \n");
 	printf("\t                         \n");
 	printf("\t                         \n");
 	printf("\t[nodeMaker] --> ('%c')   \n",root);
 	Sleep(time);
-	nbtEduCreateTHeader();
+	eduCreateTHeader();
 	printf("\t[root]                   \n");
 	printf("\t                         \n");
 	printf("\t                         \n");
 	printf("\t                         \n");
 	printf("\t[nodeMaker] --> ('%c')   \n",root);
 	Sleep(time);
-	nbtEduCreateTHeader();
+	eduCreateTHeader();
 	printf("\t   [root]                \n");
 	printf("\t                         \n");
 	printf("\t                         \n");
 	printf("\t                         \n");
 	printf("\t[nodeMaker] --> ('%c')   \n",root);
 	Sleep(time);
-	nbtEduCreateTHeader();
+	eduCreateTHeader();
 	printf("\t      [root]             \n");
 	printf("\t                         \n");
 	printf("\t                         \n");
 	printf("\t                         \n");
 	printf("\t[nodeMaker] --> ('%c')   \n",root);
 	Sleep(time);
-	nbtEduCreateTHeader();
+	eduCreateTHeader();
 	printf("\t         [root]          \n");
 	printf("\t                         \n");
 	printf("\t                         \n");
 	printf("\t                         \n");
 	printf("\t[nodeMaker] --> ('%c')   \n",root);
 	Sleep(time);
-	nbtEduCreateTHeader();
+	eduCreateTHeader();
 	printf("\t             [root]      \n");
 	printf("\t                         \n");
 	printf("\t                         \n");
 	printf("\t                         \n");
 	printf("\t[nodeMaker] --> ('%c')   \n",root);
 	Sleep(time);
-	nbtEduCreateTHeader();
+	eduCreateTHeader();
 	printf("\t                [root]   \n");
 	printf("\t                         \n");
 	printf("\t                         \n");
 	printf("\t                         \n");
 	printf("\t[nodeMaker] --> ('%c')   \n",root);
 	Sleep(time);
-	nbtEduCreateTHeader();
+	eduCreateTHeader();
 	printf("\t                [root]   \n");
 	printf("\t                  |      \n");
 	printf("\t                         \n");
 	printf("\t                         \n");
 	printf("\t[nodeMaker] --> ('%c')   \n",root);
 	Sleep(time);
-	nbtEduCreateTHeader();
+	eduCreateTHeader();
 	printf("\t                [root]   \n");
 	printf("\t                  |      \n");
 	printf("\t                  |      \n");
 	printf("\t                         \n");
 	printf("\t[nodeMaker] --> ('%c')   \n",root);
 	Sleep(time);
-	nbtEduCreateTHeader();
+	eduCreateTHeader();
 	printf("\t                [root]   \n");
 	printf("\t                  |      \n");
 	printf("\t                  |      \n");
@@ -134,7 +134,7 @@ int nbtEduCreateT(int time, char root) {
 	printf("\n");
 	Sleep(time*2);
 	//result
-	nbtEduCreateTHeader();
+	eduCreateTHeader();
 	printf("\t         [root]          \n");
 	printf("\t           |             \n");
 	printf("\t           |             \n");
@@ -830,7 +830,653 @@ int nbtEduInsNb(int time, char nb, char pr) {
 	Sleep(time);
 }
 
-void nbtCreateEdu(const char *filename) {
+int eduFsToLsHeader() {
+	system("cls");
+	printf("<<<<<<<<<<<<<<<<<< FIRST SON TO LEFT SON >>>>>>>>>>>>>>>>>>\n");
+	printf("\n");
+}
+
+int eduFsToLs(int time,char pr, char ls) {
+
+
+	eduFsToLsHeader();
+	printf("\t          ('%c') --> ...\n",pr);
+	printf("\t            |\n");
+	printf("\t            V\n");
+	printf("\t          ('%c')\n",ls);
+	Sleep(time);
+	Sleep(time);
+
+	eduFsToLsHeader();
+	printf("\t          ('%c') --> ...\n",pr);
+	printf("\t            |\n");
+	printf("\t            V\n");
+	printf("\t          ('%c')\n",ls);
+	printf("\n");
+	printf("\t now, '%c' is a first son of '%c'",ls,pr);
+	Sleep(time);
+	Sleep(time);
+	Sleep(time);
+	Sleep(time);
+	Sleep(time);
+
+	eduFsToLsHeader();
+	printf("\t          ('%c') --> ...\n",pr);
+	printf("\t            |\n");
+	printf("\t            V\n");
+	printf("\t          ('%c')\n",ls);
+	Sleep(time);
+	Sleep(time);
+
+	eduFsToLsHeader();
+	printf("\t          ('%c')\n",pr);
+	printf("\t            |____\n");
+	printf("\t            |    |\n");
+	printf("\t            V    V\n");
+	printf("\t          ('%c') ...\n",ls);
+	Sleep(time);
+	Sleep(time);
+	eduFsToLsHeader();
+	printf("\t          ('%c')\n",pr);
+	printf("\t           _|__\n");
+	printf("\t          |    |\n");
+	printf("\t          V    V\n");
+	printf("\t        ('%c') ...\n",ls);
+	Sleep(time);
+	eduFsToLsHeader();
+	printf("\t          ('%c')\n",pr);
+	printf("\t          __|__\n");
+	printf("\t         |     |\n");
+	printf("\t         V     V\n");
+	printf("\t       ('%c')  ...\n",ls);
+	printf("\n");
+	printf("\t now, '%c' is a left son of '%c'\n",ls,pr);
+	Sleep(time);
+	Sleep(time);
+}
+
+int inteduNbToRsHeader() {
+	system("cls");
+	printf("<<<<<<<<<<<<<<<<<< NEXT BROTHER TO RIGHT SON >>>>>>>>>>>>>>>>>>\n");
+	printf("\n");
+}
+int eduNbToRs(int time, char pr, char rs) {
+
+	eduFsToLsHeader();
+	printf("\t          ('%c') --> (%c)\n",pr,rs);
+	printf("\t            |\n");
+	printf("\t            V\n");
+	printf("\t           ...\n");
+	Sleep(time);
+	Sleep(time);
+
+	eduFsToLsHeader();
+	printf("\t          ('%c') --> (%c)\n",pr,rs);
+	printf("\t            |\n");
+	printf("\t            V\n");
+	printf("\t           ...\n");
+	printf("\n");
+	printf("\t now, '%c' is a next broher of '%c'",rs,pr);
+	Sleep(time);
+	Sleep(time);
+	Sleep(time);
+	Sleep(time);
+	Sleep(time);
+
+	eduFsToLsHeader();
+	printf("\t          ('%c')     (%c)\n",pr,rs);
+	printf("\t          __|\n");
+	printf("\t         |    \n");
+	printf("\t         V     \n");
+	printf("\t        ...  \n",rs);
+	printf("\n");
+	Sleep(time);
+	eduFsToLsHeader();
+	printf("\t          ('%c')\n",pr);
+	printf("\t          __|       (%c)\n",rs);
+	printf("\t         |    \n");
+	printf("\t         V     \n");
+	printf("\t        ...  \n",rs);
+	printf("\n");
+	Sleep(time);
+	eduFsToLsHeader();
+	printf("\t          ('%c')\n",pr);
+	printf("\t          __|      \n");
+	printf("\t         |          (%c)\n",rs);
+	printf("\t         V     \n");
+	printf("\t        ...  \n",rs);
+	printf("\n");
+	Sleep(time);
+	eduFsToLsHeader();
+	printf("\t          ('%c')\n",pr);
+	printf("\t          __|      \n");
+	printf("\t         |          \n");
+	printf("\t         V          (%c)\n",rs);
+	printf("\t        ...  \n",rs);
+	printf("\n");
+	Sleep(time);
+	eduFsToLsHeader();
+	printf("\t          ('%c')\n",pr);
+	printf("\t          __|      \n");
+	printf("\t         |          \n");
+	printf("\t         V          \n");
+	printf("\t        ...         (%c)\n",rs);
+	printf("\n");
+	Sleep(time);
+	eduFsToLsHeader();
+	printf("\t          ('%c')\n",pr);
+	printf("\t          __|      \n");
+	printf("\t         |          \n");
+	printf("\t         V          \n");
+	printf("\t        ...      (%c)\n",rs);
+	printf("\n");
+	Sleep(time);
+	eduFsToLsHeader();
+	printf("\t          ('%c')\n",pr);
+	printf("\t          __|      \n");
+	printf("\t         |          \n");
+	printf("\t         V          \n");
+	printf("\t        ...   (%c)\n",rs);
+	printf("\n");
+	Sleep(time);
+	eduFsToLsHeader();
+	printf("\t          ('%c')\n",pr);
+	printf("\t          __|_     \n");
+	printf("\t         |          \n");
+	printf("\t         V          \n");
+	printf("\t        ...   (%c)\n",rs);
+	printf("\n");
+	Sleep(time);
+	eduFsToLsHeader();
+	printf("\t          ('%c')\n",pr);
+	printf("\t          __|__    \n");
+	printf("\t         |          \n");
+	printf("\t         V          \n");
+	printf("\t        ...   (%c)\n",rs);
+	printf("\n");
+	Sleep(time);
+	eduFsToLsHeader();
+	printf("\t          ('%c')\n",pr);
+	printf("\t          __|__    \n");
+	printf("\t         |     |    \n");
+	printf("\t         V          \n");
+	printf("\t        ...   (%c)\n",rs);
+	printf("\n");
+	Sleep(time);
+	eduFsToLsHeader();
+	printf("\t          ('%c')\n",pr);
+	printf("\t          __|__    \n");
+	printf("\t         |     |    \n");
+	printf("\t         V     V    \n");
+	printf("\t        ...   (%c)\n",rs);
+	printf("\n");
+	printf("\t now, '%c' is a right son of '%c'",rs,pr);
+	printf("\n");
+	Sleep(time);
+	Sleep(time);
+}
+
+void eduLRotationHeader(){
+	system("cls");
+	printf("<<<<<<<<<<<<<<<<<< LEFT ROTATION >>>>>>>>>>>>>>>>>>\n");
+	printf("\n");
+}
+void eduLRotation(int time,btAddr root){
+	char top = root->info ,mid = root->rs->info,bot = root->rs->rs->info;
+	
+	eduLRotationHeader();
+	printf("\t('%c') ---|\n",top);
+	printf("\t         |\n");
+	printf("\t         V\n");
+	printf("\t       ('%c') ---|\n",mid);
+	printf("\t                |\n");
+	printf("\t                V\n");
+	printf("\t              ('%c')\n",bot);
+	Sleep(time);
+	Sleep(time);eduLRotationHeader();
+	printf("\t('%c')     \n",top);
+	printf("\t          \n");
+	printf("\t          \n");
+	printf("\t       ('%c') ---|\n",mid);
+	printf("\t                |\n");
+	printf("\t                V\n");
+	printf("\t              ('%c')\n",bot);
+	Sleep(time);
+	Sleep(time);
+	eduLRotationHeader();
+	printf("\t             \n");
+	printf("\t('%c')     \n",top);
+	printf("\t          \n");
+	printf("\t       ('%c') ---|\n",mid);
+	printf("\t                |\n");
+	printf("\t                V\n");
+	printf("\t              ('%c')\n",bot);
+	Sleep(time);
+	eduLRotationHeader();
+	printf("\t          \n");
+	printf("\t          \n");
+	printf("\t('%c')     \n",top);
+	printf("\t       ('%c') ---|\n",mid);
+	printf("\t                |\n");
+	printf("\t                V\n");
+	printf("\t              ('%c')\n",bot);
+	Sleep(time);
+	eduLRotationHeader();
+	printf("\t         \n");
+	printf("\t          \n");
+	printf("\t             \n");
+	printf("\t('%c')  ('%c') ---|\n",top,mid);
+	printf("\t                |\n");
+	printf("\t                V\n");
+	printf("\t              ('%c')\n",bot);
+	Sleep(time);
+	eduLRotationHeader();
+	printf("\t          \n");
+	printf("\t          \n");
+	printf("\t          \n");
+	printf("\t       ('%c') ---|\n",mid);
+	printf("\t('%c')           |\n",top);
+	printf("\t                V\n");
+	printf("\t              ('%c')\n",bot);
+	Sleep(time);
+	eduLRotationHeader();
+	printf("\t         \n");
+	printf("\t          \n");
+	printf("\t          \n");
+	printf("\t       ('%c') ---|\n",mid);
+	printf("\t                |\n");
+	printf("\t('%c')           V\n",top);
+	printf("\t              ('%c')\n",bot);
+	Sleep(time);
+	eduLRotationHeader();
+	printf("\t          \n");
+	printf("\t          \n");
+	printf("\t          \n");
+	printf("\t       ('%c') ---|\n",mid);
+	printf("\t                |\n");
+	printf("\t                V\n");
+	printf("\t('%c')         ('%c')\n",top,bot);
+	Sleep(time);
+	eduLRotationHeader();
+	printf("\t          \n");
+	printf("\t         \n");
+	printf("\t          \n");
+	printf("\t    -- ('%c') ---|\n",mid);
+	printf("\t                |\n");
+	printf("\t                V\n");
+	printf("\t('%c')         ('%c')\n",top,bot);
+	Sleep(time);
+	eduLRotationHeader();
+	printf("\t             \n");
+	printf("\t             \n");
+	printf("\t             \n");
+	printf("\t  |--- ('%c') ---|\n",mid);
+	printf("\t                |\n");
+	printf("\t                V\n");
+	printf("\t('%c')         ('%c')\n",top,bot);
+	Sleep(time);
+	eduLRotationHeader();
+	printf("\t             \n");
+	printf("\t             \n");
+	printf("\t             \n");
+	printf("\t  |--- ('%c') ---|\n",mid);
+	printf("\t  |             |\n");
+	printf("\t                V\n");
+	printf("\t('%c')         ('%c')\n",top,bot);
+	Sleep(time);
+	eduLRotationHeader();
+	printf("\t             \n");
+	printf("\t             \n");
+	printf("\t             \n");
+	printf("\t  |--- ('%c') ---|\n",mid);
+	printf("\t  |             |\n");
+	printf("\t  V             V\n");
+	printf("\t('%c')         ('%c')\n",top,bot);
+	Sleep(time);
+	Sleep(time);
+	eduLRotationHeader();
+	printf("\t  |--- ('%c') ---|\n",mid);
+	printf("\t  |             |\n");
+	printf("\t  V             V\n");
+	printf("\t('%c')         ('%c')\n",top,bot);
+	Sleep(time);
+	Sleep(time);
+}
+void eduRRotationHeader(){
+	system("cls");
+	printf("<<<<<<<<<<<<<<<<<< RIGHT ROTATION >>>>>>>>>>>>>>>>>>\n");
+	printf("\n");
+}
+void eduRRotation(int time,btAddr root){
+	char top = root->info ,mid = root->ls->info,bot = root->ls->ls->info;
+	
+	eduRRotationHeader();
+	printf("\t         |--- ('%c')\n",top);
+	printf("\t         |\n");
+	printf("\t         V\n");
+	printf("\t  |--- ('%c')\n",mid);
+	printf("\t  |\n");
+	printf("\t  V\n");
+	printf("\t('%c')\n",bot);
+	Sleep(time);
+	Sleep(time);
+	
+	eduRRotationHeader();
+	printf("\t              ('%c')\n",top);
+	printf("\t          \n");
+	printf("\t          \n");
+	printf("\t  |--- ('%c')\n",mid);
+	printf("\t  |\n");
+	printf("\t  V\n");
+	printf("\t('%c')\n",bot);
+	Sleep(time);
+	Sleep(time);
+	
+	eduRRotationHeader();
+	printf("\t          \n");
+	printf("\t              ('%c')\n",top);
+	printf("\t          \n");
+	printf("\t  |--- ('%c')\n",mid);
+	printf("\t  |\n");
+	printf("\t  V\n");
+	printf("\t('%c')\n",bot);
+	Sleep(time);
+	eduRRotationHeader();
+	printf("\t          \n");
+	printf("\t          \n");
+	printf("\t              ('%c')\n",top);
+	printf("\t  |--- ('%c')\n",mid);
+	printf("\t  |\n");
+	printf("\t  V\n");
+	printf("\t('%c')\n",bot);
+	Sleep(time);
+	eduRRotationHeader();
+	printf("\t          \n");
+	printf("\t          \n");
+	printf("\t           \n");
+	printf("\t  |--- ('%c')  ('%c')\n",mid,top);
+	printf("\t  |\n");
+	printf("\t  V\n");
+	printf("\t('%c')\n",bot);
+	Sleep(time);
+	eduRRotationHeader();
+	printf("\t          \n");
+	printf("\t          \n");
+	printf("\t           \n");
+	printf("\t  |--- ('%c')\n",mid);
+	printf("\t  |           ('%c')\n",top);
+	printf("\t  V\n");
+	printf("\t('%c')\n",bot);
+	Sleep(time);
+	eduRRotationHeader();
+	printf("\t          \n");
+	printf("\t          \n");
+	printf("\t           \n");
+	printf("\t  |--- ('%c')\n",mid);
+	printf("\t  |\n");
+	printf("\t  V           ('%c')\n",top);
+	printf("\t('%c')\n",bot);
+	Sleep(time);
+	eduRRotationHeader();
+	printf("\t          \n");
+	printf("\t          \n");
+	printf("\t           \n");
+	printf("\t  |--- ('%c')\n",mid);
+	printf("\t  |\n");
+	printf("\t  V\n");
+	printf("\t('%c')         ('%c')\n",bot,top);
+	Sleep(time);
+	eduRRotationHeader();
+	printf("\t          \n");
+	printf("\t          \n");
+	printf("\t           \n");
+	printf("\t  |--- ('%c') --\n",mid);
+	printf("\t  |\n");
+	printf("\t  V\n");
+	printf("\t('%c')         ('%c')\n",bot,top);
+	Sleep(time);
+	eduRRotationHeader();
+	printf("\t          \n");
+	printf("\t          \n");
+	printf("\t           \n");
+	printf("\t  |--- ('%c') ---|\n",mid);
+	printf("\t  |\n");
+	printf("\t  V\n");
+	printf("\t('%c')         ('%c')\n",bot,top);
+	Sleep(time);
+	eduRRotationHeader();
+	printf("\t          \n");
+	printf("\t          \n");
+	printf("\t           \n");
+	printf("\t  |--- ('%c') ---|\n",mid);
+	printf("\t  |             |\n");
+	printf("\t  V\n");
+	printf("\t('%c')         ('%c')\n",bot,top);
+	Sleep(time);
+	eduRRotationHeader();
+	printf("\t          \n");
+	printf("\t          \n");
+	printf("\t           \n");
+	printf("\t  |--- ('%c') ---|\n",mid);
+	printf("\t  |             |\n");
+	printf("\t  V             V\n");
+	printf("\t('%c')         ('%c')\n",bot,top);
+	Sleep(time);
+	Sleep(time);
+	eduRRotationHeader();
+	printf("\t  |--- ('%c') ---|\n",mid);
+	printf("\t  |             |\n");
+	printf("\t  V             V\n");
+	printf("\t('%c')         ('%c')\n",bot,top);
+	Sleep(time);
+	Sleep(time);
+}
+
+void eduLsAddHeader() {
+	system("cls");
+	printf("<<<<<<<<<<<<<<<<<< LEFT SON INSERTION >>>>>>>>>>>>>>>>>>\n");
+	printf("\n");
+}
+void eduLsAdd(int time,char pr, char ls) {
+
+	eduLsAddHeader();
+	printf("\t |--- ('%c') ---|\n",pr);
+	printf("\t |             |\n");
+	printf("\t |             |\n");
+	printf("\t V             V\n");
+	printf("\tNULL          ...\n");
+	Sleep(time);
+	Sleep(time);
+
+	eduLsAddHeader();
+	printf("\t |--- ('%c') ---|\n",pr);
+	printf("\t |             |\n");
+	printf("\t |             |\n");
+	printf("\t V             V\n");
+	printf("\tNULL          ...\n");
+	printf("\t\n");
+	printf("\t[nodeMaker]\n");
+	Sleep(time);
+	eduLsAddHeader();
+	printf("\t |--- ('%c') ---|\n",pr);
+	printf("\t |             |\n");
+	printf("\t |             |\n");
+	printf("\t V             V\n");
+	printf("\tNULL          ...\n");
+	printf("\t\n");
+	printf("\t[nodeMaker] --> \n");
+	Sleep(time);
+	eduLsAddHeader();
+	printf("\t |--- ('%c') ---|\n",pr);
+	printf("\t |             |\n");
+	printf("\t |             |\n");
+	printf("\t V             V\n");
+	printf("\tNULL          ...\n");
+	printf("\t\n");
+	printf("\t[nodeMaker] --> ('%c')\n",ls);
+	Sleep(time);
+	eduLsAddHeader();
+	printf("\t      |--- ('%c') ---|\n",pr);
+	printf("\t      |             |\n");
+	printf("\t      |             |\n");
+	printf("\t      V             V\n");
+	printf("\t     NULL          ...\n");
+	printf("\t\n");
+	printf("\t[nodeMaker] --> ('%c')\n",ls);
+	Sleep(time);
+	eduLsAddHeader();
+	printf("\t            |--- ('%c') ---|\n",pr);
+	printf("\t            |             |\n");
+	printf("\t            |             |\n");
+	printf("\t            V             V\n");
+	printf("\t           NULL          ...\n");
+	printf("\t\n");
+	printf("\t[nodeMaker] --> ('%c')\n",ls);
+	Sleep(time);
+	eduLsAddHeader();
+	printf("\t                  |--- ('%c') ---|\n",pr);
+	printf("\t                  |             |\n");
+	printf("\t                  |             |\n");
+	printf("\t                  V             V\n");
+	printf("\t                 NULL          ...\n");
+	printf("\t\n");
+	printf("\t[nodeMaker] --> ('%c')\n",ls);
+	Sleep(time);
+	Sleep(time);
+
+	eduLsAddHeader();
+	printf("\t                  |--- ('%c') ---|\n",pr);
+	printf("\t                  |             |\n");
+	printf("\t                  |             |\n");
+	printf("\t                  V             V\n");
+	printf("\t                               ...\n");
+	printf("\t\n");
+	printf("\t[nodeMaker] --> ('%c')\n",ls);
+	Sleep(time);
+	eduLsAddHeader();
+	printf("\t                  |--- ('%c') ---|\n",pr);
+	printf("\t                  |             |\n");
+	printf("\t                  |             |\n");
+	printf("\t                  V             V\n");
+	printf("\t                               ...\n");
+	printf("\t[nodeMaker] --> ('%c')\n",ls);
+	Sleep(time);
+	eduLsAddHeader();
+	printf("\t                  |--- ('%c') ---|\n",pr);
+	printf("\t                  |             |\n");
+	printf("\t                  |             |\n");
+	printf("\t                  V             V\n");
+	printf("\t[nodeMaker] --> ('%c')          ...\n",ls);
+	Sleep(time);
+	eduLsAddHeader();
+	printf("\t                  |--- ('%c') ---|\n",pr);
+	printf("\t                  |             |\n");
+	printf("\t                  |             |\n");
+	printf("\t                  V             V\n");
+	printf("\t                ('%c')          ...\n",ls);
+	Sleep(time);
+	eduLsAddHeader();
+	printf("\t  |--- ('%c') ---|\n",pr);
+	printf("\t  |             |\n");
+	printf("\t  |             |\n");
+	printf("\t  V             V\n");
+	printf("\t('%c')          ...\n",ls);
+	Sleep(time);
+	Sleep(time);
+}
+void eduRsAddHeader() {
+	system("cls");
+	printf("<<<<<<<<<<<<<<<<<< RIGHT SON INSERTION >>>>>>>>>>>>>>>>>>\n");
+	printf("\n");
+}
+void eduRsAdd(int time,char pr, char rs) {
+
+	eduRsAddHeader();
+	printf("\t |--- ('%c') ---|\n",pr);
+	printf("\t |             |\n");
+	printf("\t |             |\n");
+	printf("\t V             V\n");
+	printf("\t...           NULL\n");
+	Sleep(time);
+	eduRsAddHeader();
+	printf("\t |--- ('%c') ---|\n",pr);
+	printf("\t |             |\n");
+	printf("\t |             |\n");
+	printf("\t V             V\n");
+	printf("\t...           NULL\n");
+	printf("\n");
+	printf("\t[nodeMaker]\n");
+	Sleep(time);
+	Sleep(time);
+
+	eduRsAddHeader();
+	printf("\t |--- ('%c') ---|\n",pr);
+	printf("\t |             |\n");
+	printf("\t |             |\n");
+	printf("\t V             V\n");
+	printf("\t...           NULL\n");
+	printf("\n");
+	printf("\t[nodeMaker] -->\n");
+	Sleep(time);
+	eduRsAddHeader();
+	printf("\t |--- ('%c') ---|\n",pr);
+	printf("\t |             |\n");
+	printf("\t |             |\n");
+	printf("\t V             V\n");
+	printf("\t...           NULL\n");
+	printf("\n");
+	printf("\t[nodeMaker] --> ('%c')\n",rs);
+	Sleep(time);
+	Sleep(time);
+
+	eduRsAddHeader();
+	printf("\t    |--- ('%c') ---|\n",pr);
+	printf("\t    |             |\n");
+	printf("\t    |             |\n");
+	printf("\t    V             V\n");
+	printf("\t   ...           NULL\n");
+	printf("\n");
+	printf("\t[nodeMaker] --> ('%c')\n",rs);
+	Sleep(time);
+	eduRsAddHeader();
+	printf("\t    |--- ('%c') ---|\n",pr);
+	printf("\t    |             |\n");
+	printf("\t    |             |\n");
+	printf("\t    V             V\n");
+	printf("\t   ...           \n");
+	printf("\n");
+	printf("\t                ('%c') <-- [nodeMaker]\n",rs);
+	Sleep(time);
+	Sleep(time);
+
+	eduRsAddHeader();
+	printf("\t    |--- ('%c') ---|\n",pr);
+	printf("\t    |             |\n");
+	printf("\t    |             |\n");
+	printf("\t    V             V\n");
+	printf("\t   ...           \n");
+	printf("\t                ('%c') <-- [nodeMaker]\n",rs);
+	Sleep(time);
+	eduRsAddHeader();
+	printf("\t    |--- ('%c') ---|\n",pr);
+	printf("\t    |             |\n");
+	printf("\t    |             |\n");
+	printf("\t    V             V\n");
+	printf("\t   ...          ('%c') <-- [nodeMaker]\n",rs);
+	Sleep(time);
+	Sleep(time);
+
+	eduRsAddHeader();
+	printf("\t |--- ('%c') ---|\n",pr);
+	printf("\t |             |\n");
+	printf("\t |             |\n");
+	printf("\t V             V\n");
+	printf("\t...          ('%c')\n",rs);
+	Sleep(time);
+	Sleep(time);
+}
+
+void nbtCreateEdu(const char *filename, int time) {
     nbtAddr nbtEdu = NULL;
     printTAddr printEdu;
     FILE *fp = fopen(filename, "r");
@@ -842,19 +1488,179 @@ void nbtCreateEdu(const char *filename) {
     while (fscanf(fp, "(%c, %c) ", &parent, &node) != EOF) {
         printEdu = NULL;
         if (parent == '0') {
-            nbtEduCreateT(0, node);
+            eduCreateT(time, node);
         } else if (SearchNbtNode(nbtEdu, parent)->fs == NULL){
-            nbtEduInsFs(0, node, parent);
+            nbtEduInsFs(time, node, parent);
         } else {
-            nbtEduInsNb(0, node, parent);
+            nbtEduInsNb(time, node, parent);
         }
         InsertNbtNode(&nbtEdu, SearchNbtNode(nbtEdu, parent), node);
         createNBPrintT(&printEdu, nbtEdu);
-        printf("\n\tRESULT :\n\n");
+        printf("\n\tRESULT\t:\n\n");
         printTToString(printEdu);
+        printf("\n");
         system("pause");
+        printTdelSub(&printEdu,printEdu);
     }
+    nbDeleteSub(&nbtEdu,nbtEdu);
     fclose(fp);
+}
+
+void btCreateEdu(btAddr root,int time,printTAddr *printQ){
+	if (root==NULL){
+		return;
+	}
+	//proses
+	if (root->pr==NULL){
+		eduCreateT(time,root->info);
+		printTInsert(printQ,root->info,NULL);
+	}else {
+		printTInsert(printQ,root->info,root->pr->info);
+	}
+	
+	printf("\n\tRESULT\t:\n\n");
+	printTToString(*printQ);
+	printf("\n");
+	system("pause");
+	if (root->ls!=NULL) eduFsToLs(time,root->info,root->ls->info);
+	btCreateEdu(root->ls,time,printQ);
+	if (root->rs!=NULL) eduNbToRs(time,root->info,root->rs->info);
+	btCreateEdu(root->rs,time,printQ);
+}
+
+void arrStoreEdu(btAddr root, int time){
+	btAddr p;
+	printTAddr a = NULL;
+	if (root==NULL) {
+		
+		return;
+	}
+	p = root;
+	while (p->pr!=NULL){
+		p = p->pr;
+	}
+	
+	arrStoreEdu(root->ls, time);
+	
+	printf("%c ",root->info);
+	Sleep(time);
+	
+	arrStoreEdu(root->rs, time);
+	
+}
+
+void arrSortEdu(char *arr, btAddr root, int *index_ptr, int time){
+	if (root == NULL) return;
+
+    arrSortEdu(arr, root->ls, index_ptr,time);
+
+    printf("%c ",arr[*index_ptr]); 
+    (*index_ptr)++;
+    Sleep(time);
+    arrSortEdu(arr, root->rs, index_ptr,time);
+}
+
+void avlCreateEdu(btAddr bstTree, btAddr *avlTree, int time){
+	printTAddr printEdu = NULL;
+	btAddr p;
+	
+	if (bstTree == NULL){
+		return;
+		
+	} 
+	if (*avlTree!=NULL){
+		p = *avlTree;
+		while (p->pr!=NULL){
+			p = p->pr;
+		}
+		createBPrintT(&printEdu, p);
+	}
+	
+    avlCreateEdu(bstTree->ls, avlTree, time);
+    *avlTree = InsertAvlEdu(*avlTree, bstTree->info, time);
+    if (printEdu!=NULL){
+    	printTToString(printEdu);
+		system("pause");
+	}
+    avlCreateEdu(bstTree->rs, avlTree, time);
+}
+
+btAddr InsertAvlEdu(btAddr rootAvl, infoType info, int time){
+	if (rootAvl == NULL){
+		return (CreateBtNode(info, 1));
+		eduCreateT(time,info);
+		printf("\n");
+		system("pause");
+	}
+    if (info < rootAvl->info)
+    {
+        rootAvl->ls = InsertAvlEdu(rootAvl->ls, info, time);
+        eduLsAdd(time, rootAvl->info,info);
+        printf("\n");
+		system("pause");
+        if (rootAvl->ls)
+            rootAvl->ls->pr = rootAvl;
+    }
+    else if (info > rootAvl->info)
+    {
+        rootAvl->rs = InsertAvlEdu(rootAvl->rs, info, time);
+        eduRsAdd(time,rootAvl->info,info);
+        printf("\n");
+		system("pause");
+        if (rootAvl->rs)
+            rootAvl->rs->pr = rootAvl;
+    }
+    else
+    {
+        return rootAvl;
+    }
+
+    rootAvl->level = 1 + Max(GetLevel(rootAvl->ls),
+                          GetLevel(rootAvl->rs));
+
+    int balance = GetBalance(rootAvl);
+
+    if (balance > 1 && info < rootAvl->ls->info){
+    	
+    	return RightRotate(rootAvl);
+	}
+        
+
+    // Right Right Case
+    if (balance < -1 && info > rootAvl->rs->info){
+    	eduLRotation(time,rootAvl);
+    	printf("\n");
+		system("pause");
+    	return LeftRotate(rootAvl);
+	}
+
+    // Left Right Case
+    if (balance > 1 && info > rootAvl->ls->info)
+    {
+    	eduLRotation(time,rootAvl);
+    	printf("\n");
+		system("pause");
+        rootAvl->ls = LeftRotate(rootAvl->ls);
+        eduRRotation(time,rootAvl);
+        printf("\n");
+		system("pause");
+        return RightRotate(rootAvl);
+    }
+
+    // Right Left Case
+    if (balance < -1 && info < rootAvl->rs->info)
+    {
+    	eduLRotation(time,rootAvl);
+    	printf("\n");
+		system("pause");
+        rootAvl->rs = RightRotate(rootAvl->rs);
+        eduLRotation(time,rootAvl);
+        printf("\n");
+		system("pause");
+        return LeftRotate(rootAvl);
+    }
+
+    return rootAvl;
 }
 /* ======================= END EDUCATION CREATE TREE ========================*/
 
@@ -873,7 +1679,7 @@ void ListParent(nbtAddr nbtRoot)
 {
     if (nbtRoot != NULL)
     {
-        printf("~ %c.\n", nbtRoot->info);
+        printf("%c %c.\n", nbtRoot->info);
         ListParent(nbtRoot->fs);
         ListParent(nbtRoot->nb);
     }
@@ -1042,7 +1848,7 @@ void ClearCache(const char *filename)
         return;
     }
     fclose(fp); // Mengosongkan isi file dengan membuka file dengan mode write (w), lalu langsung menutupnya
-    printf("Cache berhasil dihapus!\n");
+//    printf("Cache berhasil dihapus!\n");
 }
 
 void LoadCache(nbtAddr *nbtTree)
@@ -1214,6 +2020,21 @@ void nbDelete(nbtAddr *rootHolder, nbtAddr pDel)
     free(pDel); // Membebaskan memori yang ditempati oleh node
 }
 
+void btDelete(btAddr *rootHolder, btAddr pDel){
+	if (*rootHolder == pDel)
+    {
+        *rootHolder = NULL;
+    }
+    free(pDel);
+}
+void btDeleteSub(btAddr *rootHolder, btAddr pDel){
+	if (pDel != NULL)
+    {
+        btDeleteSub(rootHolder, pDel->ls); // Menghapus sub-tree sebelah kiri
+        btDeleteSub(rootHolder, pDel->rs); // Menghapus sub-tree sebelah kanan
+        btDelete(rootHolder, pDel);        // Menghapus node
+    }
+}
 /* Prosedur untuk menghapus node beserta bawahannya dari sebuah tree */
 void nbDeleteSub(nbtAddr *rootHolder, nbtAddr pDel)
 {
@@ -1950,10 +2771,6 @@ void printTCn(printTAddr(*trNode), printTAddr(*firstNode), printTAddr(*secNode))
 }
 int printTCountCh(printTAddr root, char pr)
 {
-    if (pr == 'A')
-    {
-        printf("checked");
-    }
     int count = 0;
     while (root != NULL)
     {
@@ -1964,6 +2781,21 @@ int printTCountCh(printTAddr root, char pr)
         root = root->next;
     }
     return count;
+}
+
+void printTdelEl(printTAddr *rootHolder, printTAddr pDel){
+	if (*rootHolder == pDel)
+    {
+        *rootHolder = NULL;
+    }
+    free(pDel);
+}
+void printTdelSub(printTAddr *rootHolder, printTAddr pDel){
+	if (pDel != NULL)
+    {
+        printTdelSub(rootHolder, pDel->next);
+        printTdelEl(rootHolder, pDel);
+    }
 }
 
 void printTInsert(printTAddr(*rootHolder), char info, char pr)
@@ -2177,6 +3009,7 @@ void createBPrintT(printTAddr(*printHolder), btAddr rootHolder)
     if (rootHolder->pr != NULL)
     {
         printTInsert(&(*printHolder), rootHolder->info, rootHolder->pr->info);
+        
     }
     else
     {
