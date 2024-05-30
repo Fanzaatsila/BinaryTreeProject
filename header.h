@@ -32,11 +32,9 @@ typedef struct printT
     char info, pr;
 } printTType;
 
-typedef struct QueueNode
-{
-    btAddr btTree;
-    nbtAddr nbtTree;
-    struct QueueNode *next;
+typedef struct QueueNode {
+    btAddr treeNode;
+    struct QueueNode* next;
 } QueueNode;
 
 typedef struct Queue
@@ -277,24 +275,25 @@ char nbtCreateEdu(const char* filename);
 void PrintBtPreorder(btAddr node);
 void PrintBtInorder(btAddr node);
 void PrintBtPostorder(btAddr node);
-// void PrintBtNbtLevelorder(nbtAddr nbtRoot, btAddr btRoot);
+void PrintBtLevelorder(btAddr root);
 void PrintNbtPreorder(nbtAddr root);
 void PrintNbtPostorder(nbtAddr root);
 void PrintNbtInorder(nbtAddr root);
+void PrintNbtLevelorder(nbtAddr root);
 
-void PrintBtLevelorder(btAddr root);
 void CalculateBtMaxLevel(btAddr root, int* maxLevel);
 void PrintBtNodesAtLevel(btAddr root, int level);
 
-void PrintNbtLevelorder(nbtAddr root);
 void CalculateNbtMaxLevel(nbtAddr root, int* maxLevel);
 void PrintNbtNodesAtLevel(nbtAddr root, int level);
+
+void PrintAvlLevelorder(btAddr root);
 /*================== END TRAVERSAL NBT & BT ===========================*/
 
 /*==================== Queue ===========================*/
-// Queue *CreateQueue();
-// int IsQueueEmpty(Queue *queue);
-// void Enqueue(Queue *queue, nbtAddr nbtTree, btAddr btTree);
-// QueueNode *Dequeue(Queue *queue);
+Queue *CreateQueue();
+int IsQueueEmpty(Queue *queue);
+void Enqueue(Queue *queue, btAddr treeNode);
+btAddr Dequeue(Queue *queue);
 /*================== END Queue ===========================*/
 #endif // HEADER_H

@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include "ui.h"
 #include "header.h"
+#include "body.cpp"
+#include "ui.cpp"
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 int main(int argc, char **argv)
@@ -251,6 +253,7 @@ int main(int argc, char **argv)
 							printf("Postoder Traversal\t:");PrintBtPostorder(btTree);printf("\n");
 							printf("Inorder Traversal\t:");PrintBtInorder(btTree);printf("\n");
 							printf("Levelorder Traversal\t:");PrintBtLevelorder(btTree);printf("\n");
+							printf("\n");
 							system("pause");
 							printAppHeader();
 							printf("\n~~~~~~~~~~~~~~~~~~ BST-TREE VISUALIZATION ~~~~~~~~~~~~~~~~~~\n");
@@ -259,6 +262,7 @@ int main(int argc, char **argv)
 							printf("Postoder Traversal\t:");PrintBtPostorder(bstTree);printf("\n");
 							printf("Inorder Traversal\t:");PrintBtInorder(bstTree);printf("\n");
 							printf("Levelorder Traversal\t:");PrintBtLevelorder(bstTree);printf("\n");
+							printf("\n");
 							system("pause");
 							printAppHeader();
 							printf("\n~~~~~~~~~~~~~~~~~~ AVL-TREE VISUALIZATION ~~~~~~~~~~~~~~~~~~\n");
@@ -266,6 +270,9 @@ int main(int argc, char **argv)
 							printf("Preorder Traversal\t:");PrintBtPreorder(avlTree);printf("\n");
 							printf("Postoder Traversal\t:");PrintBtPostorder(avlTree);printf("\n");
 							printf("Inorder Traversal\t:");PrintBtInorder(avlTree);printf("\n");
+							printf("Levelorder Traversal\t:");PrintAvlLevelorder(avlTree);printf("\n");
+							// printf("Levelorder Traversal\t:");PrintBtLevelorder(avlTree);printf("\n"); KARENA LEVEL TERBALIK, MAKA LEVELORDER TERBALIK
+							printf("\n");
 							system("pause");
 							// conversion logic here
 							break;
