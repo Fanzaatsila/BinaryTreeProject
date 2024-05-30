@@ -62,16 +62,18 @@ int main(int argc, char **argv)
 							cacheFilled = false;	 // Setel ke false setelah mengosongkan cache
 						}
 						NbtCreateTree(&(nbtTree));
+						WriteCache(nbtTree, "cache.txt");
 						break;
 					}
 					case '2':
 					{
-						if (cacheFilled)
-						{							 // Periksa apakah cache telah terisi
-							ClearCache("cache.txt"); // Kosongkan cache jika telah terisi
-							cacheFilled = false;	 // Setel ke false setelah mengosongkan cache
-						}
+//						if (cacheFilled)
+//						{							 // Periksa apakah cache telah terisi
+//							ClearCache("cache.txt"); // Kosongkan cache jika telah terisi
+//							cacheFilled = false;	 // Setel ke false setelah mengosongkan cache
+//						}
 						LoadTree(&nbtTree);
+						WriteCache(nbtTree, "cache.txt");
 						system("pause");
 						break;
 					}
@@ -216,12 +218,11 @@ int main(int argc, char **argv)
 					bstTree = DuplicateBtTree(btTree);
 					BtTreeConvertToBstTree(bstTree);
 					CreateAvlTree(bstTree,&avlTree);
-					
 
 					createNBPrintT(&printNBT,nbtTree);
 					createBPrintT(&printBT,btTree);
 					createBPrintT(&printBST,bstTree);
-//					createBPrintT(&printAVLT,avlTree); //belum work! avlTree tidak mengubah nilai pr nodenya, jadi error
+					createBPrintT(&printAVLT,avlTree);
 					while (convertCon)
 					{
 						
@@ -261,6 +262,7 @@ int main(int argc, char **argv)
 							system("pause");
 							printAppHeader();
 							printf("\n~~~~~~~~~~~~~~~~~~ AVL-TREE VISUALIZATION ~~~~~~~~~~~~~~~~~~\n");
+							printTToString(printAVLT);
 							printf("Preorder Traversal\t:");PrintBtPreorder(avlTree);printf("\n");
 							printf("Postoder Traversal\t:");PrintBtPostorder(avlTree);printf("\n");
 							printf("Inorder Traversal\t:");PrintBtInorder(avlTree);printf("\n");

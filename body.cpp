@@ -855,6 +855,7 @@ char nbtCreateEdu(const char *filename) {
         system("pause");
     }
     fclose(fp);
+    return '0';
 }
 /* ======================= END EDUCATION CREATE TREE ========================*/
 
@@ -945,7 +946,7 @@ void InsertNbtNode(nbtAddr *nbtRoot, nbtAddr parent, infoType info)
         parent->nb = newNode;
     }
     recordInsertedNode(newNode);
-    WriteCache(*nbtRoot, "cache.txt");
+//    WriteCache(*nbtRoot, "cache.txt");
 }
 
 void NbtCreateTree(nbtAddr *nbtRoot)
@@ -954,7 +955,7 @@ void NbtCreateTree(nbtAddr *nbtRoot)
     boolean check;
 
     nbDeleteSub(nbtRoot, *nbtRoot);
-    char root = nbtCreateEdu("cache.txt");
+//    char root = nbtCreateEdu("cache.txt");
     while (true)
     {
         if (*nbtRoot == NULL)
@@ -1041,6 +1042,7 @@ void ClearCache(const char *filename)
         printf("Gagal membuka file\n");
         return;
     }
+    fprintf(fp," ");
     fclose(fp); // Mengosongkan isi file dengan membuka file dengan mode write (w), lalu langsung menutupnya
     printf("Cache berhasil dihapus!\n");
 }
@@ -1545,11 +1547,11 @@ int btGetDepth(btAddr rootHolder)
 
         if (lDepth > rDepth)
         {
-            return lDepth;
+            return lDepth + 1;
         }
         else
         {
-            return rDepth;
+            return rDepth + 1;
         }
     }
 }
@@ -1570,37 +1572,25 @@ int btGetElements(btAddr rootHolder)
     return 1 + lCount + rCount;
 }
 
-int btGetLeaves(btAddr rootHolder)
-{ // geeksforgeeks algorithm
-
-    if (rootHolder == NULL)
-    {
-        return 0;
-    }
-    if (rootHolder->ls && rootHolder->rs)
-    {
-        return 1;
-    }
-    else
-    {
-        return btGetLeaves(rootHolder->ls) + btGetLeaves(rootHolder->rs);
-    }
+int btGetLeaves(btAddr rootHolder){//geeksforgeeks algorithm
+	
+	if (rootHolder==NULL){
+		return 0;
+	}
+	if (!rootHolder->ls&&!rootHolder->rs){
+		return 1;
+	}else{
+		return btGetLeaves(rootHolder->ls) + btGetLeaves(rootHolder->rs);
+	}
 }
 
-int btGetChilds(btAddr nodeHolder)
-{ // geeksforgeeks algorithm
-    int lCount;
-    int rCount;
-
-    if (nodeHolder == NULL)
-    {
-        return 0;
-    }
-
-    lCount = btGetElements(nodeHolder->ls);
-    rCount = btGetElements(nodeHolder->rs);
-
-    return lCount + rCount;
+int btGetChilds(btAddr nodeHolder){//geeksforgeeks algorithm
+	int count = 0;
+	
+	if (nodeHolder==NULL) return 0;
+	if (nodeHolder->ls) count = count + 1;
+	if (nodeHolder->rs) count = count + 1;
+	return count;
 }
 
 void btShowElStatus(btAddr nodeHolder)
@@ -1615,14 +1605,10 @@ void btShowElStatus(btAddr nodeHolder)
     }
 }
 
-void btShowLeafStatus(btAddr nodeHolder)
-{
-    if (nodeHolder->ls != NULL || nodeHolder->rs != NULL)
-    {
-        printf("true");
-    }
-    else
-        printf("false");
+void btShowLeafStatus(btAddr nodeHolder){
+	if (nodeHolder->ls!=NULL || nodeHolder->rs!=NULL){
+		printf("false");
+	}else printf("true");
 }
 
 void btShowElMetaData(btAddr nodeHolder)
