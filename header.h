@@ -148,6 +148,7 @@ void nbDelete(nbtAddr *rootHolder, nbtAddr pDel);
     Github :
     Edited By : Fanza Atsila Fizarli
 */
+void removeFromInsertedNodes(infoType info);
 void btDelete(btAddr *rootHolder, btAddr pDel);
 void btDeleteSub(btAddr *rootHolder, btAddr pDel);
 /* Prosedur untuk menghapus node beserta bawahannya dari sebuah tree */

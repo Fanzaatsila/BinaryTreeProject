@@ -32,6 +32,9 @@ int main(int argc, char **argv) {
 		menuCon = true;
 		while (menuCon) {
 			printAppHeader();
+			if (nbtTree == NULL){
+				printf("Tree Belum Terbentuk Silahkan Buat Tree Terlebih Dahulu!\n\n");
+			} 
 			printAppMenu();
 			errorMsg(isError, isAvailable);
 			isError = false;
@@ -124,6 +127,8 @@ int main(int argc, char **argv) {
 							switch (inUser) {
 								case '1': {
 									infoType delInfo;
+									printf("\nDaftar Node:\n");
+    								ListParent(nbtTree);
 									printf("\nEnter the info of the node you want to delete: ");
 									scanf(" %c", &delInfo);
 									// Validate if the node exists before deletion
@@ -131,6 +136,7 @@ int main(int argc, char **argv) {
 										printf("Node with info '%c' not found in the tree!\n", delInfo);
 									} else {
 										deleteNode(&nbtTree, delInfo);
+										WriteCache(nbtTree, "cache.txt");
 										printf("Node with info '%c' deleted successfully!\n", delInfo);
 									}
 									system("pause");
@@ -138,6 +144,8 @@ int main(int argc, char **argv) {
 								}
 								case '2': {
 									infoType delInfo;
+									printf("\nDaftar Node:\n");
+    								ListParent(nbtTree);
 									printf("\nEnter the info of the parent node whose subtree you want to delete: ");
 									scanf(" %c", &delInfo);
 									// Validate if the parent node exists before deletion
