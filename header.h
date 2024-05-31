@@ -342,7 +342,7 @@ int GetBalance(btAddr root);
 
 int eduCreateTHeader();
 int eduCreateT(int time, char root);
-=======
+
 int nbtEduCreateTHeader();
 /* IS: Menunjukkan bahwa fungsi ini akan membuat header untuk pembuatan tree Rducation */
 

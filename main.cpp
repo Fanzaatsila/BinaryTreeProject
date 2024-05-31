@@ -358,7 +358,7 @@ int main(int argc, char **argv) {
 									}
 									int n = CountNodes(btTree);
 									char *arr = (char *)malloc(n * sizeof(char));
-									int i = speed;
+									int i = 0;
 									StoreInorder(btTree, arr, &i);
 									qsort(arr, n, sizeof(arr[speed]), Compare);
 									system("cls");
