@@ -148,9 +148,32 @@ void nbDelete(nbtAddr *rootHolder, nbtAddr pDel);
     Github :
     Edited By : Fanza Atsila Fizarli
 */
+
+/* Prosedur untuk menghapus node dari daftar insertedNodes */
 void removeFromInsertedNodes(infoType info);
+/*  IS : Daftar insertedNodes terdefinisi
+    FS : Node dengan info yang sesuai dihapus dari daftar insertedNodes
+    Created By : Fanza Atsila Fizarli
+*/
+
+/* Prosedur untuk menghapus node dari sebuah tree */
 void btDelete(btAddr *rootHolder, btAddr pDel);
+/*  IS : Node yang ditunjuk masih terhubung dengan tree dan masih berada di memori
+    FS : Node yang ditunjuk sudah terlepas dari tree tanpa merusak struktur tree dan node sudah di delete dari memori
+    Created By : Rizq Hilal Rifaasya dan Zahratul Mardiyah
+    Github :
+    Edited By : Fanza Atsila Fizarli
+*/
+
+/* Prosedur untuk menghapus node beserta bawahannya dari sebuah tree */
 void btDeleteSub(btAddr *rootHolder, btAddr pDel);
+/*  IS : Node yang ditunjuk masih terhubung dengan tree dan masih berada di memori
+    FS : Node yang ditunjuk dan semua child node-nya sudah terlepas dari tree dan sudah dihapus dari memori
+    Created By : Rizq Hilal Rifaasya dan Zahratul Mardiyah
+    Github :
+    Edited By : Fanza Atsila Fizarli
+*/
+
 /* Prosedur untuk menghapus node beserta bawahannya dari sebuah tree */
 void nbDeleteSub(nbtAddr *rootHolder, nbtAddr pDel);
 /*  IS : Node yang ditunjuk masih terhubung dengan tree dan masih berada di memori
