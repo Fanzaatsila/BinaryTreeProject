@@ -60,7 +60,6 @@ int main(int argc, char **argv) {
 									ClearCache("cache.txt");
 								}
 								LoadTree(&nbtTree);
-//						printf("checked before crash");
 								if (nbtTree!=NULL)WriteCache(nbtTree, "cache.txt");
 								system("pause");
 								break;
@@ -294,7 +293,11 @@ int main(int argc, char **argv) {
 								}
 							}
 						}
-
+						nbDeleteSub(&nbtTree,nbtTree);
+						btDeleteSub(&btTree,btTree);
+						btDeleteSub(&bstTree,bstTree);
+						btDeleteSub(&avlTree,avlTree);
+						
 						printTdelSub(&printNBT,printNBT);
 						printTdelSub(&printBT,printBT);
 						printTdelSub(&printBST,printBST);
@@ -343,6 +346,7 @@ int main(int argc, char **argv) {
 									}
 									if (btTree==NULL) btTree = NbtTreeConvertToBtTree(nbtTree, speed);
 									btCreateEdu(btTree, speed,&printBT);
+									printTdelSub(&printBT,printBT);
 									break;
 								}
 								case '3': {
@@ -381,6 +385,7 @@ int main(int argc, char **argv) {
 									system("pause");
 									printTdelSub(&printBST,printBST);
 									btCreateEdu(bstTree, speed*2,&printBST);
+									printTdelSub(&printBST,printBST);
 									free(arr);
 									// education logic here
 									break;
