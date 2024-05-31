@@ -148,8 +148,32 @@ void nbDelete(nbtAddr *rootHolder, nbtAddr pDel);
     Github :
     Edited By : Fanza Atsila Fizarli
 */
+
+/* Prosedur untuk menghapus node dari daftar insertedNodes */
+void removeFromInsertedNodes(infoType info);
+/*  IS : Daftar insertedNodes terdefinisi
+    FS : Node dengan info yang sesuai dihapus dari daftar insertedNodes
+    Created By : Fanza Atsila Fizarli
+*/
+
+/* Prosedur untuk menghapus node dari sebuah tree */
 void btDelete(btAddr *rootHolder, btAddr pDel);
+/*  IS : Node yang ditunjuk masih terhubung dengan tree dan masih berada di memori
+    FS : Node yang ditunjuk sudah terlepas dari tree tanpa merusak struktur tree dan node sudah di delete dari memori
+    Created By : Rizq Hilal Rifaasya dan Zahratul Mardiyah
+    Github :
+    Edited By : Fanza Atsila Fizarli
+*/
+
+/* Prosedur untuk menghapus node beserta bawahannya dari sebuah tree */
 void btDeleteSub(btAddr *rootHolder, btAddr pDel);
+/*  IS : Node yang ditunjuk masih terhubung dengan tree dan masih berada di memori
+    FS : Node yang ditunjuk dan semua child node-nya sudah terlepas dari tree dan sudah dihapus dari memori
+    Created By : Rizq Hilal Rifaasya dan Zahratul Mardiyah
+    Github :
+    Edited By : Fanza Atsila Fizarli
+*/
+
 /* Prosedur untuk menghapus node beserta bawahannya dari sebuah tree */
 void nbDeleteSub(nbtAddr *rootHolder, nbtAddr pDel);
 /*  IS : Node yang ditunjuk masih terhubung dengan tree dan masih berada di memori
@@ -199,29 +223,99 @@ void ClearCache(const char *filename);
 */
 /* ======================= END LOAD CACHE TREE ========================*/
 
-/*======================== detail information nbTree ============================*/
+/*======================== DETAIL INFORMATION NBTREE ============================*/
 int nbtGetDepth(nbtAddr rootHolder);
-int nbtGetElements(nbtAddr rootHolder);
-int nbtGetLeaves(nbtAddr rootHolder);
-void nbtShowElStatus(nbtAddr nodeHolder);
-void nbtShowLeafStatus(nbtAddr nodeHolder);
-int nbtGetChilds(nbtAddr nodeHolder);
-void nbtShowElMetaData(nbtAddr nodeHolder);
-void nbtShowMetaData(nbtAddr rootHolder);
-/*======================== END detail information nbTree ============================*/
+/*  IS: Pointer mengarah ke root non-binary tree
+    FS: Mengembalikan kedalaman dari non-binary tree
+*/
 
-//==================== MODUL DETAIL INFORMATION TREE =========================
+int nbtGetElements(nbtAddr rootHolder);
+/*  IS: Pointer mengarah ke root non-binary tree
+    FS: Mengembalikan jumlah elemen dalam non-binary tree
+*/
+
+int nbtGetLeaves(nbtAddr rootHolder);
+/*  IS: Pointer mengarah ke root non-binary tree
+    FS: Mengembalikan jumlah daun dalam non-binary tree
+*/
+
+void nbtShowElStatus(nbtAddr nodeHolder);
+/*  IS: Pointer mengarah ke suatu node dalam non-binary tree
+    FS: Menampilkan status elemen pada node tersebut
+*/
+
+void nbtShowLeafStatus(nbtAddr nodeHolder);
+/*  IS: Pointer mengarah ke suatu node dalam non-binary tree
+    FS: Menampilkan status daun pada node tersebut
+*/
+
+int nbtGetChilds(nbtAddr nodeHolder);
+/*  IS: Pointer mengarah ke suatu node dalam non-binary tree
+    FS: Mengembalikan jumlah anak dari node tersebut
+*/
+
+void nbtShowElMetaData(nbtAddr nodeHolder);
+/*  IS: Pointer mengarah ke suatu node dalam non-binary tree
+    FS: Menampilkan metadata elemen pada node tersebut
+*/
+
+void nbtShowMetaData(nbtAddr rootHolder);
+/*  IS: Pointer mengarah ke root non-binary tree
+    FS: Menampilkan metadata dari seluruh non-binary tree
+*/
+/*======================== END DETAIL INFORMATIONA NBTREE ============================*/
+
+/*==================== MODUL DETAIL INFORMATION TREE =========================*/
 int btGetDepth(btAddr rootHolder);
+/*  IS: Pointer mengarah ke root binary tree
+    FS: Mengembalikan kedalaman dari binary tree
+*/
+
 int btGetElements(btAddr rootHolder);
+/*  IS: Pointer mengarah ke root binary tree
+    FS: Mengembalikan jumlah elemen dalam binary tree
+*/
+
 int btGetLeaves(btAddr rootHolder);
+/*  IS: Pointer mengarah ke root binary tree
+    FS: Mengembalikan jumlah daun dalam binary tree
+*/
+
 int btGetChilds(btAddr nodeHolder);
+/*  IS: Pointer mengarah ke suatu node dalam binary tree
+    FS: Mengembalikan jumlah anak dari node tersebut
+*/
+
 void btShowElStatus(btAddr nodeHolder);
+/*  IS: Pointer mengarah ke suatu node dalam binary tree
+    FS: Menampilkan status elemen pada node tersebut
+*/
+
 void btShowLeafStatus(btAddr nodeHolder);
+/*  IS: Pointer mengarah ke suatu node dalam binary tree
+    FS: Menampilkan status daun pada node tersebut
+*/
+
 void btShowElMetaData(btAddr nodeHolder);
+/*  IS: Pointer mengarah ke suatu node dalam binary tree
+    FS: Menampilkan metadata elemen pada node tersebut
+*/
+
 void btShowMetaData(btAddr rootHolder);
+/*  IS: Pointer mengarah ke root binary tree
+    FS: Menampilkan metadata dari seluruh binary tree
+*/
+
 void btShowTreeMetaData(btAddr rootHolder);
+/*  IS: Pointer mengarah ke root binary tree
+    FS: Menampilkan metadata dari seluruh binary tree, termasuk metadata dari setiap node
+*/
+
 void btShowElsMetaData(btAddr nodeHolder);
-//===================== END  DETAIL INFORMATION TREE ==========================
+/*  IS: Pointer mengarah ke suatu node dalam binary tree
+    FS: Menampilkan metadata elemen pada setiap node dalam binary tree
+*/
+/*===================== END  DETAIL INFORMATION TREE ==========================*/
 
 /*================== MODUL CONVERSION NON-BINARY-TREE TO BINARY-TREE==========================*/
 /* Mengkonversi non-binary-tree menjadi binary tree dengan mengambil info dari non-binary-tree*/
@@ -278,27 +372,104 @@ btAddr DuplicateBtTree(btAddr root);
 
 //========================================= printTree preOrderly =============================================
 void printTAllocBlank(printTAddr(*nodeMaker));
+/*  IS: -
+    FS: Mengalokasikan node kosong pada print tree
+*/
+
 void printTAllocVert(printTAddr(*nodeMaker));
+/*  IS: -
+    FS: Mengalokasikan node dengan garis vertikal pada print tree
+*/
+
 void printTAllocHoriz(printTAddr(*nodeMaker));
+/*  IS: -
+    FS: Mengalokasikan node dengan garis horizontal pada print tree
+*/
+
 void printTAllocNL(printTAddr(*nodeMaker));
+/*  IS: -
+    FS: Mengalokasikan node dengan garis newline pada print tree
+*/
+
 void printTCreate(printTAddr(*rootHolder));
+/*  IS: Pointer yang menunjuk ke root print tree sembarang
+    FS: Print tree terbentuk dan pointer root menunjuk ke root print tree yang telah dibuat
+*/
+
 printTAddr printTSrchByInfo(printTAddr rootHolder, char info);
+/*  IS: Pointer yang menunjuk ke root print tree dan info yang akan dicari
+    FS: Mengembalikan pointer ke node dengan info yang sesuai, jika tidak ditemukan mengembalikan NULL
+*/
+
 printTAddr printTSrchByPr(printTAddr rootHolder, char pr);
+/*  IS: Pointer yang menunjuk ke root print tree dan pr yang akan dicari
+    FS: Mengembalikan pointer ke node dengan pr yang sesuai, jika tidak ditemukan mengembalikan NULL
+*/
+
 printTAddr printTSrchByRow(printTAddr rootHolder, int row);
+/*  IS: Pointer yang menunjuk ke root print tree dan row yang akan dicari
+    FS: Mengembalikan pointer ke node dengan row yang sesuai, jika tidak ditemukan mengembalikan NULL
+*/
+
 printTAddr printTSrchByColumn(printTAddr rootHolder, int column);
+/*  IS: Pointer yang menunjuk ke root print tree dan column yang akan dicari
+    FS: Mengembalikan pointer ke node dengan column yang sesuai, jika tidak ditemukan mengembalikan NULL
+*/
+
 printTAddr printTSrchByLoc(printTAddr rootHolder, int row, int column);
+/*  IS: Pointer yang menunjuk ke root print tree dan row serta column yang akan dicari
+    FS: Mengembalikan pointer ke node dengan row dan column yang sesuai, jika tidak ditemukan mengembalikan NULL
+*/
+
 void printTInsert(printTAddr(*rootHolder), char info, char pr);
+/*  IS: Pointer yang menunjuk ke root print tree, info, dan pr yang akan dimasukkan
+    FS: Node baru dengan info dan pr yang sesuai dimasukkan ke dalam print tree
+*/
+
 void printTTravNull(printTAddr(*holder), printTAddr start);
+/*  IS: Pointer yang menunjuk ke holder dan start node
+    FS: Melakukan traversal pada print tree dengan mengganti node kosong menjadi node dengan garis vertikal
+*/
+
 void printTTravSpecif(printTAddr(*holder), printTAddr start);
+/*  IS: Pointer yang menunjuk ke holder dan start node
+    FS: Melakukan traversal pada print tree dengan mengganti node kosong menjadi node dengan garis horizontal atau newline
+*/
+
 void printTToString(printTAddr rootHolder);
+/*  IS: Pointer yang menunjuk ke root print tree
+    FS: Menampilkan print tree dalam bentuk string
+*/
+
 void printTCn(printTAddr trNode, printTAddr(*firstNode), printTAddr(*secNode));
+/*  IS: Pointer yang menunjuk ke trNode, firstNode, dan secNode
+    FS: Menghubungkan trNode dengan firstNode dan secNode pada print tree
+*/
+
 int printTCountCh(printTAddr root, char pr);
+/*  IS: Pointer yang menunjuk ke root print tree dan pr yang akan dihitung
+    FS: Mengembalikan jumlah node dengan pr yang sesuai pada print tree
+*/
+
 void printTdelEl(printTAddr *rootHolder, printTAddr pDel);
+/*  IS: Pointer yang menunjuk ke root print tree dan pDel yang akan dihapus
+    FS: Node dengan info dan pr yang sesuai dihapus dari print tree
+*/
+
 void printTdelSub(printTAddr *rootHolder, printTAddr pDel);
+/*  IS: Pointer yang menunjuk ke root print tree dan pDel yang akan dihapus
+    FS: Node dengan info dan pr yang sesuai beserta semua child node-nya dihapus dari print tree
+*/
 
 void createNBPrintT(printTAddr(*printHolder), nbtAddr rootHolder);
+/*  IS: Pointer yang menunjuk ke root print tree dan root non-binary tree
+    FS: Print tree terbentuk berdasarkan struktur non-binary tree
+*/
+
 void createBPrintT(printTAddr(*printHolder), btAddr rootHolder);
-//====================================== printTree preOrderly end =============================================
+/*  IS: Pointer yang menunjuk ke root print tree dan root binary tree
+    FS: Print tree terbentuk berdasarkan struktur binary tree
+*/
 
 /*==================== MODUL CONVERSION BINARY-SEARCH-TREE TO AVL-TREE ===========================*/
 /* Membuat sebuah Avl Tree */
@@ -340,54 +511,113 @@ int GetBalance(btAddr root);
 
 /*==================== EDUCATION CREATE TREE ===========================*/
 
-int eduCreateTHeader();
-int eduCreateT(int time, char root);
-
 int nbtEduCreateTHeader();
 /* IS: Menunjukkan bahwa fungsi ini akan membuat header untuk pembuatan tree Rducation */
 
 int nbtEduCreateT(int time, char root);
-/* IS: Menerima input waktu dan karakter root dari user */
-/* FS: Mengembalikan nilai 1 jika pembuatan tree berhasil, 0 jika gagal */
-
+/* IS: Menerima input waktu dan karakter root dari user 
+   FS: Mengembalikan nilai 1 jika pembuatan tree berhasil, 0 jika gagal 
+*/
 
 int nbtEduInsFsHeader();
 /* IS: Menunjukkan bahwa fungsi ini akan membuat header untuk menyisipkan node fs pada tree Education */
 
 int nbtEduInsFs(int time, char fs, char pr);
-/* IS: Menerima input waktu, karakter fs, dan karakter pr dari user */
-/* FS: Mengembalikan nilai 1 jika penyisipan node fs berhasil, 0 jika gagal */
-
-int nbtEduInsNbHeader();
-
-int nbtEduInsNb(int time,  char nb, char pr);
-void eduLRotationHeader();
-void eduLRotation(int time,btAddr root);
-void eduRRotationHeader();
-void eduRRotation(int time,btAddr root);
-void nbtCreateEdu(const char *filename, int time);
-int eduFsToLsHeader();
-int eduFsToLs(int time,char pr, char ls);
-int eduNbToRsHeader();
-int eduNbToRs(int time, char rs, char pr);
-
-void eduLsAddHeader();
-void eduLsAdd(int time,char pr, char ls);
-void eduRsAddHeader();
-void eduRsAdd(int time,char pr, char rs);
-
-void btCreateEdu(btAddr root,int time,printTAddr *printQ);
-void arrStoreEdu(btAddr root, int time);
-void arrSortEdu(char *arr, btAddr root, int *index_ptr, int time);
-void avlCreateEdu(btAddr bstTree, btAddr *avlTree, int time);
-btAddr InsertAvlEdu(btAddr rootAvl, infoType info, int time);
-
+/* IS: Menerima input waktu, karakter fs, dan karakter pr dari user 
+   FS: Mengembalikan nilai 1 jika penyisipan node fs berhasil, 0 jika gagal 
+*/
 
 /* IS: Menunjukkan bahwa fungsi ini akan membuat header untuk menyisipkan node nb pada tree Education */
+int nbtEduInsNbHeader();
 
 int nbtEduInsNb(int time, char nb, char pr);
-/* IS: Menerima input waktu, karakter nb, dan karakter pr dari user */
-/* FS: Mengembalikan nilai 1 jika penyisipan node nb berhasil, 0 jika gagal */
+/* IS: Menerima input waktu, karakter nb, dan karakter pr dari user 
+   FS: Mengembalikan nilai 1 jika penyisipan node nb berhasil, 0 jika gagal 
+*/
+
+void eduLRotationHeader();
+/* IS: Menunjukkan bahwa fungsi ini akan membuat header untuk melakukan rotasi ke kiri pada tree Education */
+
+void eduLRotation(int time, btAddr root);
+/* IS: Menerima input waktu dan node root dari user 
+   FS: Melakukan rotasi ke kiri pada tree Education 
+*/
+
+void eduRRotationHeader();
+/* IS: Menunjukkan bahwa fungsi ini akan membuat header untuk melakukan rotasi ke kanan pada tree Education */
+
+void eduRRotation(int time, btAddr root);
+/* IS: Menerima input waktu dan node root dari user 
+   FS: Melakukan rotasi ke kanan pada tree Education 
+*/
+
+void nbtCreateEdu(const char* filename, int time);
+/* IS: Menerima input nama file dan waktu dari user     
+   FS: Membuat tree pendidikan berdasarkan data yang ada di fil    
+   Created By: Faisal Bashri Albir 
+*/
+
+int eduFsToLsHeader();
+/* IS: Menunjukkan bahwa fungsi ini akan membuat header untuk menyisipkan node fs pada tree Education */
+
+int eduFsToLs(int time, char pr, char ls);
+/* IS: Menerima input waktu, karakter pr, dan karakter ls dari user     
+   FS: Mengembalikan nilai 1 jika penyisipan node fs berhasil, 0 jika gaga    
+*/
+
+int eduNbToRsHeader();
+/* IS: Menunjukkan bahwa fungsi ini akan membuat header untuk menyisipkan node nb pada tree Education */
+
+int eduNbToRs(int time, char rs, char pr);
+/* IS: Menerima input waktu, karakter rs, dan karakter pr dari user     
+   FS: Mengembalikan nilai 1 jika penyisipan node nb berhasil, 0 jika gaga   
+*/
+
+void eduLsAddHeader();
+/* IS: Menunjukkan bahwa fungsi ini akan membuat header untuk menyisipkan node ls pada tree Education */
+
+void eduLsAdd(int time, char pr, char ls);
+/* IS: Menerima input waktu, karakter pr, dan karakter ls dari user     
+   FS: Menyisipkan node ls pada tree Educatio    
+*/
+
+void eduRsAddHeader();
+/* IS: Menunjukkan bahwa fungsi ini akan membuat header untuk menyisipkan node rs pada tree Education */
+
+void eduRsAdd(int time, char pr, char rs);
+/* IS: Menerima input waktu, karakter pr, dan karakter rs dari user     
+   FS: Menyisipkan node rs pada tree Educatio    
+*/
+
+void btCreateEdu(btAddr root, int time, printTAddr* printQ);
+/* IS: Menerima input node root, waktu, dan pointer ke printQ dari user     
+   FS: Membuat tree pendidikan berdasarkan data yang ada di fil    
+   Created By: Faisal Bashri Albir */
+
+void arrStoreEdu(btAddr root, int time);
+/* IS: Menerima input node root, waktu, dan pointer ke printQ dari user     
+   FS: Menyimpan info dari tree pendidikan ke dalam array 
+*/
+
+void arrSortEdu(char* arr, btAddr root, int* index_ptr, int time);
+/* IS: Menerima input array, node root, pointer ke index_ptr, dan waktu dari user 
+   FS: Mengurutkan array dan memasukkan info ke dalam tree pendidikan 
+*/
+
+void avlCreateEdu(btAddr bstTree, btAddr* avlTree, int time);
+/* IS: Menerima input node bstTree, node avlTree, dan waktu dari user 
+   FS: Membuat avlTree berdasarkan bstTree 
+*/
+
+btAddr InsertAvlEdu(btAddr rootAvl, infoType info, int time);
+/* IS: Menerima input node rootAvl, info, dan waktu dari user 
+   FS: Menyisipkan info ke dalam avlTree 
+*/
+
+int nbtEduInsNb(int time, char nb, char pr);
+/* IS: Menerima input waktu, karakter nb, dan karakter pr dari user
+ FS: Mengembalikan nilai 1 jika penyisipan node nb berhasil, 0 jika gagal 
+*/
 
 void nbtCreateEdu(const char* filename);
 /* IS: Menerima input nama file 
@@ -474,15 +704,36 @@ void PrintAvlLevelorder(btAddr root);
 /*==================== Queue ===========================*/
 /* Mengalokasikan node queue */
 Queue *CreateQueue();
+/*  IS: -
+    FS:Mengembalikan pointer yang menunjuk ke node queue yang baru dialokasikan
+*/
 
 /* Mengecek nilai apakah masih ada queue atau tidak */
 int IsQueueEmpty(Queue *queue);
+/*  IS:Pointer of node yang menunjuk ke queue
+    FS:Mengembalikan nilai 1 jika queue kosong, 0 jika tidak kosong
+*/
 
 /* Memasukkan suatu node binary-tree ke dalam queue */
 void Enqueue(Queue *queue, btAddr treeNode);
+/*  IS:Pointer of node yang menunjuk ke queue dan pointer of node yang menunjuk ke binary-tree
+    FS:Node binary-tree dimasukkan ke dalam queue
+*/
 
 /* Mengeluarkan suatu node binary-tree dari queue */
 btAddr Dequeue(Queue *queue);
+/*  IS:Pointer of node yang menunjuk ke queue
+    FS:Node binary-tree yang dikeluarkan dari queue
+*/
 /*================== END Queue ===========================*/
+
 void numInsertedNodesCls();
+/*  IS: -
+    FS: -
+*/
+
+void CreateAvlTree(btAddr bstTree, btAddr *avlTree);
+/*  IS:Pointer of node yang menunjuk root dari sebuah binary-search-tree, dan juga node yang akan menunjuk pada avl-tree
+    FS:avl-tree terbentuk
+*/
 #endif // HEADER_H

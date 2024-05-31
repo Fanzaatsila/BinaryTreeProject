@@ -1998,6 +1998,7 @@ void getAddInfo(nbtAddr root, nbtAddr nbtTree)
     if (parentNode != NULL)
     {
         InsertNbtNode(&nbtTree, parentNode, newData);
+		WriteCache(root, "cache.txt");
         printf("Data %c added successfully!\n", newData);
     }
     else
@@ -2019,6 +2020,25 @@ void nbDelete(nbtAddr *rootHolder, nbtAddr pDel)
     }
     free(pDel); // Membebaskan memori yang ditempati oleh node
 }
+
+void removeFromInsertedNodes(infoType info) {
+    int index = -1;
+    for (int i = 0; i < numInsertedNodes; ++i) {
+        if (insertedNodes[i]->info == info) {
+            index = i;
+            break;
+        }
+    }
+
+    if (index != -1) {
+        // Geser elemen-elemen setelah index ke kiri
+        for (int i = index; i < numInsertedNodes - 1; ++i) {
+            insertedNodes[i] = insertedNodes[i + 1];
+        }
+        --numInsertedNodes;
+    }
+}
+
 
 void btDelete(btAddr *rootHolder, btAddr pDel){
 	if (*rootHolder == pDel)
@@ -2053,111 +2073,81 @@ void bDNode(nbtType **Node)
     *Node = NULL;
 }
 
-/* Prosedur untuk mencari node yang akan dilakukan delete dan menyesuaikan node-node pada struktur data tree sehingga tidak rusak */
 /* Prosedur untuk melakukan delete untuk suatu node */
-nbtAddr deleteNode(nbtAddr *root, infoType X)
-{
+nbtAddr deleteNode(nbtAddr *root, infoType X) {
     nbtAddr temp, parent;
 
-    if (*root == NULL)
-    {
+    if (*root == NULL) {
         return NULL;
     }
 
-    if ((*root)->info == X)
-    {
-        if ((*root)->fs == NULL && (*root)->nb == NULL)
-        {
+    if ((*root)->info == X) {
+        removeFromInsertedNodes(X);
+        if ((*root)->fs == NULL && (*root)->nb == NULL) {
             bDNode(root); // Hapus node jika tidak memiliki anak
-        }
-        else if ((*root)->fs != NULL && (*root)->nb == NULL)
-        {
+        } else if ((*root)->fs != NULL && (*root)->nb == NULL) {
             temp = (*root)->fs;
             bDNode(root);
             *root = temp; // Ganti root dengan anak sebelah kiri
-        }
-        else if ((*root)->fs == NULL && (*root)->nb != NULL)
-        {
+        } else if ((*root)->fs == NULL && (*root)->nb != NULL) {
             temp = (*root)->nb;
             bDNode(root);
             *root = temp; // Ganti root dengan anak sebelah kanan
-        }
-        else
-        {
+        } else {
             temp = (*root)->nb;
             parent = *root;
-            while (temp->fs != NULL)
-            {
+            while (temp->fs != NULL) {
                 parent = temp;
                 temp = temp->fs;
             }
             (*root)->info = temp->info;      // Ganti info root dengan info terbesar dari anak sebelah kanan
             deleteNode(&parent, temp->info); // Hapus node yang menyimpan info terbesar
         }
-    }
-    else
-    {
-        if ((*root)->fs != NULL && (*root)->nb != NULL)
-        {
-            if ((*root)->fs->info == X || (*root)->nb->info == X)
-            {
-                if ((*root)->fs->info == X)
-                {
+    } else {
+        if ((*root)->fs != NULL && (*root)->nb != NULL) {
+            if ((*root)->fs->info == X || (*root)->nb->info == X) {
+                if ((*root)->fs->info == X) {
                     temp = (*root)->fs;
-                }
-                else
-                {
+                } else {
                     temp = (*root)->nb;
                 }
-                if (temp->fs == NULL && temp->nb == NULL)
-                {
+                removeFromInsertedNodes(X);
+                if (temp->fs == NULL && temp->nb == NULL) {
                     bDNode(&temp); // Hapus node jika tidak memiliki anak
-                }
-                else if (temp->fs != NULL && temp->nb == NULL)
-                {
+                } else if (temp->fs != NULL && temp->nb == NULL) {
                     nbtAddr node = temp->fs;
                     temp->info = temp->fs->info;
                     temp->fs = temp->fs->fs;
                     free(node); // Hapus anak sebelah kiri dari node yang dihapus
-                }
-                else if (temp->fs == NULL && temp->nb != NULL)
-                {
+                } else if (temp->fs == NULL && temp->nb != NULL) {
                     nbtAddr node = temp->nb;
                     temp->info = temp->nb->info;
                     temp->nb = temp->nb->nb;
                     free(node); // Hapus anak sebelah kanan dari node yang dihapus
-                }
-                else
-                {
+                } else {
                     nbtAddr node = temp->nb;
                     parent = temp;
-                    while (node->fs != NULL)
-                    {
+                    while (node->fs != NULL) {
                         parent = node;
                         node = node->fs;
                     }
                     temp->info = node->info;         // Ganti info temp dengan info terbesar dari anak sebelah kanan
                     deleteNode(&parent, node->info); // Hapus node yang menyimpan info terbesar
                 }
-            }
-            else
-            {
+            } else {
                 deleteNode(&((*root)->fs), X);
                 deleteNode(&((*root)->nb), X);
             }
-        }
-        else if ((*root)->fs != NULL)
-        {
+        } else if ((*root)->fs != NULL) {
             deleteNode(&((*root)->fs), X);
-        }
-        else if ((*root)->nb != NULL)
-        {
+        } else if ((*root)->nb != NULL) {
             deleteNode(&((*root)->nb), X);
         }
     }
-    WriteCache(*root, "cache.txt");
     return *root;
 }
+
+
 
 /* ======================= END DELETE NODE TREE ========================*/
 
